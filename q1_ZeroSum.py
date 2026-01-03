@@ -1,3 +1,6 @@
+# Time complexity - O(n)
+# Space complexity - O(n)
+
 def zero_sum(arr):
     visited = set() # tracks which numbers have been visited
     count = 0 # number of pairs
@@ -32,3 +35,6 @@ if __name__ == "__main__":
     out2 = zero_sum_followup(input_arr)
     print(out)
     print(out2)
+    
+    
+# spent 15 minutes
