@@ -1,6 +1,5 @@
 # Time complexity - O(n)
 # Space complexity - O(n)
-# Spent 15 minutes
 
 def first_occurrence(s):
     out = "" # output string
@@ -20,3 +19,5 @@ if __name__ == "__main__":
     input_str = input("Enter a string: ")
     first_occurrence_str = first_occurrence(input_str)
     print(first_occurrence_str)
+    
+# Spent 15 minutes
