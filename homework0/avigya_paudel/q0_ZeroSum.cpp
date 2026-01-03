@@ -60,7 +60,7 @@ int zero_sum_followup(int arr[], int n){
 }
 
 int main(){
-    int arr1[] =  {1,10,8,3,2,-2,-2,-1};
+    int arr1[] =  {1,10,8,3,2,-2,-2,2,-1};
     int arr2[] = {1,5,7,0,0,0};
     int arr3[] = {4,3,3,5,7,8,9};
     int res1 = zero_sum(arr1, sizeof(arr1)/sizeof(arr1[0]));
@@ -78,3 +78,5 @@ int main(){
     cout << res3_followup << "\n";
     return 0;
 }
+
+// TIME SPENT: ~30 minutes
