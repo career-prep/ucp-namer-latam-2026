@@ -1,5 +1,6 @@
 # Time complexity - O(n)
 # Space complexity - O(n)
+# Spent 15 minutes
 
 def first_occurrence(s):
     out = "" # output string
