@@ -22,7 +22,7 @@ public class q2_FirstOccurrence {
    
     return finalString.toString();
     }
-    //time spent: 6 min
+    //time spent: 8 min
 
     public static void main(String[] args){
         String test1 = "abracadabra";
