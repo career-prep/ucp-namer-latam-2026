@@ -24,6 +24,7 @@ public class q1_UniqueSum {
         }
         return sum;
     }
+       //time spent: 3 min
     public static void main(String[] args){
         int[] test1 = {1,10,8,3,2,5,7,2,-2,-1};
         System.out.println(uniqueSum(test1));
@@ -33,7 +34,7 @@ public class q1_UniqueSum {
 
 
     }
-    //time spent: 3 min
+ 
   
     
 }
