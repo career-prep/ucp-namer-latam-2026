@@ -3,7 +3,7 @@ package homework0.nitai_mahat;
 import java.util.*;
 
 /**
- * Time complexity = O(n) where n is the number of integer is provided array
+ * Time complexity = O(n) where n is the number of integer in provided array
  * Space complexity = O(n) where n is the size of the hashmap
  * 
  * 
