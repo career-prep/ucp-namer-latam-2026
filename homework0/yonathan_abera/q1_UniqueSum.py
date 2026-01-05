@@ -1,5 +1,5 @@
 #Return sum of unqiue items
-
+#O(n) time and O(n) space complexity
 def uniqueSum(nums):
     unique = set()
     sums = 0

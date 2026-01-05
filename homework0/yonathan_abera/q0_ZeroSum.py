@@ -1,4 +1,4 @@
-
+#O(n) time and O(n) space complexity
 def zeroSum(nums):
     counts = {}
     pairs = 0

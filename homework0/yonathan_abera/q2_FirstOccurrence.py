@@ -1,4 +1,4 @@
-
+#O(n) time and O(n) space complexity
 def firstOccurr(words):
     acc = ""
     counts = set()
