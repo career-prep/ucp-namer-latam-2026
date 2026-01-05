@@ -6,17 +6,15 @@
 
 def ZeroSum(nums):
     pairs = {}
-    result = []
+    result = 0
 
     for num in nums:
         if -num in pairs:
-            result.append([num,-num])
+            result += 1
         else:
             pairs[num] = 1
     
-    length = len(result)
-
-    return length
+    return result
 
 test = [1,10,8,3,2,5,7,2,-2,-1]
 print(ZeroSum(test)) #output: 2
