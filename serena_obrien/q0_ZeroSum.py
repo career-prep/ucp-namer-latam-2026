@@ -2,15 +2,15 @@
 # Space complexity: O(n)
 
 def ZeroSum(arr):
-    nums = {}
-    count = 0
+    counts = {}
+    pairs = 0
     for num in arr:
-        if -num in nums:
-            nums.pop(-num)
-            count += 1
+        if counts.get(-num, 0) > 0:
+            pairs += 1
+            counts[-num] -= 1
         else:
-            nums[num] = 0
-    return count
+            counts[num] = counts.get(num, 0) + 1
+    return pairs
 
 def ZeroSumRepeats(arr):
     nums = {}
