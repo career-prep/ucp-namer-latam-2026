@@ -1,13 +1,4 @@
 def zerosum(arr):
-    '''
-    Create a hashmap and counter to track pairs
-
-    Populate hashmap with the value as the key and frequency as the value to track pairs in O(n) time.
-
-    The iterate through map to count the pairs, get target by finding the difference of 0 between the current key, then if if the target is in the map and if key is greater than 0 to avoid double counting pairs.
-
-    I failed to account for the case of multiple 0's in the list before running out of time.
-    '''
     d = {}
     count = 0
     for n in arr:

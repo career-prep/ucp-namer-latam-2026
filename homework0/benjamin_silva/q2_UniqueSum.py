@@ -1,10 +1,4 @@
 def uniquesum(arr):
-    '''
-    For this solution I use a set to get a list of the 
-    unique elements in the input array. Once I've got the set
-    I use the sum function to add all the elements in the set together.
-    This results in a sum of all the unique elements in the arr.
-    '''
     unique_set = set(arr)
     total_sum = sum(unique_set)
 
