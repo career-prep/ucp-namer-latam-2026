@@ -1,5 +1,5 @@
 #Time Complexity O(N)
-#Space Complexity o(N)
+#Space Complexity O(N)
 
 def ZeroSum(arr):
     count = 0
