@@ -2,24 +2,25 @@
 # Space complexity - O(n)
 
 def unique_sum(arr):
-    seen = set() # visited set
+    freq = {} # frequency map
     sum = 0 # unique sum
     
     for num in arr:
-        if num not in seen: # unique so far
-            seen.add(num)
+        if num not in freq: # unique so far
+            freq[num] = 1
             sum += num
-        else: # not unique anymore so need to remove from sum
+        elif freq[num] == 1: # not unique anymore so need to remove from sum
+            freq[num] += 1
             sum -= num
-    
+        
     return sum
-
+    
 
 
 if __name__ == "__main__":
-    input_arr = [1,2,3,4,1,2,3,4]
+    input_arr = [1,2,3,4,1,4,1]
     out = unique_sum(input_arr)
     print(out)
     
     
-# spent 15 minutes
+# spent 20 minutes
