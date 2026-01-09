@@ -1,11 +1,11 @@
 #Time Complexity O(N)
 #Space Complexity O(N)
 
-def FirstOccurrence(str):
+def FirstOccurrence(s):
     res = ""
     seen = set()
 
-    for c in str:
+    for c in s:
         if c not in seen:
             res += c
             seen.add(c)
