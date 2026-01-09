@@ -1,4 +1,4 @@
-# Homework 0 - Saad Amin
+# Homework 0 – Saad Amin
 
 ---
 
@@ -11,7 +11,7 @@
 ---
 
 ## q1_UniqueSum.py
-**Problem Type:** Array / Sets
+**Problem Type:** Array / Sets  
 **Time Spent:** ~6 minutes  
 **Time Complexity:** O(n)  
 **Space Complexity:** O(n)
@@ -19,7 +19,7 @@
 ---
 
 ## q2_FirstOccurrence.py
-**Problem Type:** Array / Sets 
+**Problem Type:** Array / Sets  
 **Time Spent:** ~12 minutes  
 **Time Complexity:** O(n)  
 **Space Complexity:** O(n)
