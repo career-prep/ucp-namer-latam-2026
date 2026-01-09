@@ -129,4 +129,4 @@ All solutions tested with provided examples and edge cases including:
 - Empty arrays
 - Arrays with no pairs
 - Arrays with all zeros
-- Single element arrays
+- Single element array
