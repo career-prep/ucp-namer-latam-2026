@@ -19,7 +19,7 @@
 ---
 
 ## q2_FirstOccurrence.py
-**Problem Type:** Array / Sets  
+**Problem Type:** String / Sets  
 **Time Spent:** ~12 minutes  
 **Time Complexity:** O(n)  
 **Space Complexity:** O(n)
