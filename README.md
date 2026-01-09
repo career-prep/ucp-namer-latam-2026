@@ -17,7 +17,7 @@
 
 
 ## Q1: Zero Sum Followup
-**Problem Type:** Set 
+**Problem Type:** Array 
 **Time Spent:** 5 minutes
 **Approach:** 
 - Initialize a visited set to track which numbers we have seen already
@@ -32,7 +32,7 @@
 
 
 ## Q2: Unique Sum
-**Problem Type:** Set 
+**Problem Type:** Array 
 **Time Spent:** 20 minutes
 **Approach:** 
 - Initialize a frequency hashmap to track which numbers in array we have seen already and how many times we have seen them
@@ -46,7 +46,7 @@
 
 
 ## Q3: First Occurrence
-**Problem Type:** Set 
+**Problem Type:** String 
 **Time Spent:** 15 minutes
 **Approach:** 
 - Initialize a visited set to track which letters we have seen already
