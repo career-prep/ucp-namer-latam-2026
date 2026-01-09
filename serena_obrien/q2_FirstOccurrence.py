@@ -18,4 +18,4 @@ if __name__ == '__main__':
     print("Input String:", inputStr)
     print("Output:", FirstOccurrence(inputStr))
 
-# ~ time spent: 7 minutes
+# ~ time spent: 10 minutes

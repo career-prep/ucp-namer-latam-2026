@@ -15,4 +15,4 @@ if __name__ == "__main__":
     inputArr = [0, 0]
     print("Output:", UniqueSum(inputArr))
 
-# ~ time spent: 8 minutes
+# ~ time spent: 10 minutes
