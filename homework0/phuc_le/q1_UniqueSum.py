@@ -7,7 +7,7 @@
     Time: O(n)
     Space: O(n)
 
-    Spend around 5 minutes
+    Spend around 10 minutes
 '''
 
 from typing import List

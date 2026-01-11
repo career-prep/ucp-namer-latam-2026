@@ -6,7 +6,7 @@
     Time: O(n)
     Space: O(n)
 
-    Spend around 5 minutues
+    Spend around 10 minutues
 '''
 
 def FirstOccurrence(s: str) -> str:
