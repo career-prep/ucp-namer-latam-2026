@@ -1,3 +1,9 @@
+"""
+Time Cmplexity = O(n)
+Space Complexity = O(n)
+Time used = 10 minutes
+
+"""
 def main(mes):
     res = ""
     seen = set()
