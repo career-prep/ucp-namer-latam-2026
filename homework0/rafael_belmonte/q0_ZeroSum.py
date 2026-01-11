@@ -1,5 +1,6 @@
 # Time complexity: O(n)
 # Space complexity: O(n)
+# 39 minutes
 
 array1 = [1,10,8,3,2,5,7,2,-2,-1]
 array2 = [1,10,8,-2,2,5,7,2,-2,-1]
@@ -9,10 +10,10 @@ array5 = [0,0,0,0]
 array6 = [1,-1,1,-1]
 
 def zero_sum(arr):
-    occurences = dict()
+    occurences = dict() #space O(n)
     count = 0
-    for i in range(len(arr)):
-        occurences[arr[i]] = occurences.get(arr[i], 0) + 1
+    for i in range(len(arr)): #loop time O(n)
+        occurences[arr[i]] = occurences.get(arr[i], 0) + 1 #get time O(1)
         if occurences.get(-arr[i], 0) > 0 and arr[i] != 0:
             count += 1
             occurences[-arr[i]] = occurences.get(-arr[i], 0) - 1
@@ -46,5 +47,3 @@ print(zero_sum_updated(array3))
 print(zero_sum_updated(array4))
 print(zero_sum_updated(array5))
 print(zero_sum_updated(array6))
-
-#39 minutes
