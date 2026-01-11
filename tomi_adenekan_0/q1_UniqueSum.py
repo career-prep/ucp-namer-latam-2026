@@ -1,3 +1,9 @@
+"""
+Time Cmplexity = O(n)
+Space Complexity = O(n)
+Time used = 12 minutes
+
+"""
 from collections import defaultdict
 def main(lst):
     res = 0
