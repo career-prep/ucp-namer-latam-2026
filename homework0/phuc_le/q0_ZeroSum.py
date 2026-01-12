@@ -10,6 +10,8 @@
     Space: O(n)
     
     Spend around 10 minutes
+
+    {}
 '''
 from typing import List
 
@@ -19,6 +21,9 @@ def ZeroSum(nums: List[int]) -> int:
     for n in nums:
         if -n in mp:
             pairs += 1
+            mp[-n] -= 1
+            if mp[-n] == 0:
+                del mp[-n]
         else:
             mp[n] = 1
     return pairs
@@ -30,4 +35,6 @@ print(ZeroSum(nums))
 nums = [4, 3, 3, 5, 7, 0, 2, 3, 8, 6]
 print(ZeroSum(nums))
 nums = [4, 3, 3, 5, 7, 0, 2, 3, 8, 0]
+print(ZeroSum(nums))
+nums = [-2, 2, 2]
 print(ZeroSum(nums))

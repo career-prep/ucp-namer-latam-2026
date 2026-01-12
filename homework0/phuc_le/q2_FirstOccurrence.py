@@ -10,11 +10,11 @@
 '''
 
 def FirstOccurrence(s: str) -> str:
-    mp = {}
-    for c in s:
-        if c not in mp:
-            mp[c] = 1
-    return "".join(mp.keys())
+    foundChar = {}
+    for char in s:
+        if char not in foundChar :
+            foundChar[char] = 1
+    return "".join(foundChar .keys())
 
 s = "abracadabra"
 print(FirstOccurrence(s))
