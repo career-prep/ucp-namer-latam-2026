@@ -10,20 +10,20 @@
 
 # Input String: `"zzyzx"`
 # Output: `"zyx"`
-def FirstOccurence(str):
-    res=""
-    seen={}
-    for i,n in enumerate(str):
-        if n in seen:
+def first_occurence(s):
+    res=[]
+    seen=set()
+    for char in s:
+        if char in seen:
             continue
         else:
-            seen[n]=i
-            res+=n
+            seen.add(char)
+            res.append(char)
             
-    return res
-print(FirstOccurence("Uber Career Prep"))
-print(FirstOccurence("abracadabra"))
-print(FirstOccurence("zzyzx"))
+    return "".join(res)
+print(first_occurence("Uber Career Prep"))
+print(first_occurence("abracadabra"))
+print(first_occurence("zzyzx"))
 
 #Time Complexity= O(n)
 #Space Complexity= O(n)

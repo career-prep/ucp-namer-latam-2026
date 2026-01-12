@@ -7,13 +7,9 @@
 
 # Input Array: [4, 3, 3, 5, 7, 0, 2, 3, 8, 6]
 # Output: 35
-def UniqueSum(arr):
-    res=0
-    arr=set(arr)
-    for n in arr:
-        res+=n
-    return res 
-print(UniqueSum([4, 3, 3, 5, 7, 0, 2, 3, 8, 6]))
+def unique_sum(arr):
+    return sum(set(arr)) 
+print(unique_sum([4, 3, 3, 5, 7, 0, 2, 3, 8, 6]))
 
 #Time Complexity= O(n)
 #Space Complexity= O(n)

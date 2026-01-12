@@ -10,18 +10,22 @@
 # Output: 3
 # (Pairs: (1, -1), (2, -2), (2, -2))
 
-def sum_to_zero(arr):
+def zero_sum(arr):
     seen={}
     count=0
-    for i,num in enumerate(arr):
-        dif=0-num
-        if dif in seen:
-            count+=1
+    for num in arr:
+        dif = 0 - num 
+        
+    
+        if dif in seen and seen[dif] > 0:
+            count += 1
+            seen[dif] -= 1
         else:
-            seen[num]=i
+            seen[num] = seen.get(num, 0) + 1
+    
     return count
-print(sum_to_zero([1, 10, 8, -2, 2, 5, 7, 2, -2, -1]))
-print(sum_to_zero([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
+print(zero_sum([1, 10, 8, -2, 2, 5, 7, 2, -2, -1]))
+print(zero_sum([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
 
 #Time Complexity= O(n)
 #Space Complexity= O(n)
@@ -44,28 +48,26 @@ print(sum_to_zero([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
 #Output: 5
 #(Pairs: (1, -1), (2, -2), (2, -2), (2, -2), (2, -2))
 
-def sum_to_zero(arr):
+from collections import Counter
+
+def zero_sum_reuse(arr):
     count = 0
-    freq = {}
-    
-    for num in arr:
-        if num in freq:
-            freq[num] += 1
-        else:
-            freq[num] = 1
+    freq = Counter(arr)
     
     for num in freq:
         complement = -num
+        
         if complement in freq:
             if num < complement:
                 count += freq[num] * freq[complement]
             elif num == complement:
-                count += freq[num] // 2
+                n = freq[num]
+                count += (n * (n - 1)) // 2
     
     return count
 
-print(sum_to_zero([1, 10, 8, -2, 2, 5, 7, 2, -2, -1]))
-print(sum_to_zero([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
+print(zero_sum_reuse([1, 10, 8, -2, 2, 5, 7, 2, -2, -1]))
+print(zero_sum_reuse([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
 
 #Time Complexity= O(n)
 #Space Complexity= O(n)
