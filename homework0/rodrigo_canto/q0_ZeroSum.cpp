@@ -30,28 +30,39 @@ void calculate_frequencies(const vector<int> &array){
     }
 }
 
+/*
+    Iterate through the frequency of the positive elements and calculate its negative value.
+    If the negative value does not exist in the data structure C++ automatically inserts this value
+    with a frequency of zero, so the answer will not be affected.
+
+    The number of pairs for that particular value will be the minimum between both frequencies for the first part
+    and the product of the frequencies for the second part of the problem
+*/
+
+void calculate_pairs(bool solving_follow_up, long long &answer){
+
+    for(auto element: frequency_positives){
+
+        long long number = element.first;
+        long long curr_frequency = element.second;
+        long long opposite_number = number * (-1);
+
+        long long pairs = 0;
+
+        if(solving_follow_up) pairs = curr_frequency * (long long) frequency_negatives[opposite_number];
+        else pairs = min(curr_frequency, (long long)frequency_negatives[opposite_number]);
+        
+        answer = answer + pairs;
+    }
+}
+
 long long solve(const vector<int> &array){
 
     calculate_frequencies(array);
 
     long long answer = 0;
 
-    /*
-        Iterate through the frequency of the positive elements and calculate its negative value.
-        If the negative value does not exist in the data structure C++ automatically inserts this value
-        with a frequency of zero, so the answer will not be affected.
-
-        The number of pairs for that particular value will be the minimum between both frequencies.
-    */
-
-    for(auto element: frequency_positives){
-        long long number = element.first;
-        long long curr_frequency = element.second;
-        long long opposite_number = number * (-1);
-        
-        long long pairs = min(curr_frequency, (long long)frequency_negatives[opposite_number]);
-        answer = answer + pairs;
-    }
+    calculate_pairs(false, answer);
 
     //The number of pairs for zero will be its frequency divided by two. (The floor of that division is taken).
     return answer + (count_zero / 2);
@@ -63,22 +74,7 @@ long long solve_follow_up(const vector<int> &array){
 
     long long answer = 0;
 
-    /*
-        Iterate through the frequency of the positive elements and calculate its negative value.
-        If the negative value does not exist in the data structure C++ automatically inserts this value
-        with a frequency of zero, so the answer will not be affected.
-
-        The number of pairs for that particular value will be product of the frequencies.
-    */
-
-    for(auto element: frequency_positives){
-        long long number = element.first;
-        long long curr_frequency = element.second;
-        long long opposite_number = number * (-1);
-        
-        long long pairs = curr_frequency * frequency_negatives[opposite_number];
-        answer = answer + pairs;
-    }
+    calculate_pairs(true, answer);
 
     /*
         The number of pairs for zero will be the number of combinations of 2 elements out of n elements, 
