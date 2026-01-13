@@ -12,13 +12,16 @@ def main():
     print("test3: ", firstoccurrence(test3))
     print("test4: ", firstoccurrence(test4))
 
-def firstoccurrence(str):
-    result = ""
-    for char in str:
-        if char not in result:
-            result += char
+def firstoccurrence(word):
+    unique_letters = set()
+    result = []
+
+    for char in word:
+        if char not in unique_letters:
+            unique_letters.add(char)
+            result.append(char)
     
-    return result
+    return ''.join(result)
 
 if __name__ == "__main__":
     main()

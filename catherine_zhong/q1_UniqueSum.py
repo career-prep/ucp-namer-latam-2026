@@ -13,14 +13,14 @@ def main():
     print("test4: ", uniquesum(test4))
 
 def uniquesum(arr):
-    nums = set()
-    sum = 0
+    unique_nums = set()
+    total_sum = 0
     for i in arr:
-        if i not in nums:
-            sum += i
-            nums.add(i)
+        if i not in unique_nums:
+            total_sum += i
+            unique_nums.add(i)
     
-    return sum
+    return total_sum
 
 
 if __name__ == "__main__":
