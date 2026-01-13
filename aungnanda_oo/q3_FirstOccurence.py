@@ -24,7 +24,7 @@ def FirstOccurrence(string_input):
 
 
 # O(n) time, O(n) space
-test_list = ["abracadabra","Uber Career Prep","zzyzx"]
+test_list = ["abracadabra","Uber Career Prep","zzyzx",""]
 for test in test_list:
     print(FirstOccurrence(test))
 

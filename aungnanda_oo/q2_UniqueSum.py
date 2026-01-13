@@ -9,14 +9,14 @@
 # Output: 35 (4 + 3 + 5 + 7 + 0 + 2 + 8 + 6)
 
 # Brute Force
-def UniqueSum(arr):
+def UniqueSum(arr: list[int]) -> int:
     set_arr = set(arr)
     return sum(set_arr)
 
 # O(n) time, O(n) space
 
 # same complexity, less memory overhead
-def UniqueSum(arr):
+def UniqueSum(arr: list[int]) -> int:
     seen = set()
     total = 0
     for num in arr:

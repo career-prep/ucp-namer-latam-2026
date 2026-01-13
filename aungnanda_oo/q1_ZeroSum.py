@@ -38,7 +38,7 @@ def ZeroSum(array):
 
     return len(zero_pair_list)
 
-# O(n) time, O(n) space
+# O(n^2) time, O(n) space
 test_list = [[1, 10, 8, 3, 2, 5, 7, 2, -2, -1],[1, 10, 8, -2, 2, 5, 7, 2, -2, -1], [4, 3, 3, 5, 7, 0, 2, 3, 8, 6], [4, 3, 3, 5, 7, 0, 2, 3, 8, 0]]
 
 for arr in test_list:
