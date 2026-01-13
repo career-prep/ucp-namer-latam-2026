@@ -23,18 +23,14 @@
 from collections import defaultdict
 def ZeroSum(array):
     freq = defaultdict(int)
-    pairs = []
+    count = 0
 
     for num in array:
         target = -num
-
-        # Each previous target forms a valid pair
-        for _ in range(freq[target]):
-            pairs.append((target, num))
-
+        count += freq[target]
         freq[num] += 1
 
-    return len(pairs)
+    return count
 
 # O(n) time, O(n) space
 test_list = [[1, 10, 8, 3, 2, 5, 7, 2, -2, -1],[1, 10, 8, -2, 2, 5, 7, 2, -2, -1],[4, 3, 3, 5, 7, 0, 2, 3, 8, 6],[4, 3, 3, 5, 7, 0, 2, 3, 8, 0]]
