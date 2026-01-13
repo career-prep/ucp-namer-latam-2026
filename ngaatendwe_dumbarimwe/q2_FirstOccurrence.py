@@ -1,33 +1,38 @@
 #Time: O(n)
 #Space: O(n), where n is the length of text 
 
+import unittest
+
 def first_occurrence(text: str) -> str:
     seen = set()
     res = ""
-    for i in text:
-        if i not in seen:
-            res += i
-            seen.add(i)
+    for char in text:
+        if char not in seen:
+            res += char
+            seen.add(char)
         else:
             continue
     return res 
 
-def main():
-    
-    test_cases = [
-        ("Netherlands", "Nethrlands"),
-        ("fghijk", "fghijk"),
-        ("", ""),
-        ("ccccc", "c"),
-        ("k!g!$?k", "k!g$?")
-    ]
+#Tests
+class TestFirstOccurrence(unittest.TestCase):
 
-    for input_text, expected in test_cases:
-        assert first_occurrence(input_text) == expected
+    def test_basic_case(self):
+        self.assertEqual(first_occurrence("Netherlands"), "Nethrlands")
 
-    print("All test cases passed!")
+    def test_all_unique(self):
+        self.assertEqual(first_occurrence("fghijk"), "fghijk")
+
+    def test_empty_string(self):
+        self.assertEqual(first_occurrence(""), "")
+
+    def test_all_duplicates(self):
+        self.assertEqual(first_occurrence("ccccc"), "c")
+
+    def test_special_characters(self):
+        self.assertEqual(first_occurrence("k!g!$?k"), "k!g$?")
 
 if __name__ == "__main__":
-    main()
+    unittest.main()
     
 #Time taken: 15 minutes
