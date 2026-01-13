@@ -2,7 +2,7 @@
 
 from collections import defaultdict
 def first_occurrence(word):
-    dic = defaultdict(int)
+    dict = defaultdict(int)
     new_word = ""
     for n in word:
         dic[n] += 1
