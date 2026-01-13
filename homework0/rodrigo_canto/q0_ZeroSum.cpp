@@ -4,26 +4,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(vector<int> &array){
+//Use an unordered map to keep track of the frequency of the elements.
+unordered_map<int, int> frequency_positives, frequency_negatives;
 
-    //Use an unordered map to keep track of the frequency of the elements.
-    unordered_map<int,int> frequency_positives;
-    unordered_map<int,int> frequency_negatives;
+//Consider the number zero as a special case that will be covered later.
+long long count_zero = 0;
+
+//Reset variables and data structures for next iteration.
+void reset(){
+    frequency_positives.clear();
+    frequency_negatives.clear();
+    count_zero = 0;
+}
+
+//Update the data structure according to the value that is found.
+void calculate_frequencies(const vector<int> &array){
     
-    //Consider the number zero as a special case that will be covered later.
-    int count_zero = 0;
-
-    //Update the data structure according to the value that is found.
-    for(int i = 0; i < array.size(); ++i){
-        if(array[i] == 0){
+    for(int value : array){
+        if(value == 0){
             count_zero++;
             continue;
         }
-        if(array[i] > 0) frequency_positives[array[i]]++;
-        else frequency_negatives[array[i]]++;
+        if(value > 0) frequency_positives[value]++;
+        else frequency_negatives[value]++;
     }
+}
 
-    int answer = 0;
+long long solve(const vector<int> &array){
+
+    calculate_frequencies(array);
+
+    long long answer = 0;
 
     /*
         Iterate through the frequency of the positive elements and calculate its negative value.
@@ -34,38 +45,23 @@ int solve(vector<int> &array){
     */
 
     for(auto element: frequency_positives){
-        int number = element.first;
-        int curr_frequency = element.second;
-        int opposite_number = number * (-1);
+        long long number = element.first;
+        long long curr_frequency = element.second;
+        long long opposite_number = number * (-1);
         
-        int pairs = min(curr_frequency, frequency_negatives[opposite_number]);
+        long long pairs = min(curr_frequency, (long long)frequency_negatives[opposite_number]);
         answer = answer + pairs;
     }
 
     //The number of pairs for zero will be its frequency divided by two. (The floor of that division is taken).
-    return answer + (count_zero >> 1);
+    return answer + (count_zero / 2);
 }
 
-int solve_follow_up(vector<int> &array){
+long long solve_follow_up(const vector<int> &array){
 
-    //Use an unordered map to keep track of the frequency of the elements.
-    unordered_map<int,int> frequency_positives;
-    unordered_map<int,int> frequency_negatives;
-    
-    //Consider the number zero as a special case that will be covered later.
-    int count_zero = 0;
+    calculate_frequencies(array);
 
-    //Update the data structure according to the value that is found.
-    for(int i = 0; i < array.size(); ++i){
-        if(array[i] == 0){
-            count_zero++;
-            continue;
-        }
-        if(array[i] > 0) frequency_positives[array[i]]++;
-        else frequency_negatives[array[i]]++;
-    }
-
-    int answer = 0;
+    long long answer = 0;
 
     /*
         Iterate through the frequency of the positive elements and calculate its negative value.
@@ -76,11 +72,11 @@ int solve_follow_up(vector<int> &array){
     */
 
     for(auto element: frequency_positives){
-        int number = element.first;
-        int curr_frequency = element.second;
-        int opposite_number = number * (-1);
+        long long number = element.first;
+        long long curr_frequency = element.second;
+        long long opposite_number = number * (-1);
         
-        int pairs = curr_frequency * frequency_negatives[opposite_number];
+        long long pairs = curr_frequency * frequency_negatives[opposite_number];
         answer = answer + pairs;
     }
 
@@ -89,14 +85,12 @@ int solve_follow_up(vector<int> &array){
         where n is the frequency of the number zero in the array.
     */
 
-    int zero_combinations = (count_zero) * (count_zero - 1) / 2;
+    long long zero_combinations = (count_zero) * (count_zero - 1) / 2;
 
     return answer + zero_combinations;
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
 
     vector<vector<int>> cases;
 
@@ -111,8 +105,11 @@ int main() {
     cases.emplace_back(case4);
 
     for(auto &test_case: cases){
+
         cout << solve(test_case) << "\n";
         //cout << solve_follow_up(test_case) << "\n";
+
+        reset();
     }
 
     return 0;

@@ -4,21 +4,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string solve(string &input){
+string solve(const string &input){
 
-    //Use an unorered set to keep track of distinct elements.
+    //Use an unordered set to keep track of distinct elements.
     unordered_set<char> distinct_elements;
 
     string answer = "";
 
-    for(int i = 0; i < input.size(); ++i){
+    for(char character : input){
         int previous_size = distinct_elements.size();
-        distinct_elements.insert(input[i]);
+        distinct_elements.insert(character);
         int new_size = distinct_elements.size();
 
         //If the sizes are different that means we have a found a new character.
         if(previous_size != new_size){
-            answer.push_back(input[i]);
+            answer.push_back(character);
         }
     }
 
@@ -26,8 +26,6 @@ string solve(string &input){
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
 
     vector<string> cases;
 

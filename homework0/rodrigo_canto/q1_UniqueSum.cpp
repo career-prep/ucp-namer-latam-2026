@@ -4,16 +4,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(vector<int> &array){
+long long solve(const vector<int> &array){
 
-    //Use an unorered set to keep track of distinct elements.
-    unordered_set<int> distinct_elements;
+    //Use an unordered set to keep track of distinct elements.
+    unordered_set<long long> distinct_elements;
 
-    for(int i = 0; i < array.size(); ++i){
-        distinct_elements.insert(array[i]);
+    for(long long value : array){
+        distinct_elements.insert(value);
     }
 
-    int answer = 0;
+    long long answer = 0;
     
     //Iterate through the set and add the value of the current element to the answer.
     for(auto element: distinct_elements){
@@ -24,8 +24,6 @@ int solve(vector<int> &array){
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
 
     vector<vector<int>> cases;
 
