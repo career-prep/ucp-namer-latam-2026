@@ -20,7 +20,7 @@ def zero_sum(nums: List[int]) -> int:
         if val == num and count_dict[val] > 1:
             pair_count += 1
             count_dict[val] -= 2
-        elif val in count_dict and count_dict[val] > 0 and count_dict[i] > 0 and val != i :
+        elif val in count_dict and count_dict[val] > 0 and count_dict[num] > 0 and val != num :
             pair_count += 1
             count_dict[val] -= 1
             count_dict[num] -= 1
