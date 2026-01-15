@@ -48,7 +48,7 @@ print(zero_sum([4,3,3,5,7,0,2,3,8,0]))
 # Approach:
 # iterate through every num in arr
 # if diff=0-num in array => count+=hash_map[diff]
-# if not, track the number of occurrences of num
+# track the number of occurrences of num
 
 # => Spend: 30 mins
 
