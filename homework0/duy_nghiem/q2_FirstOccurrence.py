@@ -10,15 +10,15 @@
 # Implementation:
 
 def first_occurance(s):
-    res=""
+    returned_str=""
     unique_char=set()
 
-    for c in s:
-        if c not in unique_char:
-            res+=c
-            unique_char.add(c)
+    for char in s:
+        if char not in unique_char:
+            returned_str+=char
+            unique_char.add(char)
             
-    return res
+    return returned_str
 
 # test case:
 print(first_occurance("abracadabra"))
