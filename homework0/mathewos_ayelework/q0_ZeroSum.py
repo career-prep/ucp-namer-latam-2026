@@ -1,60 +1,51 @@
-def zeroSum(nums):
-    freqMap = {}
+from collections import Counter
+# zeroSum returns the number of pairs of integers in the array that sum to 0. Note: you can only use the element at each index only once
+def zeroSum(nums: list[int]) -> int:
     count = 0
-    usedSet = set()
+    freqMap = Counter(nums)
 
-    for num in nums:
-        if num in freqMap:
-            freqMap[num] +=1
-        else:
-            freqMap[num] = 1
-
-    for num in nums:
-        diff = -1 * num
-        if num == 0 and num not in usedSet:
-            count += freqMap[num] // 2
-            usedSet.add(num)
+    for num,freq in freqMap.items():
+        if num == 0:
+            count += (freq // 2)
             continue
         
-        if freqMap.get(diff) and num not in usedSet and diff not in usedSet:
-            count += min(freqMap[num],freqMap[diff])
-            usedSet.add(num)
-            usedSet.add(diff)
+        diff = -1 * num
+        if freqMap.get(diff) and num > 0:
+            count += min(freqMap[num], freqMap[diff])
 
     return count           
 
 # Time Complexity: O(n), Space Complexity: O(n)
 # Total time taken: 47 mins
 
-def zeroSumReuse(nums):
-    freqMap = {}
+# zeroSumReuse returns the number of pairs of integers in the array that sum to 0. Note: you can reuse elements at each index in different pairs
+def zeroSumReuse(nums: list[int]) -> int:
     count = 0
-    usedSet = set()
+    freqMap = Counter(nums)
 
-    for num in nums:
-        if num in freqMap:
-            freqMap[num] +=1
-        else:
-            freqMap[num] = 1
-
-    for num in nums:
+    for num,freq in freqMap.items():
         diff = -1 * num
-        if num == 0 and num not in usedSet:
+        if num == 0:
             temp = 1
-            while temp < freqMap[num]:
-                count += freqMap[num]  - temp
+            while temp < freq:
+                count += freq  - temp
                 temp += 1
-            
-            usedSet.add(num)
             continue
 
-        if freqMap.get(diff) and num not in usedSet and diff not in usedSet:
-            count += freqMap[num] * freqMap[diff]
-            usedSet.add(num)
-            usedSet.add(diff)
+        if num > 0:
+            count += freq * freqMap.get(diff, 0) 
 
     return count           
 
+print("zeroSum Results:")
+test_cases = [[1,10,8,3,2,5,7,2,-2,-1], [1,10,8,-2,2,5,7,2,-2,-1], [4,3,3,5,7,0,2,3,8,6], [4,3,3,5,7,0,2,3,8,0],[],[1,-1,-1,-1]]
+for test_case in test_cases:
+    print(zeroSum(test_case)) # Expected Output: 2,3,0,1,0,1
+    
+print("zeroSumReuse Results:")
+for test_case in test_cases:
+    print(zeroSumReuse(test_case)) # Expected Output: 3,5,0,1,0,3
+    
 
 # Time Complexity: O(n), Space Complexity: O(n)
 # Total time taken: 31 mins
