@@ -7,10 +7,11 @@ int uniqueSum(vector<int>& arr) {
     unordered_set<int> seen;
     int sum = 0;
     for (int num : arr) {
-        if (!seen.count(num)) {
-            sum += num;
-            seen.insert(num);
+        if (seen.count(num)) {
+            continue;
         }
+        sum += num;
+        seen.insert(num);
     }
     return sum;
 }

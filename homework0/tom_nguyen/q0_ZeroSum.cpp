@@ -3,33 +3,38 @@
 #include <unordered_map>
 using namespace std;
 
-int zeroSumPairs(vector<int>& arr) {
+// Uses a hash map to track seen values and find complement pairs in O(n)
+int zeroSumPairs(const vector<int>& arr) {
     unordered_map<int, int> count;
     for (int num : arr) {
         ++count[num];
     }
-
     int pairs = 0;
-    for (auto& p : count) {
+    for (const auto& p : count) {
         int num = p.first;
         int cnt = p.second;
         if (num == 0) {
             pairs += cnt / 2;
             count[0] = cnt % 2;
-        } else if (num > 0 && count.count(-num)) {
-            int match = min(cnt, count[-num]);
-            pairs += match;
-            count[num] -= match;
-            count[-num] -= match;
+            continue;
+        } 
+        if (!count.contains(-num)) {
+            continue;
         }
+        int match = min(cnt, count[-num]);
+        pairs += match;
+        count[num] -= match;
+        count[-num] -= match;
     }
     return pairs;
 }
 
-int zeroSumPairsReuse(vector<int>& arr) {
+// Uses a hash map to track seen values and find ALL complement pairs in O(n)
+int zeroSumPairsReuse(const vector<int>& arr) {
     unordered_map<int, int> count;
-    for (int num : arr) count[num]++;
-
+    for (int num : arr) {
+        ++count[num];
+    }
     int pairs = 0;
     for (auto& p : count) {
         int num = p.first;
@@ -37,11 +42,14 @@ int zeroSumPairsReuse(vector<int>& arr) {
         if (num == 0) {
             pairs += (cnt * (cnt - 1)) / 2;
             count[0] = 0;
-        } else if (num > 0 && count.count(-num)) {
-            pairs += cnt * count[-num];
-            count[num] = 0;
-            count[-num] = 0;
+            continue;
         }
+        if (num < 0 || !count.contains(-num)) {
+            continue;
+        }
+        pairs += cnt * count[-num];
+        count[num] = 0;
+        count[-num] = 0;
     }
     return pairs;
 }
