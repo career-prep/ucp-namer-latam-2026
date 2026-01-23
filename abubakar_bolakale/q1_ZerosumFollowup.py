@@ -15,7 +15,7 @@ class Solution:
             
             else:
                 if zero in dict:
-                    count += min(dict[key], dict[zero])
+                    count += dict[zero] * dict[key]
                         
         return count
 
