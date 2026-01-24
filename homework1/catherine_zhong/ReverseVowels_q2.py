@@ -3,10 +3,13 @@
 
 def ReverseVowels(phrase):
     charList = list(phrase)
+
+    #two pointers
     start = 0
     end = len(phrase)-1
     vowels = 'aeiou'
 
+    #loops through string and swaps vowels found
     while start < end:
         if charList[start].lower() not in vowels:
             start += 1
