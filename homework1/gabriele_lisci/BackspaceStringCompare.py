@@ -37,6 +37,7 @@ print(BackspaceStringCompare("abcde", "abcde") == True)
 print(BackspaceStringCompare("Uber Career Prep", "u#Uber Careee#r Prep") == True)
 print(BackspaceStringCompare("abcdef###xyz", "abcw#xyz") == True)
 print(BackspaceStringCompare("abcdef###xyz", "abcdefxyz###") == False)
+print(BackspaceStringCompare("###", "") == True)
 
 
 
