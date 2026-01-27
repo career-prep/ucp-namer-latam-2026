@@ -1,5 +1,5 @@
-#Time Complexity: O(n)
-#Space Complexity: O(n)
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def zero_sum(numbers):
     result = []
     partner = {}
@@ -12,23 +12,23 @@ def zero_sum(numbers):
     return len(result)
 
 
-# #Test Case 1
+# Test Case 1
 print(zero_sum([1,10,8,3,2,5,7,2,-2,-1]) == 2)
-# #Test Case 2
+# Test Case 2
 print(zero_sum([1,10,8,-2,2,5,7,2,-2,-1]) == 3)
-# #Test Case 3
+# Test Case 3
 print(zero_sum([4,3,3,5,7,0,2,3,8,6]) == 0)
-# #Test Case 4
+# Test Case 4
 print(zero_sum([4,3,3,5,7,0,2,3,8,0]) == 1)
 
 #Spent 17 minutes
 
 #---------------------------------------------------------------------------------------------------------
 
-#ZeroSum Follow-up Question
+# ZeroSum Follow-up Question
 
-#Time Complexity: O(n)
-#Space Complexity: O(n)
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 def zero_sum(numbers):
     result = []
     partner = {}
@@ -46,17 +46,66 @@ def zero_sum(numbers):
             multiplicity = partner[num] // 2
             for i in range(multiplicity):
                 result.append([num, -num])
-            
+
 
     return len(result)
 
-#Test Case 1
+# Test Case 1
 print(zero_sum([1,10,8,3,2,5,7,2,-2,-1]) == 3)
-#Test Case 2
+# Test Case 2
 print(zero_sum([1,10,8,-2,2,5,7,2,-2,-1]) == 5)
-#Test Case 3
+# Test Case 3
 print(zero_sum([4,3,3,5,7,0,2,3,8,6]) == 0)
-#Test Case 4
+# Test Case 4
 print(zero_sum([4,3,3,5,7,0,2,3,8,0]) == 1)
 
-#Spent 21 minutes
+# Spent 21 minutes
+
+
+
+
+# Fixing homework:
+def zeroSum(numbers):
+    hashmap = {}
+    count = 0
+    for num in numbers:
+        if hashmap.get(-num, 0) > 0:
+            count += 1
+            hashmap[-num] -= 1
+            if hashmap[-num] == 0:
+                del hashmap[-num]
+        else:
+            hashmap[num] = hashmap.get(num, 0) + 1
+    return count
+
+# Test Case 1
+print(zeroSum([1,10,8,3,2,5,7,2,-2,-1]) == 2)
+# Test Case 2
+print(zeroSum([1,10,8,-2,2,5,7,2,-2,-1]) == 3)
+# Test Case 3
+print(zeroSum([4,3,3,5,7,0,2,3,8,6]) == 0)
+# Test Case 4
+print(zeroSum([4,3,3,5,7,0,2,3,8,0]) == 1)
+# Test Case 5
+print(zeroSum([1,10,8,3,2,5,7,2,-2,-1,-1]) == 2)
+
+def zeroSum(numbers):
+    hashmap = {}
+    count = 0
+    for num in numbers:
+        if hashmap.get(-num, 0) > 0:
+            count += hashmap[-num]
+        hashmap[num] = hashmap.get(num, 0) + 1
+
+    return count
+
+# Test Case 1
+print(zeroSum([1,10,8,3,2,5,7,2,-2,-1]) == 3)
+# Test Case 2
+print(zeroSum([1,10,8,-2,2,5,7,2,-2,-1]) == 5)
+# Test Case 3
+print(zeroSum([4,3,3,5,7,0,2,3,8,6]) == 0)
+# Test Case 4
+print(zeroSum([4,3,3,5,7,0,2,3,8,0]) == 1)
+# Test Case 5
+print(zeroSum([1, 1, 1, 1, 1, -1, -1, -1, -1, -1]) == 25)
