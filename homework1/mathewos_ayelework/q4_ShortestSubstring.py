@@ -13,6 +13,7 @@ def containsRequired(substring, subCount):
 def shortestSubString(s: str, sub: str) -> int:
     if len(s) == 0 or len(sub) == 0:
         return 0
+   
     
     subCount = Counter(sub)
     minCount = float('inf')
@@ -23,7 +24,8 @@ def shortestSubString(s: str, sub: str) -> int:
             
             if containsRequired(substring, subCount):
                 minCount = min(minCount, len(substring))
-    return minCount if minCount != float('inf') else 0
+    # assumption made: if it doesn't exist return -1
+    return minCount if minCount != float('inf') else -1
 
 print("shortestSubString Results:")
 test_cases = [
@@ -32,6 +34,8 @@ test_cases = [
 ["dog", "god"],
 ["", ""],
 ["dog", ""],
+["d", "dog"],
+["defgh", "abd"],
 ["", "dog"]
             ]
 for test_case in test_cases:
