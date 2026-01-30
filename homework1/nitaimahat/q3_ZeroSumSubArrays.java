@@ -30,18 +30,18 @@ public class q3_ZeroSumSubArrays {
     //     return subArrayCount;
     // }
 
-    
+    //4,5,2,-1,-3,-3,4,6,-7
     public static int zeroSumArray(int[] inputArray){
         int sum = 0;
         int count = 0;
 
-        Map<Integer,Integer> seenMap = new HashMap<>();
+        Map<Integer,Integer> seenMap = new HashMap<>(); // map = {0:1 ,1:1, 4:2, 9 :1 , 11:2 , 10:1, 7:1, 5:1}
         seenMap.put(0,1);
-        for(int num : inputArray){
-            sum += num;
+        for(int num : inputArray){ // num = -3
+            sum += num; // sum = 4
 
             if(seenMap.containsKey(sum)){
-                count += seenMap.get(sum);
+                count += seenMap.get(sum); // count = 2
             }
 
             if(seenMap.containsKey(sum)){
