@@ -1,13 +1,16 @@
 #time complexity: O(n)
-#space complexity: O(n)
+#space complexity: O(1)
 
 def BackspaceStringCompare(str1, str2):
+    #checks if strings are same
     if str1 == str2:
         return True
 
+    #pointers for two strings
     str2Ptr = len(str2)-1
     str1Ptr = len(str1)-1
 
+    #loops through both strings and checks if characters are identical
     while str2Ptr >= 0 and str1Ptr >= 0:
         if str1[str1Ptr] == '#':
             str1Ptr -= 2

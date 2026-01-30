@@ -2,14 +2,19 @@
 #space complexity: O(1)
 
 def DedupArray(nums):
-    i = 0
-    while i < len(nums):
-        current = nums[i]
-        while i + 1 < len(nums) and nums[i+1] == current:
-            del nums[i]
-        i += 1
+    #checks for empty array
+    if not nums:
+        return nums
+
+    write = 1
+
+    for i in range(1, len(nums)):
+        if nums[i] != nums[write-1]:
+            nums[write] = nums[i]
+            write += 1
     
-    return nums
+    #trims array till last nonduplicate element
+    return nums[:write]
 
 test1 = [1,2,2,3,3,3,3,4,4,4,4]
 test2 = [1,2,3,4,5]
