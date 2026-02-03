@@ -1,3 +1,6 @@
+# time complexity: O(n)
+# space complexity: O(n)
+
 """
 Given an array of integers, return the sum of unique elements in the array
 
@@ -25,3 +28,5 @@ def unique_sum(num):
 
 print(unique_sum([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
 print(unique_sum([4, 3, 3, 5, 7, 0, 2, 3, 8, 6]))
+
+# time: 10 minutes

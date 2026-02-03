@@ -33,6 +33,9 @@ print(zero_sum([1, 10, 8, -2, 2, 5, 7, 2, -2, -1]))
 
 # time: 37 minutes
 
+
+# time complexity: O(n)
+# space complexity: O(n)
 # Follow up: Now assume you can re-use elements in different pairs.
 # The elements in a pair must be from different indices,
 # but different pairs may use an element from the same index.
@@ -57,3 +60,5 @@ def zero_sum_reuse(num):
 
 print(zero_sum_reuse([1, 10, 8, 3, 2, 5, 7, 2, -2, -1]))
 print(zero_sum_reuse([1, 10, 8, -2, 2, 5, 7, 2, -2, -1]))
+
+# time: 50min

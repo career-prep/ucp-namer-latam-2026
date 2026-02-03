@@ -1,3 +1,6 @@
+#time complexity: O(n)
+#space complexity: O(n)
+
 """
 Given a string, return a string that contains only the first occurrence 
 of each character in the string.
@@ -30,3 +33,6 @@ def first_occurence(word):
 print(first_occurence("abracadabra"))
 print(first_occurence("Uber Career Prep"))
 print(first_occurence("zzyzx"))
+
+
+#time: 7 minutes
