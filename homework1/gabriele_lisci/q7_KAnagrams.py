@@ -23,4 +23,4 @@ print(KAnagrams("cat", "dog", 3) == True)
 print(KAnagrams("debit curd", "bad credit", 1) == True)
 print(KAnagrams("baseball", "basketball", 2) == False)
 # Time spent: 25:00, 40:00
-# I'm assuming there is a way to do it with one hashmap but I couldn't figure it out
+# I'm assuming there is a way to do it with one hashmap but I couldn't figure it out.

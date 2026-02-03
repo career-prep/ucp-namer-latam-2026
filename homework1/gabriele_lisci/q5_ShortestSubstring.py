@@ -37,5 +37,5 @@ print(ShortestSubstring("dog", "god") == 3)
 
 
 
-# Time spent: 40:00
+# Time spent: ~40:00
 # Had a hard time with this one
