@@ -4,7 +4,6 @@
 # Space Complexity - O(n)
 
 from math import inf
-from operator import length_hint
 
 
 def shortestSubstring(s1, s2):
