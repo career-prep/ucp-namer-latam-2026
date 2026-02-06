@@ -60,10 +60,17 @@
 
 ---
 
-### ❌ Question 5: ShortestSubstrings
+### ✅ Question 5: ShortestSubstrings
 **File:** [q5_shortest_substrings.py](q5_shortest_substrings.py)
 
-**Status:** Not solved
+**Problem:** Given a string and a second string representing required characters, return the length of the shortest substring containing all the required characters.
+
+**Approach:** Sliding window with two pointers - expand the window to include all required characters, then shrink from the left while maintaining validity to find the minimum length.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n + m) - Where n is the length of the string and m is the length of required characters
+- **Space Complexity:** O(m) - Space for character frequency maps
+- **Time Spent:** 15 minutes
 
 ---
 
@@ -95,10 +102,17 @@
 
 ---
 
-### ❌ Question 8: MergeIntervals
+### ✅ Question 8: MergeIntervals
 **File:** [q8_Merge_Intervals.py](q8_Merge_Intervals.py)
 
-**Status:** Not solved
+**Problem:** Given a list of integer pairs representing intervals, merge all overlapping intervals.
+
+**Approach:** Sort intervals by start time, then iterate through and merge overlapping intervals by extending the end value when necessary.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n log n) - Dominated by sorting step
+- **Space Complexity:** O(n) - Space for the merged result list
+- **Time Spent:** 12 minutes
 
 ---
 

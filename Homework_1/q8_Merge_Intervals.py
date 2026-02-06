@@ -18,7 +18,19 @@
 def merge_intervals(arr):
     if not arr:
         return [] 
+    
     arr.sort()
-    for s, e in arr[1:]:
-        return s,e
+    merged = [arr[0]]
+    for start, end in arr[1:]:
+        last_start, last_end = merged[-1]
+        
+        if start <= last_end:
+            merged[-1] = (last_start, max(last_end, end))
+        else:
+            merged.append((start, end))
+    
+    return merged
+
 print(merge_intervals([(5, 8), (6, 10), (2, 4), (3, 6)]))
+print(merge_intervals([(2, 3), (4, 8), (1, 2), (5, 7), (9, 12)]))
+print(merge_intervals([(10, 12), (5, 6), (7, 9), (1, 3)]))
