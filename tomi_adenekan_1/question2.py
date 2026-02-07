@@ -1,6 +1,8 @@
 """
 Two Pointers
 30 minutes
+time complexity = O(log N)
+space complexity = O(N)
 """
 
 def get_name(str):
