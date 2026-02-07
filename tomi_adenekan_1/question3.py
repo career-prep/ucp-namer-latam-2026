@@ -1,6 +1,8 @@
 """
 brute force
 20 minutes
+time complexity = O(N^2)
+space complexity = O(1)
 """
 
 def get_name(lst):
