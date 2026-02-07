@@ -1,6 +1,8 @@
 """
 two pointer
 40 miinutes
+time complexity = O(n)
+space complexity = O(n)
 
 """
 def main(str1, str2, k):
