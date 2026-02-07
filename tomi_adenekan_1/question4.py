@@ -1,6 +1,8 @@
 """
 two pointer
 20 minutes
+time complexity = O(N^2)
+space complexity = O(1)
 """
 def check(str):
     i = len(str) - 1
