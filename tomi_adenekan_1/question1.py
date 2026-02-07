@@ -1,6 +1,8 @@
 """
 fixed-size sliding window
 10 minuutes
+time complexity = O(n)
+space complexity = O(1)
 """
 
 def get_name(lis, k):
