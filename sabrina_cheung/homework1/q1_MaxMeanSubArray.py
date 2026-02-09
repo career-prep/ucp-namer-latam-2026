@@ -11,24 +11,29 @@ Need to deal with edge cases such as k being 0, k being larger than the length o
 
 
 def MaxMeanSubArray(arr, k):
+    # Deal with edge cases
     if k == 0:
         return 0
     
     if len(arr) < k or len(arr) == 0:
         return "Invalid Input"
        
+    # Use the 2 pointer technique to create a sliding window of size k
     point1 = 0
     point2 = k - 1
     cur = 0
 
+    # Iterate through the array comparing sums of each subarray of size k in order to get the window with the maximum sum
     while point2 < len(arr):
         if sum(arr[point1:(point2 + 1)]) > cur:
             cur = sum(arr[point1:(point2 + 1)])
         point1 += 1
         point2 += 1
 
+    # Return the Max Mean Sub Array
     return cur / k
 
+# Test Cases
 test = [([4, 5, -3, 2, 6, 1], 2),
         ([4, 5, -3, 2, 6, 1], 3),
         ([5, 4, 2, 9, 1, 0, -1], 1),
