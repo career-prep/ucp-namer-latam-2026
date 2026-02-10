@@ -5,17 +5,20 @@
 from collections import Counter
 
 def k_anagrams(str1, str2, k):
+    # Different lengths can never be anagrams
     if len(str1) != len(str2):
         return False
 
-    count_str1 = Counter(str1)
-    count_str2 = Counter(str2)
+    count_str1 = Counter(str1) # frequency of chars in str1
+    count_str2 = Counter(str2) # frequency of chars in str2
     changes = 0
 
+    # Count how many extra chars in str1 must be changed
     for char in count_str1:
         if count_str1[char] > count_str2.get(char, 0):
             changes += count_str1[char] - count_str2.get(char, 0)
 
+    # Check if required changes are qual or less than k
     return changes <= k
 
 print(k_anagrams("apple", "peach", 1))

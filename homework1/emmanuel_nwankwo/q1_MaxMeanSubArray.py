@@ -1,23 +1,28 @@
 # Technique: Fixed-size sliding window
 # Time Complexity: O(n)
-# Space Complexity: O(n)
+# Space Complexity: O(1)
 
 def max_mean_subarray(arr, k):
-    if not arr or k <= 0: # return None for invalid parameters
+    # Edge case for empty array or invalid window size
+    if not arr or k <= 0 or k > len(arr):
         return None
+
     left = 0
-    best = float("-inf") # to handle negative numbers also
+    best = float("-inf") # initial max
     window_sum = 0
 
     for right in range(len(arr)):
+        # Expand the window by including the current element
         window_sum += arr[right]
 
         if right - left + 1 == k:
-            mean = window_sum / k
+            mean = window_sum / k # Compute the mean
             best = max(best, mean)
+
+            # Slide the window forward
             window_sum -= arr[left]
             left += 1
-
+    # Return the maximum mean
     return best
 
 print(max_mean_subarray([4,5,-3,2,6,1], 2))

@@ -8,17 +8,19 @@ def shortest_substring(s, t):
     need = Counter(t)
     have = defaultdict(int)
     left = 0
-    required = len(need)
-    formed = 0
+    required = len(need) # number of unique chars needed
+    formed = 0  # number of requirements are satisfied
 
     best_len = float("inf")
 
     for right, char in enumerate(s):
         have[char] += 1
 
+        # requirement for this char is reached
         if char in need and have[char] == need[char]:
             formed += 1
 
+        # shrink while window is valid
         while formed == required:
             window_len = right - left + 1
             if window_len < best_len:
@@ -27,6 +29,7 @@ def shortest_substring(s, t):
             left_ch = s[left]
             have[left_ch] -= 1
 
+            # window no longer satisfies a requirement
             if left_ch in need and have[left_ch] < need[left_ch]:
                 formed -= 1
 

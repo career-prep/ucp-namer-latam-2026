@@ -9,8 +9,10 @@ def missing_integer(nums, n):
         m = (l + r) // 2
 
         if nums[m] == m + 1:
+            # missing number is to the right
             l = m + 1
         else:
+            # missing number is at m or to the left
             r = m
 
     return l + 1 if l < n else n

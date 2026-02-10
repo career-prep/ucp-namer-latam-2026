@@ -9,9 +9,11 @@ def dedup_array(nums):
     index = 1
     for i in range(1, len(nums)):
         if nums[i] != nums[i - 1]:
+            # found a new unique value
             nums[index] = nums[i]
             index += 1
 
+    # return array of unique elements
     return nums[:index]
 
 print(dedup_array([1, 2, 2, 3, 3, 3, 4, 4, 4, 4]))

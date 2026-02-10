@@ -1,4 +1,4 @@
-# Technique: Reset/catch-up two-pointer
+# Technique: Sort the array, then solve
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 
@@ -6,18 +6,22 @@ def merge_intervals(intervals):
     if not intervals:
         return []
 
+    # Sort
     intervals.sort(key=lambda x: x[0])
+
     out = []
     start, end = intervals[0]
 
     for a, b in intervals[1:]:
         if a <= end:
+            # extend current range if needed for overlapping interval
             if b > end:
                 end = max(end, b)
         else:
             out.append((start, end))
             start, end = a, b
 
+    # Add final merged interval
     out.append((start, end))
     return out
 
