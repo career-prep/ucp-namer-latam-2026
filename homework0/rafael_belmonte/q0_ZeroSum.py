@@ -12,13 +12,13 @@ array6 = [1,-1,1,-1]
 def zero_sum(arr):
     occurences = dict() #space O(n)
     count = 0
-    for i in range(len(arr)): #loop time O(n)
-        occurences[arr[i]] = occurences.get(arr[i], 0) + 1 #get time O(1)
-        if occurences.get(-arr[i], 0) > 0 and arr[i] != 0:
+    for num in arr: #loop time O(n)
+        occurences[num] = occurences.get(num, 0) + 1 #get time O(1)
+        if occurences.get(-num, 0) > 0 and num != 0:
             count += 1
-            occurences[-arr[i]] = occurences.get(-arr[i], 0) - 1
-            occurences[arr[i]] = occurences.get(arr[i], 0) - 1
-        elif arr[i] == 0 and occurences.get(0, 0) > 1:
+            occurences[-num] = occurences.get(-num, 0) - 1
+            occurences[num] = occurences.get(num, 0) - 1
+        elif num == 0 and occurences.get(0, 0) > 1:
             count += 1
             occurences[0] = occurences.get(0, 0) - 2
     return count
@@ -30,20 +30,20 @@ print(zero_sum(array4))
 print(zero_sum(array5))
 print(zero_sum(array6))
 
-def zero_sum_updated(arr):
+def zero_sum_followup(arr):
     occurences = dict()
     count = 0
-    for i in range(len(arr)):
-        occurences[arr[i]] = occurences.get(arr[i], 0) + 1
-        if occurences.get(-arr[i], 0) > 0 and arr[i] != 0:
-            count += 1*occurences.get(-arr[i], 0)
-        elif arr[i] == 0 and occurences.get(0, 0) > 1:
-            count += 1*(occurences.get(-arr[i], 0)-1)
+    for num in arr:
+        occurences[num] = occurences.get(num, 0) + 1
+        if occurences.get(-num, 0) > 0 and num != 0:
+            count += 1*occurences.get(-num, 0)
+        elif num == 0 and occurences.get(0, 0) > 1:
+            count += 1*(occurences.get(-num, 0)-1)
     return count
 
-print(zero_sum_updated(array1))
-print(zero_sum_updated(array2))
-print(zero_sum_updated(array3))
-print(zero_sum_updated(array4))
-print(zero_sum_updated(array5))
-print(zero_sum_updated(array6))
+print(zero_sum_followup(array1))
+print(zero_sum_followup(array2))
+print(zero_sum_followup(array3))
+print(zero_sum_followup(array4))
+print(zero_sum_followup(array5))
+print(zero_sum_followup(array6))
