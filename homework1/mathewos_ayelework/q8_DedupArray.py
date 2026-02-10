@@ -1,3 +1,5 @@
+# Technique used: Two pointer method
+# removes all duplicates in the list
 def dedupArray(nums: list[int]) -> list[int]:
     # Solution 1, Time complexity: O(n^2) worst case, Space complexity: O(1)
     # curr = len(nums) - 1
@@ -9,6 +11,9 @@ def dedupArray(nums: list[int]) -> list[int]:
     #     prev -=1
     #     curr -=1
     # return nums
+    
+    
+    # Solution 2
     if nums == []:
         return []
 
