@@ -1,28 +1,26 @@
-# given:
-    ## an array of integers
+#given: 
+## an ARRAY of INTEGERS
 
-# question:
-    ## return the number of SUBARRAYS that SUM to ZERO.
+#todo:
+## count the number of subarray euqal to 0.
 
-#solution:
+#Solution:
+def ZeroSum(arr):
+    i = 0
+    count = 0
 
-# i = 0
-# count = 0
-# n = len(arr)
-# while( i < n):
-    #j = i
-    # while(j < n):
-        # sum = 0
-        # found  = flase
-        # for l in range(i, j):
-            # sum += arr[l]
+    for num in arr:
+        if num == 0:
+            count = count +1
 
-        # if sum == 0: 
-            #count = count +1
-            
-        # j += 1
-    # i += 1
+    while(i < len(arr)):
+        for j in range(i+1, len(arr)):
+            if sum(arr[i:j+1]) == 0:
+                count = count + 1
+        i = i + 1
 
-    #return count 
+    return count
 
-# was not able to solve
+print(ZeroSum([4, 5, 2, -1, -3, -3, 4, 6, -7]))
+print(ZeroSum([1, 8, 7, 3, 11, 9]))
+print(ZeroSum([8, -5, 0, -2, 3, -4]))
