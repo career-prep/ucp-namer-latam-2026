@@ -2,35 +2,45 @@
 #space complexity: O(n)
 
 def ShortestSubstring(str1, str2):
-    chars = dict()
-    found = len(str2)
+    #checks for empty strings
+    if not str1 or not str2:
+        return 0
 
+    charsNeeded = dict()
     for i in str2:
-        chars[i] = chars.get(i, 0) + 1
-    
-    end = 0
-    while found > 0 and end < len(str1):
-        if str1[end] in chars:
-            if chars[str1[end]] > 0:
-                found -= 1
-            chars[str1[end]] = chars[str1[end]] - 1
-        end += 1
+        charsNeeded[i] = charsNeeded.get(i, 0) + 1
+
+    missing = len(str2)
+    minLen = float('inf')
+    minStart = 0
 
     start = 0
+    end = 0
+    for end in range(len(str1)):
+        #checks if character is needed
+        if str1[end] in charsNeeded:
+            if charsNeeded[str1[end]]>0:
+                missing -= 1
+            charsNeeded[str1[end]] -= 1
 
-    while start < end:
-        if str1[start] in chars:
-            if chars[str1[start]] + 1 > 0:
-                return end - start
-            chars[str1[start]] = chars[str1[start]] + 1
+        #shrinking
+        while missing == 0:
+            if end - start + 1 < minLen:
+                minLen = end - start + 1
+                minStart = start
+            if str1[start] in charsNeeded:
+                charsNeeded[str1[start]] += 1
+                if charsNeeded[str1[start]] > 0:
+                    missing += 1
 
-        start += 1
+            start += 1
     
-    return end - start
+    if minLen != float('inf'):
+        return minLen
+    return 0
 
 
-
-test1A = 'abcdabc'
+test1A = 'abdecab'
 test1B = 'abc'
 test2A = ''
 test2B = ''

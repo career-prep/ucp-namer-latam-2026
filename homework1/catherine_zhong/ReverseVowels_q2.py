@@ -4,10 +4,14 @@
 def ReverseVowels(phrase):
     charList = list(phrase)
 
+    #checks for empty and 1 character string
+    if len(phrase) <= 1:
+        return phrase
+
     #two pointers
     start = 0
     end = len(phrase)-1
-    vowels = 'aeiou'
+    vowels = ['a', 'e', 'i', 'o', 'u']
 
     #loops through string and swaps vowels found
     while start < end:

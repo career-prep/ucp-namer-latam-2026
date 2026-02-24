@@ -14,7 +14,7 @@ def ZeroSumSubArrays (nums):
         prefixSum += num
 
         if prefixSum in prefixCount:
-            zeroSum += 1
+            zeroSum += prefixCount[prefixSum]
         
         prefixCount[prefixSum] = prefixCount.get(prefixSum, 0) + 1
     

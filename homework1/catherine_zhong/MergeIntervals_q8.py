@@ -14,7 +14,7 @@ def MergeIntervals(pairs):
         end = pairs[i][1]
         #checks if they overlap
         while i + 1 < len(pairs) and end >= pairs[i+1][0]:
-            end = pairs[i+1][1]
+            end = max(end, pairs[i+1][1])
             i += 1
         mergedPairs.append((start,end))
         i += 1

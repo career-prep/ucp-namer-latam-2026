@@ -4,6 +4,10 @@
 def MaxMeanSubArray(nums, k):
     maxSum = 0
 
+    #checks for edge cases: k larger than nums length, k is < 0
+    if k > len(nums) or k < 0:
+        return 0
+
     #checks for empty list
     if not nums:
         return 0
@@ -31,12 +35,12 @@ test3 = [1,1,1,1,1,-1,2,-1,-1]
 test4 = [-1,1,-1,1]
 test5 = [0,0,0]
 test6 = [-1,-2,-3,-1,-1]
-
+test7 = [0,1]
 print("test1: ", MaxMeanSubArray(test1, 0))
 print("test2: ", MaxMeanSubArray(test2, 2))
 print("test3: ", MaxMeanSubArray(test3, 3))
 print("test4: ", MaxMeanSubArray(test4, 4))
 print("test5: ", MaxMeanSubArray(test5, 1))
 print("test6: ", MaxMeanSubArray(test6, 2))
-
+print("test7: ", MaxMeanSubArray(test7, 3))
 #time spent: 15 min
