@@ -10,26 +10,26 @@ def BackspaceStringCompare(string1, string2):
     i=len(string1)-1
     j=len(string2)-1
 
-    Sskip=0
-    Tskip=0
+    skip_S=0
+    skip_T=0
 
     while i>=0 or j>=0:
         while i>=0:
             if string1[i] == "#":
-                Sskip+=1
+                skip_S+=1
                 i-=1
-            elif Sskip>0:
-                Sskip-=1
+            elif skip_S>0:
+                skip_S-=1
                 i-=1
             else:
                 break
 
         while j>=0:
             if string2[j] == "#":
-                Tskip+=1
+                skip_T+=1
                 j-=1
-            elif Tskip>0:
-                Tskip-=1
+            elif skip_T>0:
+                skip_T-=1
                 j-=1
             else:
                 break

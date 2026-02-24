@@ -17,10 +17,13 @@ def KAnagrams(string1, string2, k):
 
     for char in s:
         if s[char] != t.get(char,0):
-            if s[char]>t.get(char,0):
-                changes+=s[char]-t.get(char,0)
+            if s[char] > t.get(char,0):
+                changes += s[char]-t.get(char,0)
     
-    return True if changes<=k else False
+    if changes <= k:
+        return True
+    
+    return False
 
 
 #Time Taken: 20mins 

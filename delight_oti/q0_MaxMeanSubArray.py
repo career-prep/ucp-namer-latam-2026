@@ -6,26 +6,28 @@ def MaxMeanSubArray(nums, k):
     Time Complexity: O(n)
     Space Complexity: O(1)
     '''
-    maximum= float("-inf")
-    left,right= 0,0
-    window_sum= 0
+    maximum = float("-inf")
+    l, r = 0,0
+    window_sum = 0
 
-    if k<=0 or k>len(nums):
+    if k <= 0 or k > len(nums):
         return 0
     
-    while right<len(nums):
+    N = len(nums)
 
-        window_sum += nums[right]
+    while r < N:
 
-        if right-left+1 == k:
-            mean= window_sum/k
+        window_sum += nums[r]
+
+        if r - l + 1 == k:
+            mean = window_sum/k
 
             maximum = max(mean, maximum)
 
-            window_sum-=nums[left]
-            left += 1
+            window_sum -= nums[l]
+            l += 1
 
-        right+=1
+        r += 1
     return maximum
 
 

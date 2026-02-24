@@ -14,19 +14,18 @@ def ReverseVowels(string):
     
     while left < right:
         
-        if string[left] in vowels and string[right] in vowels:
-            temp= string[right]
-            string[right] = string[left]
-            string[left] = temp
-            
-            left+=1
-            right-=1
-        else:
-            if string[left] not in vowels:
-                left+=1
+        left_is_vowel = string[left] in vowels
+        right_is_vowel = string[right] in vowels
 
-            if string[right] not in vowels:
-                right-=1
+        if left_is_vowel and right_is_vowel:
+            string[left], string[right] = string[right], string[left]
+            left += 1
+            right -= 1
+        else:
+            if not left_is_vowel:
+                left += 1
+            if not right_is_vowel:
+                right -= 1
                 
     return "".join(string)
 

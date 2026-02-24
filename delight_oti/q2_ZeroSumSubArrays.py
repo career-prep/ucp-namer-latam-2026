@@ -3,19 +3,19 @@ def ZeroSumSubArrays(nums):
     one directional computation
 
     Time Complexity: O(n)
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     '''
 
-    sum=0
-    freq={0:1}
-    count=0
+    total = 0
+    freq = {0:1}
+    count = 0
 
     for num in nums:
 
-        sum += num
+        total += num
 
         if num in freq:
-            count+= freq[num]
+            count += freq[num]
         else:
             freq[num] = 1
     return count

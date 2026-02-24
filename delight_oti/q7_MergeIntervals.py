@@ -10,15 +10,15 @@ def MergeIntervals(intervals):
 
     intervals.sort(key=lambda x:x[0])
 
-    merged= [intervals[0]]
+    merged = [intervals[0]]
 
     for start, end in intervals[1:]:
-        last_start,last_end = merged[-1]
+        last_start, last_end = merged[-1]
 
-        if last_end>=start:
-            merged[-1]=(last_start,max(end,last_end))
+        if last_end >= start:
+            merged[-1] = [last_start, max(end, last_end)]
         else:
-            merged.append((start,end))
+            merged.append([start, end])
     return merged
 
 
