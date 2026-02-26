@@ -16,7 +16,6 @@
 # Brute Force Solu
 from collections import defaultdict
 def ReverseVowels_1(text) -> str:
-    # vowels = set('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
     vowels = set("aeiouAEIOU")
 
     vowels_hash = defaultdict(str)
