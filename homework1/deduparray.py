@@ -9,6 +9,9 @@
 # Input Array: [1, 3, 4, 8, 10, 12]
 # Modified Array: [1, 3, 4, 8, 10, 12]
 
+# time- 20 min
+# time complexity- o(N)
+
 def deduparray(arr):
     
     for i in range(len(arr)-1, 0, -1):
