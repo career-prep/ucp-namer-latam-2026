@@ -1,0 +1,38 @@
+def shortestSubstring(s, t):
+    R = 0
+    L = 0
+    hash_map = {}
+
+    window_map = {}
+    min_length = float('inf')
+    valid = 0
+    for c in t:
+        if c in hash_map:
+            hash_map[c] += 1
+        else:
+            hash_map[c] = 1
+    while R != len(s):
+        if s[R] in window_map:
+            window_map[s[R]] += 1
+        else:
+            window_map[s[R]] = 1
+        R += 1
+
+        while valid == len(hash_map):
+            min_length = R - L
+            if s[L]
+            L += 1
+            
+    return min_length
+
+    
+
+def test_shortestSubstring():
+    assert shortestSubstring("abracadabra", "abc") == 4, "Test 1 Failed"
+
+    assert shortestSubstring("zxycbaabcdwxyzzxwdcbxyzabccbazyx", "zzyzx") == 10, "Test 2 Failed"
+
+    assert shortestSubstring("dog", "god") == 3, "Test 3 Failed"
+
+if __name__ == "__main__":
+    test_shortestSubstring()
