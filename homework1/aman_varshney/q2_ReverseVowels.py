@@ -5,15 +5,8 @@
 
 # checks if a character is a vowel
 def isVowel(c):
-    ascii_c = ord(c) # ascii
-    # check uppercase
-    if (ascii_c == 65 or ascii_c == 69 or ascii_c == 73 or ascii_c == 79 or ascii_c == 85):
-        return True
-    # check lowercase
-    ascii_c -= 32
-    if (ascii_c == 65 or ascii_c == 69 or ascii_c == 73 or ascii_c == 79 or ascii_c == 85):
-        return True
-    return False
+    return (c.lower() in "aeiou")
+    
 
 
 
