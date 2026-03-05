@@ -5,27 +5,27 @@
 from math import inf # for -infinity
 
 def maxMeanSubarray(arr, k):
-    # ensure array size >= k 
     if len(arr) < k:
         return None
     # ensure k != 0
     if k == 0: 
         return None
     
-    maxMean = -inf # stores greatest mean of subarray of size k
-    valid_range = len(arr) - (k-1) # stores range for i
-    for left in range(valid_range): # left pointer
-        # get mean of subarray
-        sum = 0
-        for right in range(k): # right pointer
-            sum += arr[left+right]
-        mean = sum/k
+    window_sum = 0 # stores sum of current window
+    for i in range(k):
+        window_sum += arr[i]
+    maxMean = window_sum/k # stores greatest mean of subarray size k 
+    
+    for i in range(k, len(arr)):
+        # update window sum
+        window_sum += arr[i] - arr[i-k]
+        mean = window_sum/k
         
         # update max
         maxMean = max(maxMean, mean)
         
     return maxMean
-
+     
 
 
 if __name__ == "__main__":
