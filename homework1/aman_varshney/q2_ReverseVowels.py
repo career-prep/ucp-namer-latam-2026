@@ -11,35 +11,30 @@ def isVowel(c):
 
 
 def reverseVowels(in_str):
-    out_str_left = "" # stores left side of output string
-    out_str_right = "" # stores right side of output string 
-    
-    left = 0
+    in_str_list = list(in_str) # convert to list to allow for mutation
+    left = 0 
     right = len(in_str)-1
     while left < right:
-        if (isVowel(in_str[left]) and isVowel(in_str[right])): # both are vowels --> swap and move
-            out_str_left += in_str[right]
-            out_str_right = in_str[left] + out_str_right
-            right -= 1
+        char_left = in_str_list[left]
+        char_right = in_str_list[right]
+        
+        if (isVowel(char_left) and isVowel(char_right)): # both are vowels -> swap and move
+            in_str_list[left], in_str_list[right] = char_right, char_left
             left += 1
+            right -= 1
+        elif (isVowel(char_left)): # only left is vowel -> move right until vowel found
+            right -= 1
+        elif (isVowel(char_right)): # only right is vowel -> move left until vowel found
+            left += 1
+        else: # no vowels -> move both pointers
+            left += 1
+            right -= 1
             
-        elif (isVowel(in_str[left])): # only left is vowel --> move right until vowel found
-            out_str_right = in_str[right] + out_str_right
-            right -= 1
-        
-        elif (isVowel(in_str[right])): # only right is vowel --> move left until vowel found
-            out_str_left += in_str[left]
-            left += 1
-            
-        else: # no vowels --> add to strings normally and move
-            out_str_left += in_str[left]
-            out_str_right = in_str[right] + out_str_right
-            left += 1
-            right -= 1
-        
-    return out_str_left + out_str_right
-                
-        
+    out_str = "".join(in_str_list) # convert back to string
+    return out_str
+
+
+
    
 if __name__ == "__main__":
     str1 = "Uber Career prep"
