@@ -49,6 +49,11 @@ print(zero_sum_sub_arrays([8,-8,0,2]))
             
 
             
-        
+"""    
+# think about using a hashmap to track the prefix sum of it 
+we got: nums= [4,5,2,-1,-3,-3,4,6,-7]
+=> prefix sum = 4,9,11,10,7,4,8,14,7
 
+
+"""
 
