@@ -1,0 +1,21 @@
+def mergeIntervals(intervals):
+    sorted_intervals = sorted(intervals)
+    ret = []
+
+    for interval in sorted_intervals:
+        if not ret or interval[0] < ret [-1][1]:
+            ret.append(interval)
+        else:
+            ret[-1][1] = max(sorted_intervals[-1][1], ret[-1][1])
+        
+    return ret
+
+def test_mergeIntervals():
+    assert mergeIntervals([[2, 3], [4, 8], [1, 2], [5, 7], [9, 12]]) == [[4, 8], [1, 3], [9, 12]], "Test 1 Failed"
+
+    assert mergeIntervals([[5, 8], [6, 10], [2, 4], [3, 6]]) == [[2, 10]], "Test 2 Failed"
+
+    assert mergeIntervals([[10, 12], [5, 6], [7, 9], [1, 3]]) == [[10, 12], [5, 6], [7, 9], [1, 3]], "Test 3 Failed"
+
+if __name__ == "__main__":
+    test_mergeIntervals()
