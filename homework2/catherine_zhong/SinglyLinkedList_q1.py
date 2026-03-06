@@ -7,7 +7,7 @@ class Node:
 def insertAtFront(head, val):
     newhead = Node(val)
     newhead.next = head
-    head = newhead
+
     return newhead
 
 #creates new Node with data val at end; returns head. O(n) time.

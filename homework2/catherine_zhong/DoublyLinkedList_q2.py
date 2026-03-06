@@ -8,7 +8,8 @@ class Node:
 def insertAtFront(head, val):
     newhead = Node(val)
     newhead.next = head
-    head = newhead
+    newhead.prev = None
+
     return newhead
 
 #creates new Node with data val at end; returns head. O(n) time.
@@ -37,6 +38,7 @@ def insertAfter(head, val, loc):
     newNode = Node(val)
     current.next = newNode
     newNode.next = temp
+    newNode.prev = current
     return head
 
 #creates new Node with data val before Node loc; returns head. O(n) time.
@@ -52,11 +54,14 @@ def insertBefore(head, val, loc):
     newNode = Node(val)
     current.next = newNode
     newNode.next = temp
+    newNode.prev = temp.prev
+    temp.prev =  newNode
 
     return head
 
 #removes first Node; returns head. O(1) time.
 def deleteFront(head):
+    head.next.prev = None
     return head.next
 
 
@@ -84,6 +89,7 @@ def deleteNode(head, loc):
     while current.next != loc:
         current = current.next
     current.next = current.next.next
+    current.next.prev = current
     return head
 
 #returns length of the list. O(n) time.
@@ -106,6 +112,7 @@ def reverseIterative(head):
         head = temp.next
         temp.next = prev
         prev = temp
+        prev.prev = head
     return prev
 
 #reverses the linked list recursively (Hint: you will need a helper function.) O(n) time.
@@ -137,9 +144,13 @@ node4 = Node(4)
 node5 = Node(5)
 
 head.next = node2
+node2.prev = head
 node2.next = node3
+node3.prev = node2
 node3.next = node4
+node4.prev = node3
 node4.next = node5
+node5.prev= node4
 
 print('original list: ')
 printList(head)
