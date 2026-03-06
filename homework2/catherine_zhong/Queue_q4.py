@@ -128,7 +128,7 @@ class Queue:
         self.tail = None
 
     def peek(self):
-        return self.head
+        return self.head.val
 
     def enqueue(self, x):
         if self.head == None:
@@ -169,7 +169,7 @@ print('initial queue: ')
 queue.printQueue()
 
 print('peek at first element: ')
-print(queue.peek().val)
+print(queue.peek())
 
 print('dequeue element: ')
 print(queue.dequeue())
