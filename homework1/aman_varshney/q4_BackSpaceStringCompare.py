@@ -5,9 +5,7 @@
 
 def backstringCompare(s1, s2):
     if (not s1 or not s2): # cannot be empty strings
-        return None
-    if (s1[0] == "#" or s2[0] == "#"): # cannot start with backslash
-        return None
+        return False
     
     stack1 = [] # stack for s1
     stack2 = [] # stack for s2
