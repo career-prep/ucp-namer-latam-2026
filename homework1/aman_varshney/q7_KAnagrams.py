@@ -4,42 +4,24 @@
 # Space Complexity - O(n)
 
 
-def KAnagrams(s1, s2, k):
-    # null cases
-    if k < 0: return False
-    if len(s1) != len(s2): return False # must be same size
 
-    freq1 = {} # freq map for s1
-    freq2 = {} # freq map for s2
+def KAnagrams(s1, s2, k):
+    # null cases 
+    if k < 0: return False 
+    if len(s1) != len(s2): return False # must be same size
+    
+    # load frequency maps
+    freq1 = {}
     for char in s1:
         freq1[char] = freq1.get(char, 0) + 1
+    
     for char in s2:
-        freq2[char] = freq2.get(char, 0) + 1
-        
-    # try to turn freq2 into freq1
-    # modify until same or run out of changes 
-    for key in freq1:
-        if key not in freq2: # add letters to freq2
-            amt = freq1[key]
-            freq2[key] = amt
-            k -= amt/2 # half moves (bc only modifying one array, not swapping)
-        elif freq1[key] > freq2[key]: # increase count in freq2
-            amt = freq1[key] - freq2[key]
-            freq2[key] += amt
-            k -= amt/2
-        elif freq1[key] < freq2[key]: # decrease count in freq2
-            amt = freq2[key] - freq1[key]
-            freq2[key] -= amt
-            k -= amt/2
-        else: # equal -> fine
-            continue
-        
-        # ensure that there are more changes or else failed
-        if k <= 0:
-            return False
-        
-    return True
-
+        if char in freq1 and freq1[char] > 0:
+            freq1[char] -= 1
+    
+    changes_needed = sum(freq1.values()) # total changes needed to make s2 an anagram of s1
+    return (changes_needed <= k)
+    
 
 
 
