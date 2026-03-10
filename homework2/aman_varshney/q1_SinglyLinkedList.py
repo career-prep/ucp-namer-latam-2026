@@ -24,6 +24,7 @@ class SinglyLinkedList:
             curr = curr.next
         # link
         curr.next = new_node
+        return self.head
         
     def insertAfter(self, val: int, loc: Node) -> Node:
         """Creates a new node with `val` data after Node `loc` and then returns the head. O(1)"""
