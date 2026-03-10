@@ -1,25 +1,21 @@
 # spent 15 min
 # one directional ?
 # Time Complexity - O(n)
-# Space Complexity - O(n) 
+# Space Complexity - O(1) 
 
 
 def dedupArray(arr):
-    if not arr: # empty case
+    if not arr: 
         return []
-    elif len(arr) == 1: # one element
-        return arr
     
-    recent = arr[0]
     i = 1 # counter
-    while i < len(arr):
-        if arr[i] == recent: # delete duplicate
-            del arr[i]
-        else: # update recent and increment
-            recent = arr[i]
+    for j in range(1, len(arr)):
+        if arr[j] != arr[j-1]: # if not duplicate, move to i and increment, otherwise skip
+            arr[i] = arr[j]
             i += 1
-    
     return arr
+    
+    
 
 
 if __name__ == "__main__":
