@@ -21,7 +21,7 @@
 # print(missinginteger([1, 2, 3, 4, 6, 7],7))
 
 
-# time complexity- o(N), time taken- 30 mins, 
+# time complexity- o(log N), time taken- 30 mins, 
 def missinginteger(arr, n):
     left, right = 0, len(arr) - 1
 

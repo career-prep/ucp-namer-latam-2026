@@ -34,7 +34,6 @@ def maxmean(arr, k):
         return int(mean)
     return mean
 
-    return max_sum / k
 
 print(maxmean([4, 5, -3, 2, 6, 1], 2))
 print(maxmean([4, 5, -3, 2, 6, 1], 3))
