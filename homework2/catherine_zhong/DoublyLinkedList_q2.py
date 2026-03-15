@@ -8,7 +8,9 @@ class Node:
 def insertAtFront(head, val):
     newhead = Node(val)
     newhead.next = head
-    newhead.prev = None
+
+    if head:
+        head.prev = newhead
 
     return newhead
 
@@ -23,46 +25,51 @@ def insertAtBack(head, val):
         current = current.next
 
     current.next = Node(val)
+    current.next.prev = current
     return head
 
 #creates new Node with data val after Node loc; returns head. O(1) time.
 def insertAfter(head, val, loc):
-    if head == None:
-        return Node(val)
-
-    current = head
-    while current != loc:
-        current = current.next
-
-    temp = current.next
     newNode = Node(val)
-    current.next = newNode
-    newNode.next = temp
-    newNode.prev = current
+
+    newNode.next = loc.next
+    newNode.prev = loc
+
+    if loc.next:
+        loc.next.prev = newNode
+
+    loc.next = newNode
     return head
 
 #creates new Node with data val before Node loc; returns head. O(n) time.
 def insertBefore(head, val, loc):
-    if head == None:
-        return Node(val)
-
-    current = head
-    while current.next != loc:
-        current = current.next
-
-    temp = current.next
     newNode = Node(val)
-    current.next = newNode
-    newNode.next = temp
-    newNode.prev = temp.prev
-    temp.prev =  newNode
+
+    if loc == head:
+        newNode.next = head
+        head.prev = newNode
+        return newNode
+
+    prevNode = loc.prev
+    prevNode.next = newNode
+    newNode.prec = prevNode
+
+    newNode.next = loc
+    loc.prev = newNode
 
     return head
 
 #removes first Node; returns head. O(1) time.
 def deleteFront(head):
-    head.next.prev = None
-    return head.next
+    if head is None:
+        return None
+
+    if head.next is None:
+        return None
+
+    head = head.next
+    head.prev = None
+    return head
 
 
 #removes last Node; returns head. O(n) time.
@@ -83,13 +90,17 @@ def deleteBack(head):
 #deletes Node loc; returns head. O(n) time.
 def deleteNode(head, loc):
     if head == loc:
-        return head.next
+        head = head.next
+        if head:
+            head.prev = None
+        return head
 
-    current = head
-    while current.next != loc:
-        current = current.next
-    current.next = current.next.next
-    current.next.prev = current
+    if loc.next:
+        loc.next.prev = loc.prev
+
+    if loc.prev:
+        loc.prev.next = loc.next
+
     return head
 
 #returns length of the list. O(n) time.
@@ -103,30 +114,34 @@ def length(head):
 
 #reverses the linked list iteratively. O(n) time.
 def reverseIterative(head):
-    if head == None:
-        return None 
+    current = head 
+    temp = None 
 
-    prev = None
-    while head:
-        temp = head
-        head = temp.next
-        temp.next = prev
-        prev = temp
-        prev.prev = head
-    return prev
+    while current:
+        temp = current.prev
+        current.prev = current.next
+        current.next = temp
+        current = current.prev
+
+    if temp:
+        head = temp.prev
+
+    return head
 
 #reverses the linked list recursively (Hint: you will need a helper function.) O(n) time.
 def reverseRecursive(head):
-    return swapNodes(head)
+    if head is None:
+        return None
 
-def swapNodes(head):
-    if head == None or head.next == None:
+    temp = head.prev
+    head.prev = head.next
+    head.next = temp 
+    if head.prev is None:
         return head
-    else:
-        reverse = swapNodes(head.next)
-        head.next.next = head
-        head.next = None
-        return reverse
+
+    
+    return reverseRecursive(head.prev)
+
 
 def printList(head):
     data = []
