@@ -1,14 +1,15 @@
 package PracticeAssignment2Part1;
 
- 
-public class Q1_SinglyLinkedList {
-   public class Node{
+public class Q2_DoubleLinkedList {
+    public class Node{
         int data;
 
         Node next;
+        Node prev;
         public Node(int data){
             this.data = data;
             this.next = null;
+            this.prev = null;
         }
     }
 
@@ -19,23 +20,20 @@ public class Q1_SinglyLinkedList {
         return head;
     }
 
-    public Node insertAtBack(Node head,int val){
-         Node newNode = new Node(val);
+    public Node insertAtBack(Node head,Node tail,int val){
+        
+        Node newNode = new Node(val);
         if(head==null){
             return newNode;
         }
-        Node current = head;
-        while(current.next!=null){
-            current = current.next;
-        }
-        current.next = newNode;
+        tail.next = newNode;
         return head;
        
     }
     public Node insertAfter(Node head,int val,Node loc){
-       if(head==null){
-        return head;
-       }
+        if(head==null || loc==null){
+            return head;
+        }
         Node nodeToBeAdded = new Node(val);
         Node temp = loc.next;
         loc.next = nodeToBeAdded;
@@ -44,24 +42,11 @@ public class Q1_SinglyLinkedList {
     }
     public Node insertBefore(Node head, int val , Node loc){
         Node nodeToBeAdded = new Node(val);
-        Node current = head;
-        Node prev = null;
-        while(current!=null){
-            if(current ==loc){
-                if(prev!=null){
-                    prev.next = nodeToBeAdded;
-                    prev.next.next = current;
-                }else{
-                    nodeToBeAdded.next = current;
-                    head = nodeToBeAdded;
-                }
-                
-                return head;
-            }
-            prev = current;
-            current = current.next;
-        }
+        Node temp = loc.prev;
+        loc.prev = nodeToBeAdded;
+        loc.prev.prev = temp;
         return head;
+
     }
     public Node deleteFront(Node head){
         if(head==null){
@@ -69,45 +54,24 @@ public class Q1_SinglyLinkedList {
         }
         return head.next;
     }
-    public Node deleteBack(Node head){
+    public Node deleteBack(Node head,Node tail){
         if(head==null){
             return head;
         }
-        if(head.next ==null){
-            return head.next;
-        }
-        Node prev = null;
-        Node current = head;
-        while(current.next!=null){
-            prev = current;
-            current = current.next;
-        }
-        
-            prev.next = null;
-        
-
-
-        
+        tail  = tail.prev;
+        tail.next = null;
         return head;
     }
     public Node deleteNode(Node head, Node loc){
-        Node current = head;
-        Node prev = null;
-        while(current!=null){
-            if(current == loc){
-                if(prev!=null){
-                    prev.next = current.next;
-                    return head;
-                }else{
-                    return head.next;
-                }
-            }
-             prev = current;
-            current = current.next;
+        if(head==null){
+            return head;
         }
+        Node temp = loc.prev;
+        temp.next = loc.next;
+        return head;
        
         
-        return head;
+       
     }
     public int length(Node head){
         int size = 0;
@@ -153,6 +117,5 @@ public class Q1_SinglyLinkedList {
         
 
     }
-
 
 }
