@@ -73,9 +73,44 @@ public class Q3_BinarySearchTree {
        
 
     }
+
+    public void delete(int val){
+        Node current = root;
+        deleteNodeHelper(current,val);
+        return;
+
+        
+    }
+    private Node deleteNodeHelper(Node current,int val){
+        if(current==null){
+            return null;
+        }
+        if(current.data < val){
+            current.right = deleteNodeHelper(current.right, val);
+        }else if(current.data > val){
+            current.left = deleteNodeHelper(current.left, val);
+        }else{
+            if(current.left==null){
+                return current.right;
+            }
+            if(current.right==null){
+                return current.left;
+            }
+            Node minNode = findMin(current.right);
+            current.data = minNode.data;
+            current.right = deleteNodeHelper(current.right, minNode.data);
+        }
+
+        return root;
    
 
-}
+        }
+        private Node findMin(Node current){
+            while(current.left!=null){
+                current = current.left;
+            }
+            return current;
+        }
 class Node{
         int data;
         Node left;
@@ -87,3 +122,4 @@ class Node{
             right = null;
         }
     }
+}
