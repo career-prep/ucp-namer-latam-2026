@@ -1,7 +1,5 @@
 package PracticeAssignment2Part1;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Q4_Queue {
      class Node{
