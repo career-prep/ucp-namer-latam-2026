@@ -10,6 +10,10 @@ def moveNthLastToFront(head, n):
     to the front of the list.
     Return the head.
 
+    Idea: first find list length, then convert nth-from-last
+    to index from front. Walk to that node, detach it, and
+    connect it in front of head.
+
     Time: O(n)
     Space: O(1)
     """

@@ -10,6 +10,10 @@ def floorInBST(root, target):
     Given a BST and a target value, return the floor:
     the greatest value <= target.
 
+    Idea: walk down the BST. If node <= target, it is a floor
+    candidate, save it and move right for a larger valid value.
+    If node > target, move left.
+
     Time: O(h = tree height)
     Space: O(1)
     """

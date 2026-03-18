@@ -10,6 +10,9 @@ def leftView(root):
     Given a binary tree, return an array of the left view
     (leftmost element at each level).
 
+    Idea: do level-order traversal (BFS). At each level,
+    record the first node in the queue as the left view node.
+
     Time: O(n)
     Space: O(n)
     """

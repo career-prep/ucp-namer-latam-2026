@@ -10,6 +10,10 @@ def isPalindrome(head, tail):
     Given a doubly linked list, determine whether it is a palindrome.
     Return True or False.
 
+    Idea: use two pointers from both ends (head and tail).
+    Compare values while moving inward; if any mismatch appears,
+    return False, otherwise True.
+
     Time: O(n)
     Space: O(1)
     """

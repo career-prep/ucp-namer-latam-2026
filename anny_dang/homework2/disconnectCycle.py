@@ -9,6 +9,10 @@ def disconnectCycle(head):
     Given a singly linked list, disconnect the cycle if one exists.
     Return the head.
 
+    Idea: use Floyd's slow/fast pointers to detect a cycle.
+    If found, move one pointer from head and one from meeting point
+    to find cycle start, then find the node before start and cut it.
+
     Time: O(n)
     Space: O(1)
     """

@@ -10,6 +10,9 @@ def copyTree(root):
     Given a binary tree root, create a deep copy.
     Return the root of the new tree.
 
+    Idea: use DFS recursion. For each node, create a new node
+    with the same value, then recursively copy left and right.
+
     Time: O(n)
     Space: O(h = tree height)
     """

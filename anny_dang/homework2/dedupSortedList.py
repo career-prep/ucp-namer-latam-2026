@@ -10,6 +10,10 @@ def dedupSortedList(head):
     so that each value appears at most once.
     Return the head of the list.
 
+    Idea: use two pointers (prev, cur). Since list is sorted,
+    duplicates are adjacent. If values match, skip cur by
+    relinking prev.next; otherwise move both pointers forward.
+
     Time: O(n)
     Space: O(1)
     """

@@ -9,6 +9,10 @@ def isBST(root):
     """
     Given a binary tree root, determine whether it is a binary search tree.
 
+    Idea: DFS with valid value bounds (low, high) for each node.
+    Left subtree must stay in (low, node.data), right subtree in
+    (node.data, high).
+
     Time: O(n)
     Space: O(h = tree height)
     """
@@ -46,4 +50,3 @@ root2.right.right.right = Node(15)
 
 print(isBST(root1))
 print(isBST(root2))
-
