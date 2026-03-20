@@ -6,25 +6,30 @@
 
 def ShortestSubstring(string1, string2):
     required = {}
+    check = {}
     for char in string2:
+        check.add(char)
         required[char] = required.get(char, 0) + 1
 
-    result = ""
-    for i in range(len(string1)):
-        curr_window = {}
-        for j in range(i, len(string1)):
-            curr_char = string1[j]
-            curr_window[curr_char] = curr_window.get(curr_char, 0) + 1
-            check = True
-            for letter in required:
-                if curr_window.get(letter, 0) < required[letter]:
-                    check = False
-                    break
-            if check:
-                substring = string1[i:j+1]
-                if result == "" or len(substring) < len(result):
-                    result = substring
-                break
+    left = 0
+    right = 0
+    satisfied = False
+    while left<=right:
+        while not satisfied:
+            if string1[right] in required and string1[right] > 0:
+                string1[right] -= 1
+                if string1[right] in check and required[string1[right] == 0]:
+                    check.remove(string1[right])
+                    if not check:
+                        satisfied = True
+            if not satisfied:
+                right += 1
+        while satisfied:
+            if string1[left] in required and string1[left]
+        
+
+            
+
 
     return len(result)
 
