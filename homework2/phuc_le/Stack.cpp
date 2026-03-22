@@ -13,7 +13,7 @@ struct Node
 class Stack
 {
 public:
-    Node *head = nullptr;
+    Node *head;
 
 public:
     // Initialize the Stack
