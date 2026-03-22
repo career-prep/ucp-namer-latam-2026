@@ -10,7 +10,7 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
     
-    def min(self):
+    def min(self): #O(log n)
         if not self.root:
             return -1
         
@@ -19,7 +19,7 @@ class BinarySearchTree:
             node = node.left
         return node.data
     
-    def max(self):
+    def max(self): #O(log n)
         if not self.root:
             return -1
         
@@ -28,7 +28,7 @@ class BinarySearchTree:
             node = node.right
         return node.data
     
-    def insert(self, val):
+    def insert(self, val): #O(log n)
         if not self.root:
             self.root = Node(val)
             return
@@ -48,12 +48,45 @@ class BinarySearchTree:
             else:
                 return
             
-    def delete(self,val):
+    def delete(self, val): #O(log n)
         if not self.root:
-            return None
+            return
+
+        parent, node = None, self.root
+        while node and node.val != val:
+            parent = node
+            if val < node.val:
+                node = node.left
+            else:
+                node = node.right
+
+        if not node:
+            return
+
+        if node.left and node.right:
+            successorParent = node
+            successor = node.right
+            while successor.left:
+                successorParent = successor
+                successor = successor.left
+            node.val = successor.val
+            parent = successorParent
+            node = successor
+
+        if node.left:
+            child = node.left
+        else:
+            child = node.right
+
+        if not parent:
+            self.root = child
+        elif parent.left == node:
+            parent.left = child
+        else:
+            parent.right = child
         
         
-    def contain(self, val):
+    def contain(self, val): #O(log n)
         if not self.root:
             return False
         curr = self.root
