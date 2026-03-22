@@ -148,10 +148,7 @@ Node *deleteNode(Node *head, Node *loc)
     // If head is loc
     if (loc == head)
     {
-        Node *temp = head;
-        head = head->next;
-        delete temp;
-        return head;
+        return deleteFront(head);
     }
     // Find the node before loc
     Node *curr = head;
@@ -166,12 +163,12 @@ Node *deleteNode(Node *head, Node *loc)
 }
 
 // returns length of the list. O(n) time. Optional can just keep track length while doing insert/deletion. Techincally O(1) ?
-int lenght(Node *head)
+int length(Node *head)
 {
     int size = 0;
     while (head != nullptr)
     {
-        size += 1;
+        size++;
         head = head->next;
     }
     return size;
@@ -213,72 +210,92 @@ Node *reverseRecursive(Node *head)
     return reverseHead;
 }
 
+// Helper function to keep main() clean
+void printList(const string &action, Node *head)
+{
+    cout << action << ":\n  ";
+    while (head != nullptr)
+    {
+        cout << head->data << " -> ";
+        head = head->next;
+    }
+    cout << "nullptr\n\n";
+}
+
 int main()
 {
     Node *head = nullptr;
-    head = insertAtBack(head, 10);
-    head = insertAtBack(head, 20);
+
+    cout << "--- 1. Testing Insertions ---\n";
+
+    // Test insertAtBack
     head = insertAtBack(head, 30);
     head = insertAtBack(head, 40);
+    head = insertAtBack(head, 50);
+    printList("After insertAtBack (30, 40, 50)", head);
 
-    Node *temp = head;
-    cout << "Linked List: ";
-    while (temp != nullptr)
-    {
-        cout << temp->data << "->";
-        temp = temp->next;
-    }
-    cout << "nullptr" << endl;
+    // Test insertAtFront
+    head = insertAtFront(head, 20);
+    head = insertAtFront(head, 10);
+    printList("After insertAtFront (10, 20)", head);
 
-    Node *loc = findNode(head, 10);
+    cout << "--- 2. Testing Search and Mid-List Insertions ---\n";
+
+    // Test findNode & insertAfter
+    Node *loc = findNode(head, 30);
     if (loc != nullptr)
     {
-        head = insertBefore(head, 90, loc);
+        head = insertAfter(head, 35, loc);
     }
+    printList("After findNode(30) and insertAfter(35)", head);
 
-    temp = head;
-    cout << "Linked List after added: ";
-    while (temp != nullptr)
+    // Test findNode & insertBefore
+    loc = findNode(head, 50);
+    if (loc != nullptr)
     {
-        cout << temp->data << "->";
-        temp = temp->next;
+        head = insertBefore(head, 45, loc);
     }
-    cout << "nullptr" << endl;
+    printList("After findNode(50) and insertBefore(45)", head);
 
+    cout << "--- 3. Testing Deletions ---\n";
+
+    // Test deleteFront
+    head = deleteFront(head);
+    printList("After deleteFront (removes 10)", head);
+
+    // Test deleteBack
+    head = deleteBack(head);
+    printList("After deleteBack (removes 50)", head);
+
+    // Test deleteNode (Middle node)
+    loc = findNode(head, 35);
     if (loc != nullptr)
     {
         head = deleteNode(head, loc);
     }
-    temp = head;
-    cout << "Linked List after deleted: ";
-    while (temp != nullptr)
-    {
-        cout << temp->data << "->";
-        temp = temp->next;
-    }
-    cout << "nullptr" << endl;
+    printList("After deleteNode (removes 35)", head);
 
+    cout << "--- 4. Testing List Utility ---\n";
+
+    // Test length
+    int size = length(head);
+    cout << "Current List Size: " << size << "\n\n";
+
+    cout << "--- 5. Testing Reversals ---\n";
+
+    // Test Iterative Reverse
     head = reverseIterative(head);
-    temp = head;
-    cout << "Linked List after reversed: ";
-    while (temp != nullptr)
-    {
-        cout << temp->data << "->";
-        temp = temp->next;
-    }
-    cout << "nullptr" << endl;
+    printList("After reverseIterative", head);
 
-    int size = lenght(head);
-    cout << "Size: " << size << endl;
-
+    // Test Recursive Reverse
     head = reverseRecursive(head);
-    temp = head;
-    cout << "Linked List after reversed: ";
-    while (temp != nullptr)
+    printList("After reverseRecursive (back to original order)", head);
+
+    // Clean up remaining memory before exiting
+    while (head != nullptr)
     {
-        cout << temp->data << "->";
-        temp = temp->next;
+        head = deleteFront(head);
     }
-    cout << "nullptr" << endl;
+
     return 0;
 }
