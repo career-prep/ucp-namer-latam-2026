@@ -16,7 +16,7 @@ def insertAtFront(head, val):
 def insertAtBack(head, val):
     """Creates a new node with `val` data and links it at the end of the list. O(n)"""
     if not head: # empty case
-        return None 
+        return Node(val, None) 
     new_node = Node(val, None)
     curr = head
     # traverse to end
