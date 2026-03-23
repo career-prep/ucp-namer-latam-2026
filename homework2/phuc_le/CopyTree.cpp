@@ -10,10 +10,16 @@ struct TreeNode
 };
 
 /*
-    From each node, create a copy of that node, assign it as the new root
-    Recursively check for the left and right subtree
-    Time: O(n) - n: numbers of nodes, each is visited once
-    Space: O(log(n)) or O(H) H = height of the tree - maximum depth of the recursive stack
+    Use Pre-order traversal (Node, Left, Right)
+    For each node, create a copy of that node with the same value
+    Recursively copy the newNode left and right subtree, linking them with the newNode as root
+
+    Time:   O(n) - n: numbers of nodes, each is visited once
+    Space:  O(H) H = height of the tree - maximum depth of the recursive stack
+            Ranging from O(log(n)) for balance tree to O(n) for skewed tree
+            Technically O(n) ?, because we also need to create copies of n nodes
+
+    Time: 35 mins
 */
 TreeNode *DeepCopy(TreeNode *root)
 {
@@ -40,14 +46,14 @@ void PrintInOrder(TreeNode *node)
     PrintInOrder(node->right);
 }
 
-// Helper to safely free allocated memory (In-order)
+// Helper to safely free allocated memory (Post-Order to access the children)
 void FreeTree(TreeNode *node)
 {
     if (!node)
         return;
     FreeTree(node->left);
-    delete node;
     FreeTree(node->right);
+    delete node;
 }
 
 int main()
