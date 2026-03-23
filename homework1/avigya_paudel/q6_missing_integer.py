@@ -1,5 +1,5 @@
 # TIME COMPLEXITY: O(N) 
-# SPACE COMPEXITY: O(N)
+# SPACE COMPEXITY: O(1)
 # TIME TAKEN: ~3 minutes
 # TECHNIQUE:  One directional running computation/total
 

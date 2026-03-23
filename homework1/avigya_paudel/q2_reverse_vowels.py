@@ -1,7 +1,7 @@
 # TIME COMPLEXITY: O(N) 
 # SPACE COMPEXITY: O(1)
 # TIME TAKEN: ~7 minutes
-# TECHNIQUE: Not sure if it aligns with any
+# TECHNIQUE: Forward backward two pointer
 
 from turtle import left
 

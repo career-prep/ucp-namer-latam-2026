@@ -1,4 +1,4 @@
-# TIME COMPLEXITY: O(N) 
+# TIME COMPLEXITY: O(NlogN) 
 # SPACE COMPEXITY: O(N)
 # TIME TAKEN: ~10 minutes
 # TECHNIQUE: Sort the array, then solve

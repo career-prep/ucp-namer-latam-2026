@@ -9,14 +9,6 @@ def shortest_substring(str1, str2):
     """
     given str1 and a second string str2 representing required characters,
     return the length of the shortest substring containing all required characters
-
-    "abracadabra"
-         ^
-    "abc"
-
-    {a:-1, b:0, c:0}
-    cnt = 3
-    tar = 3
     """
     n_target = len(str2)
     cnt = 0
