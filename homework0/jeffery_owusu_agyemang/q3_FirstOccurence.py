@@ -20,3 +20,5 @@ if __name__ == "__main__":
     print(first_occurence("Uber Career Prep")) # Uber CaP
     print(first_occurence("zzyzx"))           #  zyx
     print(first_occurence(""))                # ""
+
+    
