@@ -44,21 +44,23 @@ def isBST(tree):
     
 if __name__ == '__main__':
     # correct bst test
-    root1 = Node(5)
-    root1.left = Node(3)
-    root1.right = Node(7)
-    root1.left.left = Node(2)
-    root1.left.right = Node(4)
-    root1.right.left = Node(6)
-    root1.right.right = Node(8)
+    root1 = Node(10)
+    root1.left = Node(8)
+    root1.right = Node(16)
+    root1.left.right = Node(9)
+    root1.right.left = Node(13)
+    root1.right.right = Node(17)
+    root1.right.right.right = Node(20)
     print("tree 1", isBST(root1))
     print("Expected: True")
     
     # incorrect
-    root2 = Node(5)
-    root2.left = Node(3)
-    root2.right = Node(7)
-    root2.left.left = Node(2)
-    root2.left.right = Node(6) # breaks
+    root2 = Node(10)
+    root2.left = Node(8)
+    root2.right = Node(16)
+    root2.left.right = Node(9)
+    root2.right.left = Node(13)
+    root2.right.right = Node(17) 
+    root2.right.right.right = Node(15) # breaks
     print("tree 2", isBST(root2))
     print("Expected: False")
