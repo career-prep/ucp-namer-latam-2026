@@ -1,9 +1,7 @@
 # spent 10 minutes
 # Time complexity - O(n)
 # Space complexity - O(n) 
-
-from shutil import copytree
-
+# Generic traversal
 
 class Node:
     """Node struct in python"""
