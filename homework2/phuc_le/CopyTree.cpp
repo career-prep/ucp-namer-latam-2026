@@ -33,6 +33,7 @@ TreeNode *DeepCopy(TreeNode *root)
     // Recursively copy the left and right subtree, linking to the new node
     newRoot->left = DeepCopy(root->left);
     newRoot->right = DeepCopy(root->right);
+    // Return the head of new Tree
     return newRoot;
 }
 
@@ -66,16 +67,13 @@ int main()
     //    1  3 5
 
     TreeNode *root = new TreeNode(4);
-
-    // Level 1
     root->left = new TreeNode(2);
     root->right = new TreeNode(6);
-
-    // Level 2
     root->left->left = new TreeNode(1);
     root->left->right = new TreeNode(3);
     root->right->left = new TreeNode(5);
 
+    // Print the tree
     cout << "Original Tree (In-Order): ";
     PrintInOrder(root);
     cout << endl;
@@ -94,7 +92,7 @@ int main()
     cout << "Original root data: " << root->data << endl;
     cout << "Cloned root data:   " << clonedRoot->data << " (Should still be 4)" << endl;
 
-    // --- Memory Cleanup ---
+    // Memory Cleanup
     FreeTree(root);
     FreeTree(clonedRoot);
 
