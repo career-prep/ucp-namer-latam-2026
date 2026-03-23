@@ -84,8 +84,9 @@ def deleteBack(head):
 
 def deleteNode(head, loc):
     """deletes the node `loc` and returns head. O(n)"""
-    # check head case
-    if (loc == head):
+    if not head: # empty case
+        return None
+    if (loc == head): # head case
         return loc.next
     
     # find the node before loc
