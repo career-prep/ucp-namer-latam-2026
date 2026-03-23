@@ -17,6 +17,8 @@ struct Node
 
     Time Complexity: O(n) - n is the number of nodes.
     Space Complexity: O(1) - use no extra memory
+
+    Time: 35 mins
 */
 Node *DedupSortedList(Node *head)
 {
