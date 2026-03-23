@@ -6,13 +6,17 @@ class Node:
         self.data = data
         self.next = next 
         
+        
 
-def insertAtFront(head: Node, val: int) -> Node:
+def insertAtFront(head, val):
     """Creates a new node with `val` data and links it at the head of the list. O(1) """
     return Node(val, head)
     
-def insertAtBack(head: Node, val: int) -> Node:
+    
+def insertAtBack(head, val):
     """Creates a new node with `val` data and links it at the end of the list. O(n)"""
+    if not head: # empty case
+        return None 
     new_node = Node(val, None)
     curr = head
     # traverse to end
@@ -22,7 +26,8 @@ def insertAtBack(head: Node, val: int) -> Node:
     curr.next = new_node
     return head
 
-def insertAfter(head: Node, val: int, loc: Node) -> Node:
+
+def insertAfter(head, val, loc):
     """Creates a new node with `val` data after Node `loc` and then returns the head. O(1)"""
     # create new node
     new_node = Node(val, None)
@@ -32,7 +37,8 @@ def insertAfter(head: Node, val: int, loc: Node) -> Node:
     loc.next = new_node
     return head
 
-def insertBefore(head: Node, val: int, loc: Node) -> Node:
+
+def insertBefore(head, val, loc):
     """Creates a new node with `val` data before `loc` and then returns the head. O(n)"""
     # check head case
     if (loc == head):
@@ -52,31 +58,32 @@ def insertBefore(head: Node, val: int, loc: Node) -> Node:
     new_node.next = loc
     return head
     
-def deleteFront(head: Node) -> Node:
+    
+def deleteFront(head):
     """Removes the first node and returns the new head. O(1)"""
-    if not head: # empty case
+    if not head:
         return None
     return head.next
 
-def deleteBack(head: Node) -> Node:
+
+def deleteBack(head):
     """Removes the last node and returns head. O(n)"""
     if not head: # empty case
         return None
-    
+    if not head.next:
+        return None
     # iterate to the 2nd to last node
     curr = head
-    while curr.next:
+    while curr.next.next:
         curr = curr.next
         
     # unlink last node
     curr.next = None
     return head
 
-def deleteNode(head: Node, loc: Node) -> Node:
+
+def deleteNode(head, loc):
     """deletes the node `loc` and returns head. O(n)"""
-    if not head: # empty case
-        return None
-    
     # check head case
     if (loc == head):
         return loc.next
@@ -92,7 +99,8 @@ def deleteNode(head: Node, loc: Node) -> Node:
     curr.next = loc.next 
     return head
 
-def length(head: Node) -> int:
+
+def length(head) -> int:
     """Returns length of linked list. O(n)"""
     counter = 0
     curr = head
@@ -101,7 +109,8 @@ def length(head: Node) -> int:
         counter += 1
     return counter
 
-def reverseIterative(head: Node) -> Node:
+
+def reverseIterative(head):
     """reverses the linked list iteratively. O(n)"""
     prev = None
     curr = head 
@@ -115,7 +124,8 @@ def reverseIterative(head: Node) -> Node:
     head = prev 
     return head
     
-def reverseRecursive(head: Node) -> Node:
+    
+def reverseRecursive(head):
     """Reverses the linked list recursively with a helper. O(n)"""
     # empty + base case
     if not head or not head.next:
