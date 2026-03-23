@@ -47,4 +47,3 @@ for i in test:
     print(MaxMeanSubArray(i[0], i[1]))
 
 # Time Spent: 17 Mins
-    
