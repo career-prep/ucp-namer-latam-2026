@@ -1,6 +1,7 @@
 # spent 10 minutes
 # Time complexity - O(n)
 # Space complexity - O(n)
+# Linked list reset catch up pointer
 
 class Node:
     """Node struct in python"""

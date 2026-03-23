@@ -1,3 +1,8 @@
+# spent 25 minutes
+# Time complexity - O(n)
+# Space complexity - O(1)
+# Linked list forward backward pointer
+
 class Node:
     """Node struct in python"""
     def __init__(self, data: int, next: Node = None, prev: Node = None) -> None:
