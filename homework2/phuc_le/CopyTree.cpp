@@ -28,9 +28,9 @@ TreeNode *DeepCopy(TreeNode *root)
     {
         return nullptr;
     }
-    // Create the node
+    // Create new root node
     TreeNode *newRoot = new TreeNode(root->data);
-    // Recursively copy children
+    // Recursively copy the left and right subtree, linking to the new node
     newRoot->left = DeepCopy(root->left);
     newRoot->right = DeepCopy(root->right);
     return newRoot;

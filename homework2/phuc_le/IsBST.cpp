@@ -32,12 +32,12 @@ bool IsBST(TreeNode *root, long long minVal, long long maxVal)
     {
         return true;
     }
-    // Not within the allowed boundary
+    // Not within the allowed boundaryn if leftMax < currVal < rightMin
     if (root->data <= minVal || root->data >= maxVal)
     {
         return false;
     }
-    // Check the left and right subtree
+    // Recursively check the left and right subtree for BST
     return IsBST(root->left, minVal, root->data) && IsBST(root->right, root->data, maxVal);
 }
 

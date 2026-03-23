@@ -33,11 +33,14 @@ Node *DedupSortedList(Node *head)
     // Traverse the list to find duplicated.
     while (curr != nullptr && curr->next != nullptr)
     {
-        // If a duplicate is found, bypass it and delete the node
+        // If a duplicate is found
         if (curr->data == curr->next->data)
         {
+            // Identify the duplicate node
             Node *dupNode = curr->next;
+            // Skip the dup node
             curr->next = curr->next->next;
+            // Delete it
             delete dupNode;
         }
         else
