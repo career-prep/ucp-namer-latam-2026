@@ -127,10 +127,10 @@ void FreeList(Node *head)
 
 int main()
 {
-    // ---------------------------------------------------------
-    // Test Case 1: General "P-Shape" Cycle
-    // 10 -> 18 -> 12 -> 9 -> 11 -> 4 -> (loops back to 12)
-    // ---------------------------------------------------------
+    /*
+        Test Case 1: General "P-Shape" Cycle
+        10 -> 18 -> 12 -> 9 -> 11 -> 4 -> (loops back to 12)
+    */
     cout << "Test Case 1: General Cycle (loops to middle)" << endl;
     Node *head1 = new Node(10);
     head1->next = new Node(18);
@@ -148,10 +148,10 @@ int main()
     PrintList(head1); // Expected: 10 -> 18 -> 12 -> 9 -> 11 -> 4
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
-    // Test Case 2: Self-Loop
-    // 10 -> 18 -> 12 -> 9 -> 11 -> 4 -> (loops back to 4)
-    // ---------------------------------------------------------
+    /*
+        Test Case 2: Self-Loop
+        10 -> 18 -> 12 -> 9 -> 11 -> 4 -> (loops back to 4)
+    */
     cout << "Test Case 2: Self-Loop (tail points to itself)" << endl;
     Node *head2 = new Node(10);
     head2->next = new Node(18);
@@ -168,10 +168,10 @@ int main()
     PrintList(head2); // Expected: 10 -> 18 -> 12 -> 9 -> 11 -> 4
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
-    // Test Case 3: Edge Case - Entire List is a Circle
-    // 1 -> 2 -> 3 -> (loops back to 1)
-    // ---------------------------------------------------------
+    /*
+        Test Case 3: Edge Case - Entire List is a Circle
+        1 -> 2 -> 3 -> (loops back to 1)
+    */
     cout << "Test Case 3: Circular List (tail points to head)" << endl;
     Node *head3 = new Node(1);
     head3->next = new Node(2);
@@ -185,10 +185,10 @@ int main()
     PrintList(head3); // Expected: 1 -> 2 -> 3
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
-    // Test Case 4: Edge Case - No Cycle
-    // 1 -> 2 -> 3 -> 4 -> 5 -> null
-    // ---------------------------------------------------------
+    /*
+        Test Case 4: Edge Case - No Cycle
+        1 -> 2 -> 3 -> 4 -> 5 -> null
+    */
     cout << "Test Case 4: No Cycle" << endl;
     Node *head4 = CreateList({1, 2, 3, 4, 5}); // No cycle created
 
@@ -197,9 +197,7 @@ int main()
     PrintList(head4); // Expected: 1 -> 2 -> 3 -> 4 -> 5
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
     // Test Case 5: Edge Case - Empty List
-    // ---------------------------------------------------------
     cout << "Test Case 5: Empty List" << endl;
     Node *head5 = nullptr;
 
@@ -208,7 +206,7 @@ int main()
     PrintList(head5); // Expected: null
     cout << "-----------------------" << endl;
 
-    // Free allocated memory safely (all cycles are now broken)
+    // Free allocated memory
     FreeList(head1);
     FreeList(head2);
     FreeList(head3);

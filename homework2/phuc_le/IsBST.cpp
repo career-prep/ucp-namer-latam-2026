@@ -11,7 +11,6 @@ struct TreeNode
 };
 
 /*
-    Core logic
     For each node, check if strictly within the allowed boundary
     Each node must be greater than every node in the left subtree and smaller than every node in the right subtree
     When go to left tree, same minVal, maxVal == curr
@@ -68,18 +67,17 @@ void FreeTree(TreeNode *node)
 
 int main()
 {
-    // ---------------------------------------------------------
-    // Test Case 1: Valid BST
-    // ---------------------------------------------------------
-    // Constructing the tree:
-    //         10
-    //        /  \
-    //       8    16
-    //        \  /  \
-    //         9 13  17
-    //                 \
-    //                 20
+    /*
+    Test Case 1: Valid BST
 
+            10
+           /  \
+          8    16
+           \  /  \
+            9 13  17
+                    \
+                    20
+    */
     TreeNode *root1 = new TreeNode(10);
     root1->left = new TreeNode(8);
     root1->right = new TreeNode(16);
@@ -93,18 +91,17 @@ int main()
     PrintInOrder(root1);
     cout << "\nIs BST? " << (IsBSTWrapper(root1) ? "True" : "False") << "\n\n";
 
-    // ---------------------------------------------------------
-    // Test Case 2: Invalid BST
-    // ---------------------------------------------------------
-    // Constructing the tree:
-    //         10
-    //        /  \
-    //       8    16
-    //        \  /  \
-    //         9 13  17
-    //                 \
-    //                 15  <-- INVALID (Right child must be > 17)
+    /*
+    Test Case 2: Invalid BST
 
+            10
+           /  \
+          8    16
+           \  /  \
+            9 13  17
+                    \
+                    15  <-- INVALID (Right child must be > 17)
+    */
     TreeNode *root2 = new TreeNode(10);
     root2->left = new TreeNode(8);
     root2->right = new TreeNode(16);
@@ -118,15 +115,12 @@ int main()
     PrintInOrder(root2);
     cout << "\nIs BST? " << (IsBSTWrapper(root2) ? "True" : "False") << "\n\n";
 
-    // ---------------------------------------------------------
     // Test Case 3: Edge Case (Empty Tree)
-    // ---------------------------------------------------------
     TreeNode *root3 = nullptr;
-
     cout << "Test Case 3 (Empty Tree):" << endl;
     cout << "Is BST? " << (IsBSTWrapper(root3) ? "True" : "False") << "\n\n";
 
-    // Free allocated memory to prevent memory leaks
+    // Free allocated memory
     FreeTree(root1);
     FreeTree(root2);
 

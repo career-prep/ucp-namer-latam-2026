@@ -30,7 +30,6 @@ bool IsPalindrome(Node *head)
     {
         return true;
     }
-
     // Traverse to the end to find the tail
     Node *left = head;
     Node *right = head;
@@ -38,7 +37,6 @@ bool IsPalindrome(Node *head)
     {
         right = right->next;
     }
-
     // Move pointers towards each other until they meet or cross
     // odd length: meet, even length: cross
     while (left != right && left->prev != right)
@@ -52,7 +50,6 @@ bool IsPalindrome(Node *head)
         left = left->next;
         right = right->prev;
     }
-
     return true;
 }
 

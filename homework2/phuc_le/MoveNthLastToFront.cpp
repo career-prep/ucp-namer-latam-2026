@@ -28,13 +28,11 @@ Node *MoveNthLastToFront(Node *head, int k)
     {
         return head;
     }
-
-    Node *slow, *fast, *prev;
     // [slow, fast] window to find the kth node from the end
+    Node *slow, *fast, *prev;
     slow = fast = head;
     // The node before the kth node
     prev = nullptr;
-
     // Move the fast pointer by k step
     for (int i = 0; i < k; i++)
     {
@@ -46,13 +44,11 @@ Node *MoveNthLastToFront(Node *head, int k)
         // Premove the fast node
         fast = fast->next;
     }
-
     // If fast == nullptr -> kth node from the end is the head node, no change is made
     if (fast == nullptr)
     {
         return head;
     }
-
     // Tranverse the remaining elements of the linked list
     while (fast != nullptr)
     {
@@ -60,7 +56,6 @@ Node *MoveNthLastToFront(Node *head, int k)
         slow = slow->next;
         fast = fast->next;
     }
-
     // After this step, slow node should be our needed kth node
     // Move the prev pointer to skip the kth node
     prev->next = slow->next;
@@ -68,7 +63,7 @@ Node *MoveNthLastToFront(Node *head, int k)
     slow->next = head;
     // kth node is now the new head
     head = slow;
-
+    // Return the new Head
     return head;
 }
 
@@ -120,10 +115,8 @@ void FreeList(Node *head)
 
 int main()
 {
-    // ---------------------------------------------------------
     // Test Case 1: (k = 2)
-    // ---------------------------------------------------------
-    cout << "Test Case 1: k = 2 (From Image)" << endl;
+    cout << "Test Case 1: k = 2" << endl;
     Node *head1 = CreateList({15, 2, 8, 7, 20, 9, 11, 6, 19});
     cout << "Input:  ";
     PrintList(head1);
@@ -132,10 +125,8 @@ int main()
     PrintList(head1);
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
     // Test Case 2: (k = 7)
-    // ---------------------------------------------------------
-    cout << "Test Case 2: k = 7 (From Image)" << endl;
+    cout << "Test Case 2: k = 7" << endl;
     Node *head2 = CreateList({15, 2, 8, 7, 20, 9, 11, 6, 19});
     cout << "Input:  ";
     PrintList(head2);
@@ -144,9 +135,7 @@ int main()
     PrintList(head2);
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
     // Test Case 3: Edge Case (k = 1, Move the very last element)
-    // ---------------------------------------------------------
     cout << "Test Case 3: k = 1 (Move last element)" << endl;
     Node *head3 = CreateList({1, 2, 3, 4, 5});
     cout << "Input:  ";
@@ -156,9 +145,7 @@ int main()
     PrintList(head3);
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
     // Test Case 4: Edge Case (k == length of list)
-    // ---------------------------------------------------------
     // If k equals the length of the list, the nth-from-last node
     // is already the head. The list should remain unchanged.
     cout << "Test Case 4: k = 5 (Length of list)" << endl;
@@ -170,9 +157,7 @@ int main()
     PrintList(head4);
     cout << "-----------------------" << endl;
 
-    // ---------------------------------------------------------
     // Test Case 5: Error Case (k > length of list)
-    // ---------------------------------------------------------
     // The function handles this by returning the list unchanged.
     cout << "Test Case 5: k = 10 (Out of bounds)" << endl;
     Node *head5 = CreateList({1, 2, 3});
