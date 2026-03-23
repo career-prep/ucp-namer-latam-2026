@@ -31,4 +31,4 @@ class Stack:
         
     def isEmpty(self):
         """Returns true if the stack is empty. O(1) """
-        return (self.head == None)
+        return (self.head is None)

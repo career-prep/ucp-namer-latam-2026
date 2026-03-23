@@ -41,5 +41,5 @@ class Queue:
         return x
         
     def isEmpty(self):
-        return (self.head == None)
+        return (self.head is None)
             
