@@ -37,7 +37,6 @@ public:
         }
         return head->data;
     }
-
     // returns the last item in the deque. O(1) time.
     int back()
     {
@@ -47,7 +46,6 @@ public:
         }
         return tail->data;
     }
-
     // adds x to the back of the deque. O(1) time.
     void pushBack(int x)
     {
@@ -61,7 +59,6 @@ public:
         newNode->prev = tail;
         tail = newNode;
     }
-
     // adds x to the front of the deque. O(1) time
     void pushFront(int x)
     {
@@ -75,7 +72,6 @@ public:
         head->prev = newNode;
         head = newNode;
     }
-
     // removes and returns the first item in the deque. O(1) time.
     int popFront()
     {
@@ -96,11 +92,9 @@ public:
             // Empty linked list
             tail = nullptr;
         }
-
         delete temp;
         return popValue;
     }
-
     // removes and returns the last item in the deque. O(1) time.
     int popBack()
     {
@@ -124,7 +118,6 @@ public:
         delete temp;
         return popValue;
     }
-
     // returns a boolean indicating whether the deque is empty. O(1) time.
     bool isEmpty()
     {
@@ -140,7 +133,6 @@ int main()
     dq.pushBack(20);
     dq.pushBack(30);
     dq.pushFront(10);
-    // State: 10 <-> 20 <-> 30
 
     cout << "Front: " << dq.front() << " (Expected 10)" << endl;
     cout << "Back: " << dq.back() << " (Expected 30)" << endl;

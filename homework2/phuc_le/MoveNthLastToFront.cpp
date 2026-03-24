@@ -146,8 +146,7 @@ int main()
     cout << "-----------------------" << endl;
 
     // Test Case 4: Edge Case (k == length of list)
-    // If k equals the length of the list, the nth-from-last node
-    // is already the head. The list should remain unchanged.
+    // If k equals the length of the list, the nth-from-last node is already the head. The list should remain unchanged.
     cout << "Test Case 4: k = 5 (Length of list)" << endl;
     Node *head4 = CreateList({1, 2, 3, 4, 5});
     cout << "Input:  ";

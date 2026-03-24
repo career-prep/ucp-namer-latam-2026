@@ -27,9 +27,7 @@ Node *DedupSortedList(Node *head)
     {
         return head;
     }
-
     Node *curr = head;
-
     // Traverse the list to find duplicated.
     while (curr != nullptr && curr->next != nullptr)
     {

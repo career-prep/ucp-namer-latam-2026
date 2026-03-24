@@ -15,7 +15,6 @@ class BinarySearchTree
 {
 private:
     Node *root;
-
     // Require root
     Node *deleteNode(Node *root, int val)
     {
@@ -95,7 +94,6 @@ public:
         }
         return curr->data;
     }
-
     // returns the maximum value in the BST.  O(logn) time.
     int max()
     {
@@ -111,7 +109,6 @@ public:
         }
         return curr->data;
     }
-
     // returns a boolean indicating whether val is present in the BST.O(logn) time.
     bool contains(int val)
     {
@@ -135,7 +132,6 @@ public:
         }
         return false;
     }
-
     // creates a new Node with data val in the appropriate location. For simplicity, do not allow duplicates.If val is already present, insert is a no - op. O(logn) time.
     void insert(int val)
     {
@@ -146,10 +142,8 @@ public:
             root = newNode;
             return;
         }
-
         Node *curr = root;
         Node *parentNode = nullptr;
-
         // Find the place to add
         while (curr != nullptr)
         {
@@ -169,7 +163,6 @@ public:
                 return;
             }
         }
-
         // Add the new node
         if (val < parentNode->data)
         {
@@ -179,10 +172,8 @@ public:
         {
             parentNode->right = newNode;
         }
-
         return;
     }
-
     // deletes the Node with data val, if it exists. O(logn) time.
     void deleteVal(int val)
     {
