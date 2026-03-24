@@ -1,3 +1,6 @@
+#Time Complexity: O(N) Space Complexity: O(N)
+#Technique Used: Sort the array and solve
+
 def merge_intervals(intervals):
     res = []
     intervals.sort(key=lambda x : x[0])
@@ -19,13 +22,13 @@ intervals = [(10,12), (5,6), (7,9), (1,3)]
 print(merge_intervals(intervals))
 
 
+def test_cases():
+    assert merge_intervals([(2,3), (4,8), (1,2), (5,7), (9,12)]) == [(4,8), (1,3), (9,12)]
+    assert merge_intervals([(5,8), (6,10), (2,4), (3,6)]) == [(2,10)]
+    assert merge_intervals([(10,12), (5,6), (7,9), (1,3)]) == [(10,12), (5,6), (7,9), (1,3)]
+    
+if __name__ == "__main__":
+    test_cases()
+    print("All test cases passed successfully!")
 
-'''
-[(2,3), (4,8), (1,2), (5,7), (9,12)]
-(2,8)
-
-[(1,2), (2,3), (4,8), (5,7), (9,12)]
-interval = 1, 3
-
-res = [(1,3)]
-'''
+#time spent: 34 mins

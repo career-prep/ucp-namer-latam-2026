@@ -1,4 +1,5 @@
 #Technique Used: Fixed-size sliding window
+#Time Complexity: O(N) Space Complexity: O(1)
 
 def max_mean_sub_array(array, k):
     if not array or k > len(array) or k == 0:

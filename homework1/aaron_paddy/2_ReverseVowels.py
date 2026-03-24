@@ -1,3 +1,6 @@
+#Technique Used: Forward Backward Two-Pointer
+#Time Complexity: O(N) Space Complexity: O(N)
+
 def reverse_vowels(word):
     word_list = list(word)
     vowels = 'aeiou'
@@ -31,3 +34,6 @@ def test_cases():
 if __name__ == "__main__":
     test_cases()
     print("All test cases passed successfully!")
+    
+    
+#Time Spent: 21 mins

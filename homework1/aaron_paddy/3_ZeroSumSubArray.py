@@ -5,7 +5,7 @@ def zero_sub_array(array):
     
     for i in range(len(array)):
         if array[i] == 0:
-            count += 1
+            count += 1  #just account for zeros
         for j in range(i + 1, len(array)):
             arr_sum = sum(array[i : j + 1])
             if arr_sum == 0:

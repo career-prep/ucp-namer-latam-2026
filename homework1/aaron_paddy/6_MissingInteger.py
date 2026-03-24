@@ -8,7 +8,6 @@ def missing_interger(array, n):
             return num
            
 
-
 def test_cases():
     assert missing_interger([1,2,3,4,5,6,7,8,10,11,12], 12) == 9
     assert missing_interger([2,3,4,5], 5) == 1
