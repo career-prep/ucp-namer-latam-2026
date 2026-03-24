@@ -11,6 +11,8 @@ struct Node
 };
 
 /*
+    Doubly linked list forward-backward two-pointer
+
     Given a doubly linked list, determine if it is a palindrome.
     Edge case: Empty or single-element list is a palindrome
     Tranverse to the end of the doubly linkedlist to find the tail

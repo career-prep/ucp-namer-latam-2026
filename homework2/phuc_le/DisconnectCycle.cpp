@@ -10,6 +10,8 @@ struct Node
 };
 
 /*
+    Linked list fast-slow two-pointer
+
     Given a singly linked list, disconnect the cycle, if one exists.
     Use Floyd theorem, fast and slow pointer method to detect the cycle
     If fast reach null, no cycle detected

@@ -10,6 +10,8 @@ struct Node
 };
 
 /*
+    Linked list fixed-distance two-pointer
+
     Edge case: Empty linkedlistt, 1 node linkedlist, invalid k
     Given a singly linked list, move the nth from the last element to the front of the list.
     Use fast and slow pointer for to fix the window size of k

@@ -10,6 +10,8 @@ struct Node
 };
 
 /*
+    Linked list iteration
+
     Given a sorted singly linked list, remove any duplicates so that no value appears more than once.
     Maintain pointers at the current node and next node
     If find duplicate, move the curr next pointer to the next-next-node

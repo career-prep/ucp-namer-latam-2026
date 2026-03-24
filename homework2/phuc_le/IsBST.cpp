@@ -11,6 +11,9 @@ struct TreeNode
 };
 
 /*
+    Linked list recursion
+    Search binary search tree (BST)
+
     For each node, check if strictly within the allowed boundary
     Each node must be greater than every node in the left subtree and smaller than every node in the right subtree
     When go to left tree, same minVal, maxVal == curr

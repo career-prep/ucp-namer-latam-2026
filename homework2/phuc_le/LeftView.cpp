@@ -13,7 +13,8 @@ struct TreeNode
 };
 
 /*
-    Implement Breadth-First Search (Level Order Traversal)
+    Breadth-First Search (Level Order Traversal)
+
     For each level in the BFS, append the first element into the result list
     Return the ans list with all the leftView elements
 

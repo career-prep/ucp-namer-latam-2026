@@ -14,6 +14,8 @@ struct TreeNode
 };
 
 /*
+    Search binary search tree (BST)
+
     Given a target numeric value and a binary search tree, return the floor (greatest element less than or equal to the target) in the BST.
     - If node->data == target, we found the exact floor. Return it.
     - If node->data > target, the current node is too big. Move left.

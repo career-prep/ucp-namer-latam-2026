@@ -10,7 +10,9 @@ struct TreeNode
 };
 
 /*
-    Use Pre-order traversal (Node, Left, Right)
+    Linked list recursion
+    Pre-order traversal (Node, Left, Right)
+
     For each node, create a copy of that node with the same value
     Recursively copy the newNode left and right subtree, linking them with the newNode as root
 
