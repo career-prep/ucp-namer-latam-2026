@@ -1,4 +1,7 @@
 # spent 40 minutes
+# Time complexity - O(n) 
+# Space complexity - O(1)
+# Linked list slow fast pointers
 
 
 
