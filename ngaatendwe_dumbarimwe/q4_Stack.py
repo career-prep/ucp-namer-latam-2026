@@ -17,7 +17,7 @@ class Stack:
 
     def pop(self):
         if self.isEmpty():
-            raise IndexError("Pop from empty stack")
+            raise IndexError("Stack is empty")
         
         removed_data = self.head.data
         self.head = self.head.next  
@@ -25,5 +25,5 @@ class Stack:
 
     def top(self):
         if self.isEmpty():
-            raise IndexError("Top from empty stack")
+            raise IndexError("Stack is empty")
         return self.head.data

@@ -21,7 +21,7 @@ class Queue:
 
     def dequeue(self):
         if self.isEmpty():
-            raise IndexError("Dequeue from empty queue")
+            raise IndexError("Queue is empty")
         
         removed_data = self.head.data
         self.head = self.head.next
@@ -33,5 +33,5 @@ class Queue:
 
     def peek(self):
         if self.isEmpty():
-            raise IndexError("Peek from empty queue")
+            raise IndexError("Queue is empty")
         return self.head.data

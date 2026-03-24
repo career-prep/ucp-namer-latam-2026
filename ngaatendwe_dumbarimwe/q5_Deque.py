@@ -32,34 +32,34 @@ class Deque:
 
     def popFront(self):
         if self.isEmpty():
-            raise IndexError("Pop from empty deque")
+            raise IndexError("Queue is empty")
         
         data = self.head.data
         self.head = self.head.next
         if self.head:
             self.head.prev = None
         else:
-            self.tail = None  # List is now empty
+            self.tail = None  
         return data
 
     def popBack(self):
         if self.isEmpty():
-            raise IndexError("Pop from empty deque")
+            raise IndexError("Queue is empty")
         
         data = self.tail.data
         self.tail = self.tail.prev
         if self.tail:
             self.tail.next = None
         else:
-            self.head = None  # List is now empty
+            self.head = None  
         return data
 
     def front(self):
         if self.isEmpty():
-            raise IndexError("Front from empty deque")
+            raise IndexError("Queue is empty")
         return self.head.data
 
     def back(self):
         if self.isEmpty():
-            raise IndexError("Back from empty deque")
+            raise IndexError("Queue is empty")
         return self.tail.data

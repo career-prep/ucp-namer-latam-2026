@@ -15,7 +15,7 @@ def insertAtBack(head, tail, val):
     new_node = Node(val)
 
     if not head:
-        return new_node, new_node  # new head, tail
+        return new_node, new_node  
 
     tail.next = new_node
     new_node.prev = tail
