@@ -51,3 +51,8 @@ print(shortest_substring("abracadabra", "abc"))
 print(shortest_substring("zxycbaabcdwxyzzxzxywdcbxyzabccbazyx", "zzyzx"))
 print(shortest_substring("dog", "god"))
 print(shortest_substring("aabbcc", "abc"))
+
+
+#Time Complexity: O(n) n=len(s)
+#Space Complexity: 
+#Spent 45 mins

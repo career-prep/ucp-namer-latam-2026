@@ -12,19 +12,19 @@
 
 # Input String: "flamingo"
 # Modified String: "flominga"
-def reverse_vowels(strings):
-    new = list(strings)
+def reverse_vowels(s):
+    chars = list(s)
     vowels = "aeiouAEIOU"
-    l,r=0,len(strings)-1
+    l,r=0,len(s)-1
     while l<r:
-        while l<r and new[l] not in vowels:
+        while l<r and chars[l] not in vowels:
             l+=1
-        while l<r and new[r] not in vowels:
+        while l<r and chars[r] not in vowels:
             r-=1
-        new[l],new[r]=new[r],new[l]
+        chars[l],chars[r]=chars[r],chars[l]
         l+=1
         r-=1
-    return "".join(new)
+    return "".join(chars)
 
 
 

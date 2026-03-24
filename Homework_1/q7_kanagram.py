@@ -17,7 +17,7 @@
 # Output: True
 
 from collections import Counter
-def kanagrams(str1,str2,k):
+def kAnagrams(str1,str2,k):
     if len(str1)!=len(str2): return False
     count1 = Counter(str1)
     count2 = Counter(str2)
@@ -30,16 +30,16 @@ def kanagrams(str1,str2,k):
 
     return changes<=k
 
-print(kanagrams("apple", "peach",2))
-print(kanagrams("apple", "peach", 1))
-print(kanagrams("cat", "dog", 3))
-print(kanagrams("debit card", "bad credit", 1))
-print(kanagrams("baseball", "basketball", 2))
-print(kanagrams("listen", "silent", 0))
-print(kanagrams("hello", "world", 4))
-print(kanagrams("abc", "def", 3))
-print(kanagrams("anagram", "nagaram", 0))
-print(kanagrams("rat", "car", 2))
+print(kAnagrams("apple", "peach",2))
+print(kAnagrams("apple", "peach", 1))
+print(kAnagrams("cat", "dog", 3))
+print(kAnagrams("debit card", "bad credit", 1))
+print(kAnagrams("baseball", "basketball", 2))
+print(kAnagrams("listen", "silent", 0))
+print(kAnagrams("hello", "world", 4))
+print(kAnagrams("abc", "def", 3))
+print(kAnagrams("anagram", "nagaram", 0))
+print(kAnagrams("rat", "car", 2))
 
 
 #Time Complexity: O(n+m)
