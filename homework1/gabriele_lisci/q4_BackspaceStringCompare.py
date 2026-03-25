@@ -9,21 +9,28 @@ def BackspaceStringCompare(word1, word2):
     n2 = len(chars2)
     pointer1 = n1-1
     pointer2 = n2-1
-    while pointer1 > 0 and pointer2 > 0:
+    while pointer1 >= 0 and pointer2 >= 0:
         delCount = 0
-        while pointer1 > 0 and chars1[pointer1] == '#':
-            delCount +=1
-            pointer1 -=1
-        while delCount > 0:
-            pointer1 -= 1
-            delCount -= 1
+        while pointer1 >= 0:
+            if chars1[pointer1] == '#':
+                delCount +=1
+                pointer1 -=1
+            elif delCount > 0:
+                pointer1-=1
+                delCount-=1
+            else:
+                break
 
-        while pointer2 > 0 and chars2[pointer2] == '#':
-            delCount +=1
-            pointer2 -=1
-        while delCount > 0:
-            pointer2 -= 1
-            delCount -= 1
+        while pointer2 >= 0:
+            if chars2[pointer2] == '#':
+                delCount +=1
+                pointer2 -=1
+            elif delCount > 0:
+                pointer2 -= 1
+                delCount -= 1
+            else:
+                break
+
         if chars1[pointer1] != chars2[pointer2]:
             return False
         pointer1 -= 1
@@ -38,8 +45,7 @@ print(BackspaceStringCompare("Uber Career Prep", "u#Uber Careee#r Prep") == True
 print(BackspaceStringCompare("abcdef###xyz", "abcw#xyz") == True)
 print(BackspaceStringCompare("abcdef###xyz", "abcdefxyz###") == False)
 print(BackspaceStringCompare("###", "") == True)
-
-
+print(BackspaceStringCompare("###abc##", "###aa#bc##") == True)
 
 
 # Time spent: 15:30
