@@ -12,8 +12,7 @@
 # Step 2: find WHERE the cycle starts
 #   - there's a math trick here: after fast and slow meet,
 #     reset one pointer to head and keep the other at the meeting point
-#   - advance both one step at a time - they'll meet again exactly at the cycle start
-#   - i'd want to verify this on paper before writing it for sure
+#   - advance both one step at a time - they'll meet again exactly at the cycle star
  
 # Step 3: once we have the cycle start, walk around the cycle until we get
 #   back to the node JUST BEFORE the start (the node whose .next = cycle start)
