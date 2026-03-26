@@ -242,3 +242,5 @@ deque.printDeque()
 
 print('check if deque is empty: ')
 print(deque.isEmpty())
+
+#time spent: 30min

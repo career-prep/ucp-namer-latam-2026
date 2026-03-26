@@ -1,3 +1,4 @@
+
 class Node:
     def __init__ (self, data):
         self.val = data
@@ -65,4 +66,4 @@ class BinarySearchTree:
                 current = current.left
 
 
-            
+#time spent: 30 min   

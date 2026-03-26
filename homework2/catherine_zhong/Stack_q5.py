@@ -176,3 +176,5 @@ stack.printStack()
 
 print("check if stack is empty: ")
 print(stack.isEmpty())
+
+#time spent: 40 min
