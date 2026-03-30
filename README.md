@@ -8,7 +8,7 @@
 **Description:**  
 Creates a deep copy of a binary tree by recursively copying each node and preserving the original tree structure.
 
-**Time Spent:** —  
+**Time Spent:** 20 minutes 
 
 **Complexity Analysis:**  
 - **Time Complexity:** O(n), where *n* is the number of nodes in the tree  
