@@ -88,3 +88,36 @@ Detects and removes a cycle in a linked list by tracking visited nodes using a s
 **Complexity Analysis:**  
 - **Time Complexity:** O(n), where *n* is the number of nodes  
 - **Space Complexity:** O(n)  
+
+---
+
+## q12_LeftViewBinaryTree
+
+**Problem Type:** Tree / Breadth-First Search (Level Order)  
+
+**Description:**  
+Returns the left view of a binary tree by performing a level-order traversal and selecting the first node encountered at each level.
+
+**Time Spent:** 15 minutes  
+
+**Complexity Analysis:**  
+- **Time Complexity:** O(n), where *n* is the number of nodes in the tree  
+- **Space Complexity:** O(n), due to queue storage for level-order traversal  
+
+---
+
+## q13_FloorInBST
+
+**Problem Type:** Binary Search Tree / Recursion  
+
+**Description:**  
+Finds the floor of a given target value in a Binary Search Tree. The floor is defined as the greatest value in the BST that is less than or equal to the target.
+
+**Time Spent:** 15 minutes  
+
+**Complexity Analysis:**  
+- **Time Complexity:** O(h), where *h* is the height of the BST  
+- **Space Complexity:** O(h), due to recursion stack depth  
+
+---
+
