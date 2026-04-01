@@ -47,14 +47,15 @@ class Deque:
     def PopFront(self):
         if self.head is None:
             return
+        val = self.head.data
         if self.head == self.tail:
             self.head = None
             self.tail = None
-            return
-
-        cur = self.head.next
-        cur.prev = None
-        self.head = cur
+        else:      
+            cur = self.head.next
+            cur.prev = None
+            self.head = cur
+        return val
     def PopBack(self):
         if self.head is None:
             return
@@ -67,8 +68,7 @@ class Deque:
         self.tail = cur
     
     def isEmpty(self):
-        if self.head is None:
-            return True
-        return False
+        return self.head == None:
+        
 
 
