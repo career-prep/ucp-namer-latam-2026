@@ -40,7 +40,7 @@ class BST:
         return self.maximumHelper(self.root)
     def maximumHelper(self, node):
         if node is None:
-            return -1
+            return None
         cur = node
         while cur.right:
             cur = cur.right
