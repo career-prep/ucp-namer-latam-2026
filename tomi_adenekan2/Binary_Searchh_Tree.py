@@ -37,11 +37,11 @@ class BST:
         return self.minimumHelper(node.left)
 
     def maximum(self):
-        return self.maximumHelper()
-    def maximumHelper(self):
-        if self.root is None:
+        return self.maximumHelper(self.root)
+    def maximumHelper(self, node):
+        if node is None:
             return -1
-        cur = self.root
+        cur = node
         while cur.right:
             cur = cur.right
 
@@ -64,3 +64,32 @@ class BST:
     """
     Problems with deletion
     """
+    def delete(self, val):
+        self.root = self.deleteHelper(self.root, val)
+    def deleteHelper(self, node, val):
+        if node is None: #empty case
+            return None
+        if val < node.data:
+            node.left =  self.deleteHelper(node.left, val)
+        elif val > node.data:
+            node.right =  self.deleteHelper(node.right, val)
+        else:
+            if node.left is None and node.right is None: #has no child
+                return None
+
+            """ has one child """
+            if node.left and node.right is None:
+                return node.left
+            if node.right and node.left is None:
+                return node.right 
+
+            """ has multiple children"""
+            next_node = node.right
+            while next_node.left:
+                next_node = next_node.left
+
+            node.data = next_node.data
+            node.right = self.deleteHelper(node.right, next_node.data)
+
+        return node
+                
