@@ -15,15 +15,19 @@ class List:
     def insertAtFront(self, data):
         new_node = Node(data)
         new_node.next = self.head
+
+        if self.head is not None:
+            self.head.prev = new_node
+            
         self.head = new_node
         if self.tail is None:
             self.tail = new_node
 
     def insertAtBack(self, data):
-        new_node = Node(data)
         if self.head is None:
             self.insertAtFront(data)
             return
+        new_node = Node(data)
         new_node.prev = self.tail
         self.tail.next = new_node
         self.tail = new_node
@@ -41,10 +45,10 @@ class List:
         return
 
     def insertBefore(self, data, location):
-        new_node = Node(data)
         if self.head == location:
             self.insertAtFront(data)
             return
+        new_node = Node(data)
         new_node.next = location
         new_node.prev = location.prev
         location.prev.next = new_node
@@ -74,6 +78,8 @@ class List:
         self.tail = cur
     
     def deleteNode(self, location):
+        if location is None:
+            return None
         if self.head == location:
             self.deleteFront()
             return
@@ -91,7 +97,7 @@ class List:
             count += 1
             cur = cur.next
         return count
-    def reverseIterative(self):
+    def reverse_Iterative(self):
         if self.head is None:
             return
         cur = self.head
@@ -99,6 +105,7 @@ class List:
         while cur:
             temp = cur.next
             cur.next = prev
+            cur.prev = temp
             prev = cur
             cur = temp
         self.head, self.tail = self.tail, self.head
