@@ -58,4 +58,43 @@ class BinarySearchTree:
                     break
 
     def delete(self, val):
-        pass
+
+        def helper(node, val):
+            if not node:
+                return None
+            
+            # go left
+            if val < node.val:
+                node.left = helper(node.left, val)
+            
+            # go right
+            elif val > node.val:
+                node.right = helper(node.right, val)
+            
+            # node found
+            else:
+                # case 1: no child
+                if not node.left and not node.right:
+                    return None
+                
+                # case 2: one child
+                if not node.left:
+                    return node.right
+                
+                if not node.right:
+                    return node.left
+                
+                # case 3: two children
+                # find inorder successor (smallest in right subtree)
+                successor = node.right
+                while successor.left:
+                    successor = successor.left
+                
+                node.val = successor.val
+                node.right = helper(node.right, successor.val)
+            
+            return node
+        
+        self.root = helper(self.root, val)
+    
+        
