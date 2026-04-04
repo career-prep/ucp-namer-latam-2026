@@ -49,7 +49,7 @@ def insertBefore(head, val, loc):
     while (curr.next and curr.next != loc):
         curr = curr.next
     if not curr.next: # loc not found
-        return None
+        return head
         
     # create node
     new_node = Node(val, None)
@@ -94,7 +94,7 @@ def deleteNode(head, loc):
     while (curr.next and curr.next != loc):
         curr = curr.next
     if not curr.next: # loc not found
-        return None
+        return head
     
     # unlink loc
     curr.next = loc.next 
@@ -141,3 +141,190 @@ def reverseRecursive(head):
     return new_head
 
 
+
+if __name__ == "__main__":
+    # 1
+    # test for insertatfront
+    ll = None
+    ll = insertAtFront(ll, 5)
+    ll = insertAtFront(ll, 4)
+    ll = insertAtFront(ll, 3)
+    ll = insertAtFront(ll, 2)
+    ll = insertAtFront(ll, 1)
+    
+    curr = ll
+    arr = [1,2,3,4,5]
+    for i in range(len(arr)):
+        assert curr is not None, "InsertAtFront error1"
+        assert curr.data == arr[i], "InsertAtFront error1"
+        curr = curr.next
+    assert curr is None, "InsertAtFront error3"
+    
+    
+    # 2 
+    # test for insertatback
+    ll2 = None
+    ll2 = insertAtBack(ll2, 1)
+    ll2 = insertAtBack(ll2, 2)
+    ll2 = insertAtBack(ll2, 3)
+    ll2 = insertAtBack(ll2, 4)
+    ll2 = insertAtBack(ll2, 5) 
+    
+    curr2 = ll2 
+    arr2 = [1,2,3,4,5]
+    for i in range(len(arr2)):
+        assert curr2 is not None, "InsertAtBack error1"
+        assert curr2.data == arr2[i], "InsertAtBack error2"
+        curr2 = curr2.next
+    assert curr2 is None, "InsertAtBack error3"
+        
+        
+    # 3 
+    # test for insertafter
+    # create base list: 1 -> 2 -> 3
+    base = None
+    base = insertAtBack(base, 1)
+    base = insertAtBack(base, 2)
+    base = insertAtBack(base, 3)
+
+    # get reference to node with value 2
+    curr = base
+    while curr and curr.data != 2:
+        curr = curr.next
+
+    base = insertAfter(base, 99, curr)  # 1 -> 2 -> 99 -> 3
+
+    curr = base
+    arr3 = [1,2,99,3]
+    for i in range(len(arr3)):
+        assert curr is not None, "InsertAfter error1"
+        assert curr.data == arr3[i], "InsertAfter error2"
+        curr = curr.next
+    assert curr is None, "InsertAfter error3"
+    
+    # intentionally fails when nonexistent node is inputted to function to keep performance O(1)
+    '''
+    # test for node that doesnt exist in list
+    nonexistent_node3 = Node(-1)
+    base = insertAfter(base, 10, nonexistent_node3)
+    curr = base
+    for i in range(len(arr3)):
+        assert curr is not None, "InsertAfter error4"
+        assert curr.data == arr3[i], "InsertAfter error5"
+        curr = curr.next
+    assert curr is None, "InsertAfter error6"
+    '''
+    
+
+    # 4
+    # test for insertBefore
+    # insert before node with value 99
+    curr = base
+    while curr and curr.data != 99:
+        curr = curr.next
+
+    base = insertBefore(base, 50, curr)  # 1 -> 2 -> 50 -> 99 -> 3
+
+    curr = base
+    arr4 = [1,2,50,99,3]
+    for i in range(len(arr4)):
+        assert curr is not None, "InsertBefore error1"
+        assert curr.data == arr4[i], "InsertBefore error2"
+        curr = curr.next
+    assert curr is None, "InsertBefore error3"
+    
+    # test for node not in ll
+    nonexistent_node4 = Node(-1)
+    base = insertBefore(base, 10, nonexistent_node4)
+    curr = base
+    for i in range(len(arr4)):
+        assert curr is not None, "InsertBefore error4"
+        assert curr.data == arr4[i], "InsertBefore error5"
+        curr = curr.next
+    assert curr is None, "InsertBefore error6"
+
+
+    # 5
+    # test deleteFront
+    base = deleteFront(base)  # remove 1
+
+    curr = base
+    arr5 = [2,50,99,3]
+    for i in range(len(arr5)):
+        assert curr is not None, "deleteFront error1"
+        assert curr.data == arr5[i], "deleteFront error2"
+        curr = curr.next
+    assert curr is None, "deleteFront error3"
+
+
+    # 6
+    # test deleteBack
+    base = deleteBack(base)  # remove 3
+
+    curr = base
+    arr6 = [2,50,99]
+    for i in range(len(arr6)):
+        assert curr is not None, "deleteBack error1"
+        assert curr.data == arr6[i], "deleteBack error2"
+        curr = curr.next
+    assert curr is None, "deleteBack error3"
+
+
+    # 7
+    # test deleteNode (delete 50)
+    curr = base
+    while curr and curr.data != 50:
+        curr = curr.next
+
+    base = deleteNode(base, curr)
+
+    curr = base
+    arr7 = [2,99]
+    for i in range(len(arr7)):
+        assert curr is not None, "deleteNode error1"
+        assert curr.data == arr7[i], "deleteNode error2"
+        curr = curr.next
+    assert curr is None, "deleteNode error3"
+    
+    # test for nonexistent node
+    nonexistent_node7 = Node(-1)
+    base = deleteNode(base, nonexistent_node7)
+    curr = base
+    for i in range(len(arr7)):
+        assert curr is not None, "deleteNode error4"
+        assert curr.data == arr7[i], "deleteNode error5"
+        curr = curr.next
+    assert curr is None, "deleteNode error6"
+    
+
+    # 8
+    # test length
+    assert length(base) == 2, "length error"
+
+
+    # 9
+    # test reverseIterative
+    base = reverseIterative(base)  # [99, 2]
+
+    curr = base
+    arr9 = [99,2]
+    for i in range(len(arr9)):
+        assert curr is not None, "reverseIterative error1"
+        assert curr.data == arr9[i], "reverseIterative error2"
+        curr = curr.next
+    assert curr is None, "reverseIterative error3"
+
+
+    # 10
+    # test reverseRecursive
+    base = reverseRecursive(base)  # [2, 99]
+
+    curr = base
+    arr10 = [2,99]
+    for i in range(len(arr10)):
+        assert curr is not None, "reverseRecursive error1"
+        assert curr.data == arr10[i], "reverseRecursive error2"
+        curr = curr.next
+    assert curr is None, "reverseRecursive error3"
+
+    print("All tests passed")
