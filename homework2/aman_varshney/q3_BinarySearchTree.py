@@ -14,7 +14,7 @@ class BinarySearchTree:
         
         
     def min(self):
-        """Returns the min value in tree. O(logn)"""
+        """Returns the min value in tree. O(h)"""
         if not self.root: # empty case
             return None
         
@@ -25,7 +25,7 @@ class BinarySearchTree:
     
     
     def max(self):
-        """Returns the max value in tree. O(logn)"""
+        """Returns the max value in tree. O(h)"""
         if not self.root: # empty case
             return None
         
@@ -36,7 +36,7 @@ class BinarySearchTree:
     
     
     def contains(self, val):
-        """Searches for a node with data `val` and returns true if found. O(logn)"""
+        """Searches for a node with data `val` and returns true if found. O(h)"""
         if not self.root: # empty case
             return False
         
@@ -58,7 +58,7 @@ class BinarySearchTree:
     
     def insert(self, val):
         """Creates a new node with data `val` and inserts it into the tree. If a node with `val`
-        is already in the tree, no-op. O(logn)"""
+        is already in the tree, no-op. O(h)"""
         if not self.root:
             self.root = Node(val, None, None)
             return
@@ -84,7 +84,7 @@ class BinarySearchTree:
         
         
     def delete(self, val):
-        """Deletes the node with data `val` if it exists. O(logn)"""
+        """Deletes the node with data `val` if it exists. O(h)"""
         curr = self.root
         
         # helper
