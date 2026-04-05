@@ -29,6 +29,8 @@ def insertAtBack(head, val):
 
 def insertAfter(head, val, loc):
     """Creates a new node with `val` data after Node `loc` and then returns the head. O(1)"""
+    if not head or not loc:
+        return head
     # create new node
     new_node = Node(val, None)
     # link
@@ -40,6 +42,8 @@ def insertAfter(head, val, loc):
 
 def insertBefore(head, val, loc):
     """Creates a new node with `val` data before `loc` and then returns the head. O(n)"""
+    if not head or not loc:
+        return head
     # check head case
     if (loc == head):
         return Node(val, loc)
