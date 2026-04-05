@@ -46,7 +46,9 @@ def insertBefore(head, val, loc):
         return head
     # check head case
     if (loc == head):
-        return Node(val, loc)
+        new_node = Node(val, loc)
+        head = new_node
+        return head
     
     # find the node before loc    
     curr = head
