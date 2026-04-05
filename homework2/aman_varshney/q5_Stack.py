@@ -12,7 +12,7 @@ class Stack:
         
     def top(self):
         """Returns top item. O(1)"""
-        return self.head.data
+        return self.head.data if self.head else None
     
     def push(self, x): 
         """Adds `x` to the stack. O(1)"""
@@ -32,3 +32,35 @@ class Stack:
     def isEmpty(self):
         """Returns true if the stack is empty. O(1) """
         return (self.head is None)
+
+
+if __name__ == "__main__":
+    # 1
+    # empty stack
+    s = Stack(None)
+    assert s.isEmpty() is True, "empty isEmpty error"
+    assert s.pop() is None, "empty pop error"
+
+
+    # 2
+    # push / LIFO order
+    s.push(10)
+    s.push(20)
+    s.push(30)
+    
+    assert s.isEmpty() is False, "nonempty isEmpty error"
+    assert s.top() == 30, "top error"
+    assert s.pop() == 30, "pop 30 error"
+    
+    assert s.top() == 20, "top after pop error1"
+    assert s.pop() == 20, "pop 20 error"
+    
+    assert s.top() == 10, "top after pop error2"
+    assert s.pop() == 10, "pop 10 error"
+    
+    assert s.isEmpty() is True, "drained isEmpty error"
+    assert s.pop() is None, "pop empty again error"
+    assert s.top() is None, "top when empty error"
+
+
+    print("All tests passed")
