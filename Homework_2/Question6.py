@@ -15,9 +15,13 @@ class Deque:
         self.tail = None
 
     def front(self):
+        if self.is_empty():
+            return None
         return self.head.data
 
     def back(self):
+        if self.is_empty():
+            return None
         return self.tail.data
 
     def push_back(self, x):
@@ -39,6 +43,8 @@ class Deque:
             self.tail = new_node
 
     def pop_front(self):
+        if self.is_empty():
+            return None
         val = self.head.data
         self.head = self.head.next
         if self.head:
@@ -48,6 +54,8 @@ class Deque:
         return val
 
     def pop_back(self):
+        if self.is_empty():
+            return None
         val = self.tail.data
         self.tail = self.tail.prev
         if self.tail:

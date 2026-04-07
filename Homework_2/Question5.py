@@ -13,6 +13,8 @@ class Stack:
         self.head = None
 
     def top(self):
+        if self.is_empty():
+            return None
         return self.head.data
 
     def push(self, x):
@@ -21,6 +23,8 @@ class Stack:
         self.head = new_node
 
     def pop(self):
+        if self.is_empty():
+            return None
         val = self.head.data
         self.head = self.head.next
         return val

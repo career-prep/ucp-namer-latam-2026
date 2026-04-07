@@ -40,8 +40,10 @@ def insert_before(head, val, loc):
         new_node.next = head
         return new_node
     current = head
-    while current.next is not loc:
+    while current and current.next is not loc:
         current = current.next
+    if current is None:
+        return head
     new_node.next = loc
     current.next = new_node
     return head
@@ -69,8 +71,10 @@ def delete_node(head, loc):
     if head is loc:
         return head.next
     current = head
-    while current.next is not loc:
+    while current and current.next is not loc:
         current = current.next
+    if current is None:
+        return head
     current.next = loc.next
     return head
 

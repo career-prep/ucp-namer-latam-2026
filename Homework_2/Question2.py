@@ -22,10 +22,10 @@ def insert_at_front(head, val):
 def insert_at_back(head, tail, val):
     new_node = Node(val)
     if tail is None:
-        return new_node
+        return new_node, new_node
     tail.next = new_node
     new_node.prev = tail
-    return head
+    return head, new_node
 
 
 def insert_after(head, val, loc):
@@ -61,11 +61,12 @@ def delete_front(head):
 
 def delete_back(head, tail):
     if tail is None:
-        return None
+        return None, None
     if tail.prev is None:
-        return None
-    tail.prev.next = None
-    return head
+        return None, None
+    new_tail = tail.prev
+    new_tail.next = None
+    return head, new_tail
 
 
 def delete_node(head, loc):
@@ -138,7 +139,7 @@ head = insert_at_front(head, 0)
 print(to_list(head))
 
 tail = get_tail(head)
-head = insert_at_back(head, tail, 4)
+head, tail = insert_at_back(head, tail, 4)
 print(to_list(head))
 
 loc = head.next.next
@@ -153,7 +154,7 @@ head = delete_front(head)
 print(to_list(head))
 
 tail = get_tail(head)
-head = delete_back(head, tail)
+head, tail = delete_back(head, tail)
 print(to_list(head))
 
 loc = head.next.next

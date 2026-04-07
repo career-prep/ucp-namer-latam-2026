@@ -18,10 +18,14 @@ def copy_tree(root):
     return new_node
 
 
-def inorder(node):
-    if node is None:
-        return []
-    return inorder(node.left) + [node.data] + inorder(node.right)
+def inorder(node, result=None):
+    if result is None:
+        result = []
+    if node:
+        inorder(node.left, result)
+        result.append(node.data)
+        inorder(node.right, result)
+    return result
 
 
 root = Node(1)

@@ -14,6 +14,8 @@ class Queue:
         self.tail = None
 
     def peek(self):
+        if self.is_empty():
+            return None
         return self.head.data
 
     def enqueue(self, x):
@@ -25,6 +27,8 @@ class Queue:
             self.head = new_node
 
     def dequeue(self):
+        if self.is_empty():
+            return None
         val = self.head.data
         self.head = self.head.next
         if self.head is None:
