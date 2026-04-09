@@ -1,5 +1,5 @@
 # Approach:
-# Use BST property to navigate efficiently:
+# Use BST property to navigate:
 # - If node value == target → return it (exact match)
 # - If node value > target → go left (smaller values)
 # - If node value <= target → it can be a candidate for floor
@@ -28,3 +28,34 @@ def floorBST(root, target):
             root = root.right
 
     return floor_val
+
+
+
+
+
+
+#given: a bst, target val
+#return: GREATEST element  LESS THAN or EQUAL to the TARGET
+
+#compare the element using search in bst
+
+def FloorInBST(root, target):
+
+    if not root: return None
+    floor_val = -1
+
+    while root:
+
+        if target == root.data:
+            return root.data
+        
+        if target < root.data:
+            root = root.left
+
+        else:
+                floor_val = root.data
+                root = root.right
+
+         
+        return floor_val   #eg target = 10, root.data = 5
+    
