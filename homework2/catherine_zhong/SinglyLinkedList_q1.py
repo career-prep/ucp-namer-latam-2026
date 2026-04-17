@@ -23,7 +23,7 @@ def insertAtBack(head, val):
     current.next = Node(val)
     return head
 
-#creates new Node with data val after Node loc; returns head. O(1) time.
+#creates new Node with data val after Node loc; returns head. O(n) time.
 def insertAfter(head, val, loc):
     if head == None:
         return Node(val)
@@ -43,6 +43,13 @@ def insertBefore(head, val, loc):
     if head == None:
         return Node(val)
 
+    #checks if head == loc
+    if head == loc:
+        temp = head
+        head = Node(val)
+        head.next = temp
+        return head 
+
     current = head
     while current.next != loc:
         current = current.next
@@ -56,6 +63,9 @@ def insertBefore(head, val, loc):
 
 #removes first Node; returns head. O(1) time.
 def deleteFront(head):
+    if head == None:
+        return None
+
     return head.next
 
 
@@ -80,9 +90,11 @@ def deleteNode(head, loc):
         return head.next
 
     current = head
-    while current.next != loc:
+    while current.next and current.next != loc:
         current = current.next
-    current.next = current.next.next
+
+    if loc == current.next:
+        current.next = current.next.next
     return head
 
 #returns length of the list. O(n) time.
