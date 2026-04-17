@@ -1,0 +1,29 @@
+# Technique: Search binary search tree (BST)
+# Time: O(log n) balanced, O(n) worst case
+# Space: O(1)
+ 
+# search the BST like normal but keep a "best floor so far" variable
+# if current node == target: we found an exact match, return it immediately
+# if current node < target: this could be our floor! save it and go RIGHT
+# there might be something bigger that's still <= target
+# if current node > target: this is too big, go LEFT (need something smaller)
+ 
+def floorInBST(root, target):
+    floor = None  # best floor candidate so far
+ 
+    curr = root
+    while curr is not None:
+        if curr.data == target:
+            # exact match is always the floor
+            return curr.data
+        elif curr.data < target:
+            # curr is a valid floor candidate save it and look for something bigger
+            floor = curr.data
+            curr = curr.right
+        else:
+            # curr is too big - go left to find something smaller
+            curr = curr.left
+ 
+    # if we get here we never found an exact match
+    # floor holds the best (largest) value we saw that was still <= target
+    return floor
