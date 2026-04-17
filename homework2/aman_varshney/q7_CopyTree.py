@@ -13,10 +13,10 @@ class Node:
         
 def copyTree(root):
     """Creates a deep copy of a tree and returns the root of new tree"""
-    if not tree1:
+    if not root:
         return None
     
-    new_tree = Node(root.val)
+    new_tree = Node(root.data)
     new_tree.right = copyTree(root.right)
     new_tree.left = copyTree(root.left)
     return new_tree
