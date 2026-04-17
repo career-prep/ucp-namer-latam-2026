@@ -12,34 +12,21 @@ class Node:
         self.right = right
 
 
-def isBST(tree):
-    """Returns true if `tree` is a BST."""
-    if not tree: # empty case
+# helper for making sure node is within range of bst
+def helper(node, low, high):
+    if not node: 
         return True
-    # create a list by inorder
-    curr = tree
-    values = []
     
-    # helper
-    def helper(node, values):
-        if not node: # empty case
-            return
-        
-        helper(node.left, values)
-        values.append(node.data)
-        helper(node.right, values)
-        
-    helper(curr, values)
+    if not (low < node.data < high): # out of bounds 
+        return False
     
-    # check if values is increasing strictly
-    prev = values[0]
-    for i in range(1, len(values)):
-        if values[i] <= prev:
-            return False
-        prev = values[i]
-        
-    return True
-    
+    # left child and right child and update bound
+    return helper(node.left, low, node.data) and helper(node.right, node.data, high)
+
+
+def isBST(tree):
+    # root can be any number
+    return helper(tree, float('-inf'), float('inf'))
             
     
 if __name__ == '__main__':
