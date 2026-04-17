@@ -11,14 +11,14 @@ class Node:
         self.right = right
         
         
-def copyTree(tree1):
+def copyTree(root):
     """Creates a deep copy of a tree and returns the root of new tree"""
     if not tree1:
         return None
     
-    new_tree = tree1
-    new_tree.right = copyTree(tree1.right)
-    new_tree.left = copyTree(tree1.left)
+    new_tree = Node(root.val)
+    new_tree.right = copyTree(root.right)
+    new_tree.left = copyTree(root.left)
     return new_tree
 
 
