@@ -13,15 +13,14 @@ def FloorInBST(root, target):
 
     current = root
     while current:
-        if current.val > result and current.val <= target:
+        if current.val = target:
+            return current.val
+
+        elif current.val < target:
             result = current.val
-            current = current.right
-
-        elif current.val > result:
-            current = current.left
-
+            current = current.right 
         else:
-            current = current.right
+            current = current.left
 
     return result
 

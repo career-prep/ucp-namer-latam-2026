@@ -19,7 +19,7 @@ def IsPalindrome(head):
         end = end.next
 
     start = head
-    while start != end:
+    while start != end and start.prev != end:
         if start.val != end.val:
             return False
         start = start.next

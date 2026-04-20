@@ -9,6 +9,9 @@ class Node:
 def MoveNthLastToFront(head, n):
     if head is None or head.next is None:
         return head
+
+    if n <= 0:
+        return head
     
     fast = head
     slow = head
@@ -19,6 +22,7 @@ def MoveNthLastToFront(head, n):
 
     if fast is None:
         return head
+
     while fast.next:
         fast = fast.next
         slow = slow.next 

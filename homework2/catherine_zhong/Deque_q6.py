@@ -161,12 +161,14 @@ class Deque:
         return
 
     def pushBack(self, x):
-        self.head = insertAtBack(self.head, x)
-        current = self.head
-        while current.next:
-            current = current.next
+        temp = Node(x)
 
-        self.tail = current
+        if not self.head:
+            self.head = self.tail = temp
+            return
+
+        self.tail.next = temp
+        self.tail = temp
 
     def pushFront(self, x):
         self.head = insertAtFront(self.head, x)
@@ -186,22 +188,22 @@ class Deque:
 
 
     def popBack(self):
-        if self.head is None:
+        if not self.tail:
             return
 
         result = self.tail.val
-        self.head = deleteBack(self.head)
+        
+        if self.head == self.tail:
+            self.head = self.tail = None
+            return result
 
-        current = self.head
-        while current.next:
-            current = current.next
-
-        self.tail = current
+        self.tail = self.tail.prev
+        self.tail.next = None
 
         return result
 
     def isEmpty(self):
-        return length(self.head) == 0
+        return self.head == None
 
     def printDeque(self):
         result = []

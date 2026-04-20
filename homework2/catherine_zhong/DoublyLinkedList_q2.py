@@ -43,6 +43,9 @@ def insertAfter(head, val, loc):
 
 #creates new Node with data val before Node loc; returns head. O(n) time.
 def insertBefore(head, val, loc):
+    if not loc:
+        return head
+
     newNode = Node(val)
 
     if loc == head:
@@ -83,6 +86,7 @@ def deleteBack(head):
     current = head
     while current.next.next != None:
         current = current.next
+    current.next.prev = None
     current.next = None
 
     return head

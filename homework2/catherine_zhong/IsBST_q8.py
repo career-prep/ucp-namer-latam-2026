@@ -1,5 +1,5 @@
 #technique: dfs
-#time complexity: O(n)
+#time complexity: O(h)
 #space complexity: O(1)
 class Node:
     def __init__(self, val=0, left=None, right=None):

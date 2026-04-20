@@ -128,6 +128,9 @@ class Queue:
         self.tail = None
 
     def peek(self):
+        if not self.head:
+            return None
+
         return self.head.val
 
     def enqueue(self, x):
@@ -140,6 +143,9 @@ class Queue:
         self.tail = self.tail.next
 
     def dequeue(self):
+        if self.head == None:
+            return None
+            
         val = self.head.val
         self.head = self.head.next
         return val

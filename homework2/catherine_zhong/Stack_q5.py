@@ -140,8 +140,12 @@ class Stack:
         self.head = temp
 
     def pop(self):
+        if not self.head:
+            return None
+            
         val = self.head.val
         self.head = self.head.next
+        return val
 
     def isEmpty(self):
         return self.head == None
