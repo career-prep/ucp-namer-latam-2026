@@ -153,4 +153,4 @@ print(topologicalSort(None))
 print(topologicalSortdfs(graph))
 print(topologicalSortdfs(None))
 
-# Time Spent: 1:00
+# Time Spent: 1:00:00
