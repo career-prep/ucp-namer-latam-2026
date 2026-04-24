@@ -20,7 +20,7 @@ def is_palindrome(head):
         if left.data != right.data:
             return False
         left = left.next
-        right = right.next
+        right = right.prev
     
     return True
 
