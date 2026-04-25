@@ -127,5 +127,89 @@ public class question1AdjSet {
     }
     //time complexity o(n+m) where n and m are keys and vlaues of map
     //space complexityo(n)  due to visited set and recursion stack
+
+
+    /**
+     * 
+     * @param graph
+     * @return
+     */
+    static ArrayList<Integer> topologicalSortKhans(Map<Integer,Set<Integer>> graph){
+        if(graph==null){
+            return new ArrayList<>();
+        }
+        Map<Integer,Integer> inDegree = new HashMap<>();
+        for(int key : graph.keySet()){
+
+            
+                inDegree.put(key,0);
+            
+        }
+        for(int key : graph.keySet()){
+
+            for(int neighbors : graph.get(key)){
+                inDegree.put(neighbors,inDegree.get(neighbors)+1);
+            }
+        }
+        ArrayList<Integer> topOrder = new ArrayList<>(); // topologicalOrdering
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i: inDegree.keySet()){
+            if(inDegree.get(i)==0){
+                 queue.add(i);
+            }
+           
+        }
+        while(!queue.isEmpty()){
+            int removedInt = queue.remove();
+            topOrder.add(removedInt);
+            for(int neighbors : graph.get(removedInt)){
+                inDegree.put(neighbors,inDegree.get(neighbors)-1);
+                if(inDegree.get(neighbors)==0){
+                    queue.add(neighbors);
+                }
+            }
+        }
+        if(topOrder.size() != graph.size()){
+            return new ArrayList<>();
+        }
+        return topOrder;
+
+        
+    }
+
+    /**
+     * 
+     * @param graph
+     * @return
+     */
+    static ArrayList<Integer> topologicalSortDFS(Map<Integer,Set<Integer>> graph){
+        if(graph==null){
+            return new ArrayList<>();
+        }
+        Set<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        for(int key : graph.keySet()){
+            if(!visited.contains(key)){
+                dfsTS(graph,visited,stack,key);
+            }
+        }
+        ArrayList<Integer> finalList = new ArrayList<>();
+        int size = stack.size();
+        for(int i=0;i<size;i++){
+            finalList.add(stack.pop());
+        }
+
+        return finalList;
+
+    }
+    private static void dfsTS(Map<Integer,Set<Integer>> graph,Set<Integer>visited,Stack<Integer> stack,int key){
+        visited.add(key);
+        for(int neighbors : graph.get(key)){
+            if(!visited.contains(neighbors)){
+                dfsTS(graph, visited, stack, neighbors);
+            }
+        }
+        stack.push(key);
+    }
   
 }
