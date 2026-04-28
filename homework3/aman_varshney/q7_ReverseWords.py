@@ -1,4 +1,4 @@
-# spent 25 minutes
+# spent 10 minutes
 # can use stack but i like delimiter better
 # TC - O(n) 
 # SC - O(n)
