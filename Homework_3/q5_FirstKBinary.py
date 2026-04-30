@@ -26,7 +26,7 @@ print(kbinary(0))
 #Time Complexity: O(n)
 #Space Complexity: O(n)
 
-# #Spent 20 mins
+#Spent 20 mins
 
 
 #Notice from each values is the addition of i-1 + 0/1 
