@@ -18,33 +18,22 @@
 
 
 
-from collections import deque
-def alternating_path(origin,destination,edges):
-    graph={}
-    for a,b,color in edges:
-        if a not in graph:
-            graph[a] = []
-        graph[a].append((b,color))
+from collections import defaultdict, deque
 
-    queue = deque([(origin, "blue", 0), (origin, "red", 0)])
-    visited = set()
-
+def alternating_path(edges, origin, destination):
+    graph=defaultdict(list)
+    for u,v,color in edges:
+        graph[u].append((v,color))
+    queue=deque([(origin,None,0)])
+    visited=set([(origin,None)])
     while queue:
-        node, last_color, steps = queue.popleft()
-
-        if node == destination:
-            return steps
-
-        if (node, last_color) in visited:
-            continue
-        visited.add((node, last_color))
-
-        if node not in graph:
-            continue
-
+        node,last_color,dist=queue.popleft()
+        if node==destination:
+            return dist
         for nei, color in graph[node]:
-            if color != last_color:
-                queue.append((nei,color,steps + 1))
+            if color!=last_color and (nei,color) not in visited:
+                visited.add((nei,color))
+                queue.append((nei,color,dist+1))
 
     return -1
 
