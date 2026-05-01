@@ -34,16 +34,34 @@ def alternating_path(edges, origin, destination):
             if color!=last_color and (nei,color) not in visited:
                 visited.add((nei,color))
                 queue.append((nei,color,dist+1))
-
     return -1
 
-edges = [("A", "B", "blue"), ("A", "C", "red"), ("B", "D", "blue"), ("B", "E", "blue"),
-         ("C", "B", "red"), ("D", "C", "blue"), ("A", "D", "red"), ("D", "E", "red"),
-         ("E", "C", "red")]
+edges=[("A","B","blue"),
+       ("A","C","red"),
+       ("B","D","blue"),
+       ("B","E","blue"),
+       ("C","B","red"),
+       ("D","C","blue"),
+       ("A","D","red"),
+       ("D","E","red"),
+       ("E","C","red")
+]
 
-print(alternating_path("A", "E", edges))    
-print(alternating_path("E", "D", edges))    
+print(alternating_path(edges,"A","E"))
+print(alternating_path(edges,"E","D"))
+print(alternating_path(edges,"A","A"))
+
+edges2=[("A","B","blue"),("B","C","blue")]
+print(alternating_path(edges2,"A","C"))
+
+edges3=[("A","B","red")]
+print(alternating_path(edges3,"A","B"))  
 
 
 
 #One of the toughest question solved. Had to seek help from AI 
+
+#Time Complexity: O(V+E)
+#Space Complexity: O(V+E)
+
+#Spent 50 mins
