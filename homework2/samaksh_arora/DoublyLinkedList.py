@@ -65,7 +65,7 @@ def deleteBack(head,tail): #O(1)
     tail.next = None
     return head
     
-def deleteNode(head, loc): #O(n)
+def deleteNode(head, loc): #O(1)
     if not head:
         return head
     if loc is head:
