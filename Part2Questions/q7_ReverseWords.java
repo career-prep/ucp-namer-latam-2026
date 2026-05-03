@@ -1,6 +1,7 @@
 package Part2Questions;
 public class q7_ReverseWords {
     /**
+     * Topics: Two pointers & StringBuilder
      * My approach: I will use two pointers from the end of the words length. then each space i see i create a substring form left right
      * and i append it to the stringbuilder. 
      * things to keep in mind  : handle extra spaces , handle null inputs.
