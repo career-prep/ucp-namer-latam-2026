@@ -27,7 +27,7 @@ class Heap:
             i = parent
             
         
-    def remove(self) -> None: 
+    def remove(self) -> int: 
         """Pops minimum (top) element from heap. O(logn)"""
         if self.size == 0: # empty case
             return None
