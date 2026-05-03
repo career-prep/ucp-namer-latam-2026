@@ -52,7 +52,7 @@ int main()
 {
     cout << "--- Running ReverseWords Test Suite ---\n\n";
 
-    // 1. Standard base cases from prompt
+    // 1. Standard base cases
     runTest(1, "Standard Case 1",
             "Uber Career Prep",
             "Prep Career Uber");

@@ -87,12 +87,12 @@ int main()
 {
     cout << "--- Running MergeKSortedArrays Test Suite ---\n\n";
 
-    // 1. Example 1 from prompt
+    // 1. Example 1
     runTest(1, "Prompt Example 1", 2,
             {{1, 2, 3, 4, 5}, {1, 3, 5, 7, 9}},
             {1, 1, 2, 3, 3, 4, 5, 5, 7, 9});
 
-    // 2. Example 2 from prompt
+    // 2. Example 2
     runTest(2, "Prompt Example 2", 3,
             {{1, 4, 7, 9}, {2, 6, 7, 10, 11, 13, 15}, {3, 8, 12, 13, 16}},
             {1, 2, 3, 4, 6, 7, 7, 8, 9, 10, 11, 12, 13, 13, 15, 16});

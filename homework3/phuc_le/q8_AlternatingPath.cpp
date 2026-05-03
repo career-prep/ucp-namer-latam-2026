@@ -100,7 +100,6 @@ int main()
 {
     cout << "--- Running AlternatingPath Test Suite ---\n\n";
 
-    // Recreate the graph from the example image
     vector<Edge> graphEdges = {
         {"A", "B", "blue"},
         {"A", "C", "red"},
@@ -112,10 +111,10 @@ int main()
         {"D", "E", "red"},
         {"E", "C", "red"}};
 
-    // 1. Example 1 from prompt
+    // 1. Example 1
     runTest(1, graphEdges, "A", "E", 4);
 
-    // 2. Example 2 from prompt (Unreachable via alternating colors)
+    // 2. Example 2 (Unreachable via alternating colors)
     runTest(2, graphEdges, "E", "D", -1);
 
     // 3. Edge Case: Origin is Destination
