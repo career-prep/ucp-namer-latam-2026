@@ -4,6 +4,9 @@
 5       8
 
 """
+top() → O(1)
+insert() → O(log n)
+remove() → O(n)
 class heap:
     def __init__(self):
         self.array = []
@@ -20,7 +23,7 @@ class heap:
         self.array.append(val)
         idx = self.count 
         while idx > 0:
-            parent = idx // 2
+            parent = (idx-1) // 2
             
             if self.array[idx] < self.array[parent]:
                 self.array[idx], self.array[parent] = self.array[parent], self.array[idx]
