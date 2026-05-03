@@ -94,64 +94,99 @@ public:
     }
 };
 
-// ---------------------------------------------------------
-// Test Suite
-// ---------------------------------------------------------
-void drainQueue(PriorityQueue &pq, const string &label)
+// Helper function to print vectors cleanly
+void printVector(const vector<string> &vec)
 {
-    cout << label << ": [ ";
+    cout << "[";
+    for (size_t i = 0; i < vec.size(); ++i)
+    {
+        cout << "\"" << vec[i] << "\"";
+        if (i < vec.size() - 1)
+            cout << ", ";
+    }
+    cout << "]";
+}
+
+// Helper function to run standard insertion/drain tests
+void runTest(int testNum, const string &description, const vector<pair<string, int>> &inputs, const vector<string> &expected)
+{
+    PriorityQueue pq;
+
+    // Insert all items
+    for (const auto &item : inputs)
+    {
+        pq.insert(item.first, item.second);
+    }
+
+    // Drain the queue to get the actual order
+    vector<string> result;
     while (!pq.isEmpty())
     {
-        cout << pq.top() << " ";
+        result.push_back(pq.top());
         pq.remove();
     }
-    cout << "]\n";
+
+    cout << "Test " << testNum << " (" << description << "): ";
+    if (result == expected)
+    {
+        cout << "PASS\n";
+    }
+    else
+    {
+        cout << "FAIL\n";
+    }
+    cout << "  Expected: ";
+    printVector(expected);
+    cout << "\n";
+    cout << "  Actual:   ";
+    printVector(result);
+}
+
+// Helper function specifically for exception testing
+void runExceptionTest(int testNum, const string &description)
+{
+    PriorityQueue pq;
+    cout << "Test " << testNum << " (" << description << "): ";
+
+    try
+    {
+        pq.top(); // This should trigger the exception
+        cout << "FAIL\n";
+        cout << "  Expected: Exception to be thrown\n";
+        cout << "  Actual:   No exception was thrown\n";
+    }
+    catch (const runtime_error &e) // Note: Fixed to catch runtime_error to match your class logic
+    {
+        cout << "PASS\n";
+        cout << "  Output: Caught exception -> \"" << e.what() << "\"\n";
+    }
+    catch (...)
+    {
+        cout << "FAIL\n";
+        cout << "  Expected: std::runtime_error\n";
+        cout << "  Actual:   Unknown exception thrown\n";
+    }
 }
 
 int main()
 {
-    cout << "=== PRIORITY QUEUE TEST SUITE ===\n\n";
+    cout << "--- Running Priority Queue Test Suite ---\n\n";
 
-    // Test Case 1: Standard Usage
-    cout << "--- TC1: Mixed Priorities ---\n";
-    PriorityQueue pq1;
-    pq1.insert("LowTask", 1);
-    pq1.insert("UrgentTask", 100);
-    pq1.insert("MediumTask", 50);
-    pq1.insert("Emergency", 999);
+    runTest(1, "Mixed Priorities",
+            {{"LowTask", 1}, {"UrgentTask", 100}, {"MediumTask", 50}, {"Emergency", 999}},
+            {"Emergency", "UrgentTask", "MediumTask", "LowTask"});
 
-    cout << "Top element should be 'Emergency': " << pq1.top() << "\n";
-    drainQueue(pq1, "Expected order [Emergency UrgentTask MediumTask LowTask]");
+    runTest(2, "Duplicate Priorities",
+            {{"TaskA", 10}, {"TaskB", 10}, {"HighTask", 20}},
+            {"HighTask", "TaskA", "TaskB"});
 
-    // Test Case 2: Duplicate Priorities
-    // Should handle identical weights gracefully
-    cout << "\n--- TC2: Duplicate Priorities ---\n";
-    PriorityQueue pq2;
-    pq2.insert("TaskA", 10);
-    pq2.insert("TaskB", 10);
-    pq2.insert("HighTask", 20);
-    drainQueue(pq2, "Expected order [HighTask TaskA TaskB] (or TaskB TaskA)");
+    runTest(3, "Negative Priorities",
+            {{"ZeroTask", 0}, {"SubZeroTask", -50}, {"PositiveTask", 5}},
+            {"PositiveTask", "ZeroTask", "SubZeroTask"});
 
-    // Test Case 3: Negative Priorities
-    cout << "\n--- TC3: Negative Priorities ---\n";
-    PriorityQueue pq3;
-    pq3.insert("ZeroTask", 0);
-    pq3.insert("SubZeroTask", -50);
-    pq3.insert("PositiveTask", 5);
-    drainQueue(pq3, "Expected order [PositiveTask ZeroTask SubZeroTask]");
-
-    // Test Case 4: Exception Handling
-    cout << "\n--- TC4: Empty Queue Exceptions ---\n";
-    PriorityQueue pq4;
-    try
-    {
-        pq4.top();
-        cout << "FAIL: top() did not throw.\n";
-    }
-    catch (const out_of_range &e)
-    {
-        cout << "PASS: Caught exception on top() -> " << e.what() << "\n";
-    }
+    // Note: I updated the catch block inside this helper function to look for `runtime_error`
+    // instead of `out_of_range`, because your PriorityQueue class explicitly throws `runtime_error`.
+    runExceptionTest(4, "Empty Queue Exceptions");
 
     return 0;
 }

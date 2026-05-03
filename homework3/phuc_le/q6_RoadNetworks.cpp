@@ -55,63 +55,59 @@ public:
     }
 };
 
-struct TestCase
+// Helper function to run tests and format output
+void runTest(int testNum, const string &description, const vector<string> &towns, const vector<pair<string, string>> &roads, int expected)
 {
-    string name;
-    vector<string> towns;
-    vector<pair<string, string>> roads;
-    int expected;
-};
+    Solution sol;
+
+    // Copy the vectors to match the function signature (which expects non-const references)
+    vector<string> townsCopy = towns;
+    vector<pair<string, string>> roadsCopy = roads;
+
+    int result = sol.RoadNetworks(townsCopy, roadsCopy);
+
+    cout << "Test " << testNum << " (" << description << "): ";
+    if (result == expected)
+    {
+        cout << "PASS\n";
+    }
+    else
+    {
+        cout << "FAIL\n";
+    }
+    cout << "  Expected: " << expected << "\n";
+    cout << "  Actual:   " << result << "\n";
+    cout << "\n";
+}
 
 int main()
 {
-    vector<TestCase> testCases = {
-        {"Example 1: Mixed Networks with Isolated Towns",
-         {"Skagway", "Juneau", "Gustavus", "Homer", "Port Alsworth", "Glacier Bay", "Fairbanks", "McCarthy", "Copper Center", "Healy", "Anchorage"},
-         {{"Anchorage", "Homer"}, {"Glacier Bay", "Gustavus"}, {"Copper Center", "McCarthy"}, {"Anchorage", "Copper Center"}, {"Copper Center", "Fairbanks"}, {"Healy", "Fairbanks"}, {"Healy", "Anchorage"}},
-         2},
-        {"Example 2: All Towns Connected in 3 Networks",
-         {"Kona", "Hilo", "Volcano", "Lahaina", "Hana", "Haiku", "Kahului", "Princeville", "Lihue", "Waimea"},
-         {{"Kona", "Volcano"}, {"Volcano", "Hilo"}, {"Lahaina", "Hana"}, {"Kahului", "Haiku"}, {"Hana", "Haiku"}, {"Kahului", "Lahaina"}, {"Princeville", "Lihue"}, {"Lihue", "Waimea"}},
-         3},
-        {"Edge Case: 0 Networks (No Roads)",
-         {"TownA", "TownB", "TownC"},
-         {},
-         0},
-        {"Edge Case: 1 Giant Network",
-         {"A", "B", "C", "D"},
-         {{"A", "B"}, {"B", "C"}, {"C", "D"}},
-         1},
-        {"Edge Case: Empty Input",
-         {},
-         {},
-         0}};
+    cout << "--- Running Road Networks Test Suite ---\n\n";
 
-    Solution sol;
-    int passed = 0;
+    runTest(1, "Example 1: Mixed Networks with Isolated Towns",
+            {"Skagway", "Juneau", "Gustavus", "Homer", "Port Alsworth", "Glacier Bay", "Fairbanks", "McCarthy", "Copper Center", "Healy", "Anchorage"},
+            {{"Anchorage", "Homer"}, {"Glacier Bay", "Gustavus"}, {"Copper Center", "McCarthy"}, {"Anchorage", "Copper Center"}, {"Copper Center", "Fairbanks"}, {"Healy", "Fairbanks"}, {"Healy", "Anchorage"}},
+            2);
 
-    cout << "=== ROAD NETWORKS TEST EXECUTION ===\n\n";
+    runTest(2, "Example 2: All Towns Connected in 3 Networks",
+            {"Kona", "Hilo", "Volcano", "Lahaina", "Hana", "Haiku", "Kahului", "Princeville", "Lihue", "Waimea"},
+            {{"Kona", "Volcano"}, {"Volcano", "Hilo"}, {"Lahaina", "Hana"}, {"Kahului", "Haiku"}, {"Hana", "Haiku"}, {"Kahului", "Lahaina"}, {"Princeville", "Lihue"}, {"Lihue", "Waimea"}},
+            3);
 
-    for (const auto &tc : testCases)
-    {
-        // Pass by copy for safety in a test runner, though this algo doesn't mutate inputs
-        vector<string> townsCopy = tc.towns;
-        vector<pair<string, string>> roadsCopy = tc.roads;
+    runTest(3, "Edge Case: 0 Networks (No Roads)",
+            {"TownA", "TownB", "TownC"},
+            {},
+            0);
 
-        int result = sol.RoadNetworks(townsCopy, roadsCopy);
+    runTest(4, "Edge Case: 1 Giant Network",
+            {"A", "B", "C", "D"},
+            {{"A", "B"}, {"B", "C"}, {"C", "D"}},
+            1);
 
-        if (result == tc.expected)
-        {
-            passed++;
-            cout << "✅ Passed: " << tc.name << "\n";
-        }
-        else
-        {
-            cout << "❌ Failed: " << tc.name << " | Expected " << tc.expected << ", got " << result << "\n";
-        }
-    }
-
-    cout << "\n--- Final Results: " << passed << "/" << testCases.size() << " Tests Passed ---\n";
+    runTest(5, "Edge Case: Empty Input",
+            {},
+            {},
+            0);
 
     return 0;
 }

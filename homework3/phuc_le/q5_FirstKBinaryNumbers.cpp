@@ -38,13 +38,7 @@ public:
     }
 };
 
-struct TestCase
-{
-    string name;
-    int k;
-    vector<string> expected;
-};
-
+// Helper function to print vectors cleanly
 void printVector(const vector<string> &vec)
 {
     cout << "[";
@@ -57,40 +51,44 @@ void printVector(const vector<string> &vec)
     cout << "]";
 }
 
+// Helper function to run tests and format output
+void runTest(int testNum, const string &description, int k, const vector<string> &expected)
+{
+    Solution sol;
+    vector<string> result = sol.firstKBinaryNumbers(k);
+
+    cout << "Test " << testNum << " (" << description << "): ";
+    if (result == expected)
+    {
+        cout << "PASS\n";
+    }
+    else
+    {
+        cout << "FAIL\n";
+    }
+    cout << "  Expected: ";
+    printVector(expected);
+    cout << "\n";
+    cout << "  Actual:   ";
+    printVector(result);
+    cout << "\n\n";
+}
+
 int main()
 {
-    vector<TestCase> testCases = {
-        {"Zero Element (Edge Case)", 0, {}},
-        {"Negative Element (Edge Case)", -5, {}},
-        {"First Element Only", 1, {"0"}},
-        {"Example 1 (k=5)", 5, {"0", "1", "10", "11", "100"}},
-        {"Example 2 (k=10)", 10, {"0", "1", "10", "11", "100", "101", "110", "111", "1000", "1001"}}};
+    cout << "--- Running First K Binary Numbers Test Suite ---\n\n";
 
-    Solution sol;
-    int passed = 0;
+    runTest(1, "Zero Element (Edge Case)", 0, {});
 
-    cout << "=== FIRST K BINARY NUMBERS TEST EXECUTION ===\n\n";
+    runTest(2, "Negative Element (Edge Case)", -5, {});
 
-    for (const auto &tc : testCases)
-    {
-        vector<string> result = sol.firstKBinaryNumbers(tc.k);
+    runTest(3, "First Element Only", 1, {"0"});
 
-        if (result == tc.expected)
-        {
-            passed++;
-            cout << "✅ Passed: " << tc.name << "\n";
-        }
-        else
-        {
-            cout << "❌ Failed: " << tc.name << "\n   Expected: ";
-            printVector(tc.expected);
-            cout << "\n   Got:      ";
-            printVector(result);
-            cout << "\n";
-        }
-    }
+    runTest(4, "Example 1 (k=5)", 5,
+            {"0", "1", "10", "11", "100"});
 
-    cout << "\n--- Final Results: " << passed << "/" << testCases.size() << " Tests Passed ---\n";
+    runTest(5, "Example 2 (k=10)", 10,
+            {"0", "1", "10", "11", "100", "101", "110", "111", "1000", "1001"});
 
     return 0;
 }

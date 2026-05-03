@@ -53,63 +53,111 @@ public:
     }
 };
 
-struct TestCase
+// Helper function to run tests and format output
+void runTest(int testNum, const string &description, const vector<vector<int>> &input, int expected)
 {
-    string name;
-    vector<vector<int>> input;
-    int expected;
-};
+    Solution sol;
+
+    // Copy the grid because the NumberOfIslands function modifies it in-place
+    vector<vector<int>> gridCopy = input;
+    int result = sol.NumberOfIslands(gridCopy);
+
+    cout << "Test " << testNum << " (" << description << "): ";
+    if (result == expected)
+    {
+        cout << "PASS\n";
+    }
+    else
+    {
+        cout << "FAIL\n";
+    }
+    cout << "  Expected: " << expected << "\n";
+    cout << "  Actual:   " << result << "\n";
+    cout << "\n";
+}
 
 int main()
 {
-    vector<TestCase> testCases = {
-        // --- Baseline Tests ---
-        {"Empty Grid", {}, 0},
-        {"Empty Row", {{}}, 0},
-        {"All Water", {{0, 0}, {0, 0}}, 0},
-        {"All Land", {{1, 1}, {1, 1}}, 1},
+    cout << "--- Running NumberOfIslands Test Suite ---\n\n";
 
-        // --- Dimensional Boundaries ---
-        {"Single Land Cell", {{1}}, 1},
-        {"Single Water Cell", {{0}}, 0},
-        {"1D Single Row", {{1, 0, 1, 1, 0, 1}}, 3},
-        {"1D Single Column", {{1}, {0}, {1}, {1}, {0}, {1}}, 3},
+    // --- Baseline Tests ---
+    runTest(1, "Empty Grid", {}, 0);
 
-        // --- Complex Geometries ---
-        {"Diagonal Islands", {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}, 3},
-        {"Snake Island", {{1, 1, 1}, {0, 0, 1}, {1, 1, 1}, {1, 0, 0}, {1, 1, 1}}, 1},
-        {"Donut with Lake and Inner Island", {{1, 1, 1, 1, 1}, {1, 0, 0, 0, 1}, {1, 0, 1, 0, 1}, {1, 0, 0, 0, 1}, {1, 1, 1, 1, 1}}, 2}, // Outer ring = 1, Inner center = 1
-        {"Inward Spiral", {{1, 1, 1, 1, 1}, {0, 0, 0, 0, 1}, {1, 1, 1, 0, 1}, {1, 0, 0, 0, 1}, {1, 1, 1, 1, 1}}, 1},
+    runTest(2, "Empty Row", {{}}, 0);
 
-        // --- Density Variations ---
-        {"Checkerboard (High Density Disjoint)", {{1, 0, 1, 0, 1}, {0, 1, 0, 1, 0}, {1, 0, 1, 0, 1}}, 8},
-        {"Two Continents Split by River", {{1, 1, 0, 1, 1}, {1, 1, 0, 1, 1}, {0, 0, 0, 0, 0}, {1, 1, 0, 1, 1}, {1, 1, 0, 1, 1}}, 4},
+    runTest(3, "All Water",
+            {{0, 0},
+             {0, 0}},
+            0);
 
-        // --- Original Given Example ---
-        {"Standard LeetCode Example 1", {{1, 0, 1, 1, 1}, {1, 1, 0, 1, 1}, {0, 1, 0, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 0, 0}}, 3}};
+    runTest(4, "All Land",
+            {{1, 1},
+             {1, 1}},
+            1);
 
-    Solution sol;
-    int passed = 0;
+    // --- Dimensional Boundaries ---
+    runTest(5, "Single Land Cell", {{1}}, 1);
 
-    cout << "=== NUMBER OF ISLANDS TEST EXECUTION ===\n\n";
+    runTest(6, "Single Water Cell", {{0}}, 0);
 
-    for (const auto &tc : testCases)
-    {
-        vector<vector<int>> gridCopy = tc.input;
-        int result = sol.NumberOfIslands(gridCopy);
+    runTest(7, "1D Single Row", {{1, 0, 1, 1, 0, 1}}, 3);
 
-        if (result == tc.expected)
-        {
-            passed++;
-            cout << "✅ Passed: " << tc.name << "\n";
-        }
-        else
-        {
-            cout << "❌ Failed: " << tc.name << " | Expected " << tc.expected << ", got " << result << "\n";
-        }
-    }
+    runTest(8, "1D Single Column", {{1}, {0}, {1}, {1}, {0}, {1}}, 3);
 
-    cout << "\n--- Final Results: " << passed << "/" << testCases.size() << " Tests Passed ---\n";
+    // --- Complex Geometries ---
+    runTest(9, "Diagonal Islands",
+            {{1, 0, 0},
+             {0, 1, 0},
+             {0, 0, 1}},
+            3);
+
+    runTest(10, "Snake Island",
+            {{1, 1, 1},
+             {0, 0, 1},
+             {1, 1, 1},
+             {1, 0, 0},
+             {1, 1, 1}},
+            1);
+
+    runTest(11, "Donut with Lake and Inner Island",
+            {{1, 1, 1, 1, 1},
+             {1, 0, 0, 0, 1},
+             {1, 0, 1, 0, 1},
+             {1, 0, 0, 0, 1},
+             {1, 1, 1, 1, 1}},
+            2);
+
+    runTest(12, "Inward Spiral",
+            {{1, 1, 1, 1, 1},
+             {0, 0, 0, 0, 1},
+             {1, 1, 1, 0, 1},
+             {1, 0, 0, 0, 1},
+             {1, 1, 1, 1, 1}},
+            1);
+
+    // --- Density Variations ---
+    runTest(13, "Checkerboard (High Density Disjoint)",
+            {{1, 0, 1, 0, 1},
+             {0, 1, 0, 1, 0},
+             {1, 0, 1, 0, 1}},
+            8);
+
+    runTest(14, "Two Continents Split by River",
+            {{1, 1, 0, 1, 1},
+             {1, 1, 0, 1, 1},
+             {0, 0, 0, 0, 0},
+             {1, 1, 0, 1, 1},
+             {1, 1, 0, 1, 1}},
+            4);
+
+    // --- Original Given Example ---
+    runTest(15, "Standard LeetCode Example 1",
+            {{1, 0, 1, 1, 1},
+             {1, 1, 0, 1, 1},
+             {0, 1, 0, 0, 0},
+             {0, 0, 0, 1, 0},
+             {0, 0, 0, 0, 0}},
+            3);
 
     return 0;
 }

@@ -220,94 +220,105 @@ vector<int> topologicalSortDfs(map<int, set<int>> &graph)
     return result;
 }
 
-// Helper function to print a vector
-void printVector(const string &label, const vector<int> &v)
+// Helper function to print a vector inline
+void printVector(const vector<int> &v)
 {
-    cout << label << ": [";
+    if (v.empty())
+    {
+        cout << "[]";
+        return;
+    }
+    cout << "[";
     for (size_t i = 0; i < v.size(); ++i)
     {
         cout << v[i] << (i < v.size() - 1 ? ", " : "");
     }
-    cout << "]\n";
+    cout << "]";
 }
 
-// Helper function to run a single test suite
-void runTest(const string &testName, const vector<pair<int, int>> &edges, int searchTarget)
+// Helper function to run a single test suite and format the output
+void runTest(int testNum, const string &description, const vector<pair<int, int>> &edges, int target,
+             bool expBfs, bool expDfs, const vector<int> &expKahn, const vector<int> &expDfsTopo)
 {
-    cout << "========================================\n";
-    cout << "Test Case: " << testName << "\n";
-    cout << "========================================\n";
-
-    // 1. Build Graph
     map<int, set<int>> graph = adjacencySet(edges);
-    cout << "Graph Nodes Built: " << graph.size() << "\n";
 
-    // 2. BFS & DFS
-    bool bfsFound = bfs(searchTarget, graph);
-    bool dfsFound = dfs(searchTarget, graph);
-    cout << "BFS Target (" << searchTarget << "): " << (bfsFound ? "Found" : "Not Found") << "\n";
-    cout << "DFS Target (" << searchTarget << "): " << (dfsFound ? "Found" : "Not Found") << "\n";
+    bool actBfs = bfs(target, graph);
+    bool actDfs = dfs(target, graph);
+    vector<int> actKahn = topologicalSortBfs(graph);
+    vector<int> actDfsTopo = topologicalSortDfs(graph);
 
-    // 3. Topological Sorts
-    vector<int> topoKahn = topologicalSortBfs(graph);
-    vector<int> topoDFS = topologicalSortDfs(graph);
+    bool passed = (actBfs == expBfs) && (actDfs == expDfs) && (actKahn == expKahn) && (actDfsTopo == expDfsTopo);
 
-    if (topoKahn.empty() && graph.size() > 0)
+    cout << "Test " << testNum << " (" << description << "): ";
+    if (passed)
     {
-        cout << "Kahn's Sort: [Cycle Detected - No valid sort]\n";
+        cout << "PASS\n";
+        cout << "  BFS/DFS Target " << target << ": " << (actBfs ? "Found" : "Not Found") << "\n";
+        cout << "  Kahn's Sort:   ";
+        printVector(actKahn);
+        cout << "\n";
+        cout << "  DFS Sort:      ";
+        printVector(actDfsTopo);
+        cout << "\n\n";
     }
     else
     {
-        printVector("Kahn's Sort", topoKahn);
+        cout << "FAIL\n";
+        if (actBfs != expBfs)
+            cout << "  BFS - Expected: " << (expBfs ? "True" : "False") << ", Actual: " << (actBfs ? "True" : "False") << "\n";
+        if (actDfs != expDfs)
+            cout << "  DFS - Expected: " << (expDfs ? "True" : "False") << ", Actual: " << (actDfs ? "True" : "False") << "\n";
+        if (actKahn != expKahn)
+        {
+            cout << "  Kahn - Expected: ";
+            printVector(expKahn);
+            cout << "\n         Actual:   ";
+            printVector(actKahn);
+            cout << "\n";
+        }
+        if (actDfsTopo != expDfsTopo)
+        {
+            cout << "  DFS Topo - Expected: ";
+            printVector(expDfsTopo);
+            cout << "\n             Actual:   ";
+            printVector(actDfsTopo);
+            cout << "\n";
+        }
+        cout << "\n";
     }
-
-    if (topoDFS.empty() && graph.size() > 0)
-    {
-        cout << "DFS Sort: [Cycle Detected - No valid sort]\n";
-    }
-    else
-    {
-        printVector("DFS Sort   ", topoDFS);
-    }
-    cout << "\n";
 }
 
 int main()
 {
-    // TC1: Standard DAG
-    // Expected: Valid topo sorts. Target 3 found.
-    vector<pair<int, int>> standardDag = {{1, 2}, {2, 3}, {1, 3}, {3, 4}, {2, 0}};
-    runTest("Standard DAG", standardDag, 3);
+    cout << "--- Running Graph Traversals & Topological Sort Test Suite ---\n\n";
 
-    // TC2: Disconnected DAG
-    // Expected: Both components sorted together. Target 4 found across components.
-    vector<pair<int, int>> disconnectedDag = {{1, 2}, {3, 4}};
-    runTest("Disconnected DAG", disconnectedDag, 4);
+    runTest(1, "Standard DAG",
+            {{1, 2}, {2, 3}, {1, 3}, {3, 4}, {2, 0}}, 3,
+            true, true, {1, 2, 0, 3, 4}, {1, 2, 3, 4, 0});
 
-    // TC3: Cyclic Graph
-    // Expected: Topo sorts fail gracefully. BFS/DFS find target 1 without infinite looping.
-    vector<pair<int, int>> cyclicGraph = {{1, 2}, {2, 3}, {3, 1}};
-    runTest("Cyclic Graph", cyclicGraph, 1);
+    runTest(2, "Disconnected DAG",
+            {{1, 2}, {3, 4}}, 4,
+            true, true, {1, 3, 2, 4}, {3, 4, 1, 2});
 
-    // TC4: Self-Loop (Immediate Cycle)
-    // Expected: Topo sorts fail.
-    vector<pair<int, int>> selfLoopGraph = {{1, 2}, {2, 2}};
-    runTest("Self-Loop Graph", selfLoopGraph, 2);
+    runTest(3, "Cyclic Graph",
+            {{1, 2}, {2, 3}, {3, 1}}, 1,
+            true, true, {}, {});
 
-    // TC5: Empty Graph
-    // Expected: Nothing crashes. False for searches, empty arrays for sorts.
-    vector<pair<int, int>> emptyGraph = {};
-    runTest("Empty Graph", emptyGraph, 99);
+    runTest(4, "Self-Loop (Immediate Cycle)",
+            {{1, 2}, {2, 2}}, 2,
+            true, true, {}, {});
 
-    // TC6: Target Not Present
-    // Expected: Searches return Not Found. Topo sorts execute normally.
-    vector<pair<int, int>> missingTargetGraph = {{1, 2}, {2, 3}};
-    runTest("Target Missing", missingTargetGraph, 999);
+    runTest(5, "Empty Graph",
+            {}, 99,
+            false, false, {}, {});
 
-    // TC7: Linear Chain
-    // Expected: Exactly one valid Topo sort: [1, 2, 3, 4, 5]
-    vector<pair<int, int>> linearChain = {{1, 2}, {2, 3}, {3, 4}, {4, 5}};
-    runTest("Linear Chain", linearChain, 5);
+    runTest(6, "Target Missing",
+            {{1, 2}, {2, 3}}, 999,
+            false, false, {1, 2, 3}, {1, 2, 3});
+
+    runTest(7, "Linear Chain",
+            {{1, 2}, {2, 3}, {3, 4}, {4, 5}}, 5,
+            true, true, {1, 2, 3, 4, 5}, {1, 2, 3, 4, 5});
 
     return 0;
 }
