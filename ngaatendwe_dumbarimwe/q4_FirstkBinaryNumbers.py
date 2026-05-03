@@ -8,8 +8,8 @@ def first_k_binary(k):
     if k <= 0:
         return []
 
-    result = []
-    queue = deque(["0"])
+    result = ["0"]  # start with 0
+    queue = deque(["1"])  # start generating from 1
 
     while len(result) < k:
         curr = queue.popleft()
