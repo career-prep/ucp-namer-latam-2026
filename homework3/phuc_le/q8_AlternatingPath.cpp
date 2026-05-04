@@ -1,3 +1,20 @@
+/*
+    Data Structure: Graph (Adjacency List), Queue, Hash Set
+    Algorithm: Breadth-first search (BFS)
+
+    Build a directed graph as an adjacency list where each node points to its neighbors alongside the connecting edge's color.
+    Use a Queue to perform a level-order BFS, which guarantees finding the shortest path first in an unweighted graph.
+    The queue tracks the current node, the color of the incoming edge, and the current distance.
+    Use a Hash Set to track visited states as pairs of (Node, IncomingColor)
+    This is necessary because reaching the same node via a differently colored edge represents a valid, distinct path.
+    For each popped node, explore neighbors: if the connecting edge color differs from the incoming edge color, push the new state to the queue.
+
+    Time Complexity: O(V + E), where V is the number of vertices and E is the number of edges.
+    Space Complexity: O(V + E) to maintain the adjacency list, the BFS queue, and the visited hash set.
+
+    Time: 40 mins
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>

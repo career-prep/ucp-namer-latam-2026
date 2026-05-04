@@ -1,3 +1,22 @@
+/*
+    Data Structure: Graph (Adjacency List), Hash Set
+    Algorithm: Depth-first search (DFS)
+
+    Build an adjacency list to represent the bidirectional roads between towns.
+    Iterate through every town that has at least one road connection.
+    Whenever an unvisited town is encountered, it indicates the start of a new road network.
+    Increment the network counter and immediately initiate a DFS from that town.
+
+    The DFS explores all connected towns.
+    As the DFS visits each town, it adds it to a "visited" hash set.
+    This ensures subsequent iterations do not recount the same connected component.
+
+    Time Complexity: O(V + E), where V is the number of towns and E is the number of roads.
+    Space Complexity: O(V + E), to maintain the adjacency list and the visited hash set.
+
+    Time: 40 mins
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>

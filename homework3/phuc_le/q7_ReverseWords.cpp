@@ -1,4 +1,19 @@
-// ASsume no multiple white space or trailing zeros at beginning and ending
+// Assume no multiple white space or trailing zeros at beginning and ending
+/*
+    Data Structure: String / Array
+    Algorithm: In-place Reversal (Two-pointer technique)
+
+    First, reverse the entire string. This puts the words in the correct reversed order,
+    but the characters within each word are also backwards.
+    Iterate through the string to find the start and end boundaries of each word (separated by spaces).
+    Whenever a word boundary or the end of the string is reached, reverse just that specific word
+    to restore its original internal character order.
+
+    Time Complexity: O(N), where N is the length of the string.
+    Space Complexity: O(1) auxiliary space, as the string modifications are done in-place
+
+    Time: 40 mins
+*/
 
 #include <iostream>
 #include <string>

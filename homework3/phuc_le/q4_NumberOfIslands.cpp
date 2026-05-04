@@ -1,3 +1,22 @@
+/*
+    Data Structure: Graph
+    Algorithm: Depth-first search (DFS)
+
+    Each '1' (land) is a vertex, and edges connect adjacent land cells horizontally and vertically
+    Iterate through every cell in the grid sequentially.
+    Whenever an unvisited '1' is encountered, it indicates the start of a newly discovered island.
+    Increment the island counter and immediately initiate a DFS from that cell.
+
+    The DFS explores all connected land cells.
+    As the DFS visits each land cell, it mutates the grid in-place by changing the '1' to a '0' (water).
+    This acts as our "visited" set, subsequent iterations in the main loops do not recount the same connected component.
+
+    Time Complexity: O(M x N), where M is the number of rows and N is the number of columns.
+    Space Complexity: O(M x N), in the worst case where the grid is entirely land and the DFS stack grows to cover all cells.
+
+    Time: 40 mins
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>

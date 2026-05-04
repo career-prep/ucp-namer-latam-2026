@@ -1,3 +1,20 @@
+/*
+    Data Structure: Priority Queue (Min-Heap)
+    Algorithm: K-way Merge
+
+    Define a custom structure to track each element's value, its source array index, and its position within that array.
+    Initialize a min-heap and insert the first element from each of the K non-empty arrays.
+    Loop while the min-heap is not empty:
+        Extract the smallest element (at the top of the heap) and append its value to the result vector.
+        Check the source array of the extracted element. If it has remaining elements, insert the next element from that array into the heap.
+        This guarantees that the heap is always comparing the current smallest unmerged elements from each of the K arrays.
+
+    Time Complexity: O(N log K), where N is the total number of elements across all arrays and K is the number of arrays.
+    Space Complexity: O(K), as the min-heap stores at most one element from each of the K arrays at any given time.
+
+    Time: 40 mins
+*/
+
 #include <iostream>
 #include <vector>
 #include <queue>

@@ -1,3 +1,20 @@
+/*
+    Data Structure: Queue
+    Algorithm: Breadth-first search (BFS)
+
+    Handle base cases first (k <= 0 returns empty, "0" is added as the first number).
+    Initialize a queue with the first standard binary root, "1".
+    Loop k-1 times to generate the sequence.
+    Dequeue the front element and add it to the result vector.
+    Generate its successors by appending "0" (left child) and "1" (right child), then enqueue both.
+    This FIFO approach ensures shorter binary numbers are completely processed before longer ones.
+
+    Time Complexity: O(K log K), where string concatenation operations take up to log K time.
+    Space Complexity: O(K log K), as the queue and result store K elements up to length log K.
+
+    Time: 40 mins
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
