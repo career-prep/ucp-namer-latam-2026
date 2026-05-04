@@ -38,6 +38,7 @@ def prerequisiteCourses(listOfCourses, courseToPrerequistesMap):
 
     return validCourseOrder
 
+#Test Cases
 courses1 = ["Intro to Programming", "Data Structures", "Advanced Algorithms", "Operating Systems", "Databases"]
 prereqs1 = {
     "Data Structures": ["Intro to Programming"],
