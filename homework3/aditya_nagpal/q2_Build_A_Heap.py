@@ -13,9 +13,6 @@ class Heap():
         return -1
 
     def insert(self, x):
-        if len(self.arr) == 0:
-            self.arr.append(x)
-            return self.arr[0]
         
         i = len(self.arr)
         self.arr.append(x)

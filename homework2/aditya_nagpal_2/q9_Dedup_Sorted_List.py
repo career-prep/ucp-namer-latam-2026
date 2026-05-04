@@ -71,3 +71,39 @@ def dedupSortedList(head):
     return head
 
   
+
+#given: head of a linked list(sorted)
+#todo: remove the duplicates and return the head
+
+# 2 3 4 5
+#     s f
+# 2 3 4 5 
+
+#edge cases
+#we dont have head
+#what if we are given with a linked list with no duplicates: return head
+
+# 1-> none
+# s   f
+# 1
+
+# 1 -> none
+# s    f
+
+#brute force
+def dedup(head):
+
+    if not head: return None
+    
+    slow = head
+    fast = head.next
+
+    while fast:
+        if slow.data == fast.data:
+            fast = fast.next
+            slow.next = fast
+        else:
+            fast = fast.next
+            slow = slow.next
+
+    return head

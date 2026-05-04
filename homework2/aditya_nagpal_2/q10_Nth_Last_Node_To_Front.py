@@ -61,6 +61,7 @@ def moveNthLastToFront(head, n):
 #do nothing and return head
 
 #code
+# time taken: 15 mins 
 def nth_node(head, n):
     if not head:
         return None
@@ -73,8 +74,19 @@ def nth_node(head, n):
 
     k_element = m - n + 1
 
+    if k_element == 1:
+        return head
+
     node_number = 1
     node = head
-    while node_number < k_element:
+    while node_number < k_element-1:
         node = node.next
         node_number += 1
+
+
+    required_node = node.next
+    node.next = node.next.next
+    required_node.next = head
+    head = required_node
+
+    return head

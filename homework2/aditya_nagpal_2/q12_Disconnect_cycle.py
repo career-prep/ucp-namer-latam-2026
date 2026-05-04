@@ -63,8 +63,8 @@ def removeCycle(head):
 def disconnect(head):
     slow = fast = head
 
-    if not head: return "no cycle"
-    if not head.next: return "no cycle"
+    if not head: return head
+    if not head.next: return head
 
     while slow and fast and fast.next:
         slow = slow.next

@@ -64,7 +64,7 @@ class PriorityQueue():
             if left < n and self.arr[left][1] > self.arr[priority][1]:
                 priority = left
 
-            if left < n and self.arr[right][1] > self.arr[priority][1]:
+            if right < n and self.arr[right][1] > self.arr[priority][1]:
                 priority = right
 
             if priority == i:
@@ -73,4 +73,4 @@ class PriorityQueue():
             self.arr[priority], self.arr[i] = self.arr[i], self.arr[priority]
             i = priority
 
-        return self.arr[0]
+        return node

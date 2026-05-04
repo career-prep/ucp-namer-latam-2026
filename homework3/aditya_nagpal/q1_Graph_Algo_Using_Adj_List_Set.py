@@ -14,7 +14,7 @@ input = [(1, 2), (2, 3), (1, 3), (3, 2), (2, 0)]
 # use the defaultdic to create a map with keys being the Node(vertex)["From"] and teh values 
 # being an array of all the neighbours (all the "To")
 
-adj_dic = defaultdict()
+adj_dic = defaultdict(list)
 
 for u, v in input:
     adj_dic[u].append(v)
@@ -29,7 +29,7 @@ for u, v in input:
 # the element we are searching for: K
 # assumtion: for the sake of simplicity we are considering the Node itself as value
 # we return true if the value is in graph
-def dfsSearch(adj_dic, k):
+def dfsSearch(k, adj_dic):
     seen = set()
     arr = [] # processing the element
     # if we were given a source we could have added that to the seen and started simpler
@@ -64,7 +64,7 @@ def dfs(adj_dic, key, seen, arr, k):
 # we are going to use queue, use the feature of popleft 
 
 
-def bfsSearch(adj_dic, k):
+def bfsSearch(k, adj_dic):
     queue = deque()
     seen = set()
     
@@ -145,47 +145,80 @@ def topologicalSort(adj_dic):
 
 #so we iterate through each node
 
+def topologicalSortDfs(adj_dic):
+    queue = deque()
+    inDegDic = defaultdict(int)
 
-queue = deque()
-inDegDic = {}
+    #this nested for loop could have been easily avoided if we could 
+    # get the edge list as input rather than the adj_dic
+    for u in adj_dic:
+        for v in adj_dic[u]:
+            inDegDic[v] += 1
 
-adj_dic = defaultdict()
+    #if the adj_list has vertex which has 0 in-deg, that is not included in the inDegDic that
+    # we created so we will create another for loop to go over all the elemnts in the adj_lis
+    # and add its value as 0
+    for key in adj_dic.keys():
+        if key not in inDegDic:
+            inDegDic[key] = 0
 
-for u, v in input:
-    adj_dic[u].append(v)
-    if v not in inDegDic:
-        inDegDic[v] = 1
-    else:
-        inDegDic[v] += 1
+    # now the indegdic is ready
+    for node in inDegDic:
+        if inDegDic[node] == 0:
+            queue.append(node)
 
-#if the adj_list has vertex which has 0 in-deg, that is not included in the inDegDic that
-# we created so we will create another for loop to go over all the elemnts in the adj_lis
-# and add its value as 0
+    result = []
 
-for key in adj_dic.keys():
-    if key not in inDegDic:
-        inDegDic[key] = 0
+    while queue:
+        node = queue.popleft()
+        result.append(node)
 
-# now the indegdic is ready
-for node in inDegDic:
-    if inDegDic[node] == 0:
-        queue.append(node)
+        for nei in adj_dic[node]:
+            inDegDic[nei] -= 1
+            if inDegDic[nei] == 0:
+                queue.append(nei)
 
-result = []
-
-while queue:
-    node = queue.popleft()
-    result.append(node)
-
-    for nei in adj_dic[node]:
-        inDegDic[nei] -= 1
-        if inDegDic[nei] == 0:
-            queue.append(nei)
-
-print(result)
+    return result  
 
 
-# first put all 0 indegree nodes in queue
-# pop one
-# reduce neighbors
-# if neighbor becomes 0, push it
+
+# lets try creating a graph class 
+
+#two ways way1:
+#using a Node class whic has neighbours array
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.neighbour = []
+
+    def addVertex(self, v):
+        self.neighbour.append(v)
+
+ 
+    # def removeNode(self, u):
+    #     for node in self.neighbour:
+    #         if node == u:
+    #             self.neighbour.remove(u) ## dont think this is right??
+
+    def display(self):
+        return [node.data for node in self.neighbour]
+    
+
+a = Node("A")
+b = Node("B")
+c = Node("C")
+d = Node("D")
+
+a.addVertex(b)
+a.addVertex(c)
+
+d.addVertex(c)
+d.addVertex(a)
+d.addVertex(d)
+
+print(d.display())
+
+
+#Method2
+
