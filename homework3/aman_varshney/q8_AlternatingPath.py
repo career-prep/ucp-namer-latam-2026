@@ -47,11 +47,11 @@ if __name__ == "__main__":
     src1 = "A"
     dest1 = "E"
     print("Expected: 4")
-    print("Actual:", alternating_path(src1, dest1, graph))
+    print("Actual:", alternatingPaths(src1, dest1, graph))
     
     src2 = "E"
     dest2 = "D"
     print("Expected: -1")
-    print("Actual", alternating_path(src2, dest2, graph))
+    print("Actual", alternatingPaths(src2, dest2, graph))
         
     
