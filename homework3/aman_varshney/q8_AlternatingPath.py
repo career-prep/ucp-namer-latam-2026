@@ -6,7 +6,7 @@
 from collections import deque
 
 
-def alternating_path(source: str, destination: str, graph: list[tuple[str, str, str]]) -> int:
+def alternatingPaths(source: str, destination: str, graph: list[tuple[str, str, str]]) -> int:
     # build adjacency list
     adj = {} # source : (destination, color)
     for src, dest, color in graph:
