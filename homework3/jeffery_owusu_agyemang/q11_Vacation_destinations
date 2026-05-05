@@ -1,0 +1,57 @@
+# Time taken: 29 minutes
+# Time complexity: O(V + E)
+# Space complexity: O(V + E)
+
+
+from collections import deque, defaultdict
+
+def vacation_destinations(edges, origin, k):
+    # 1. Build the adjacency list
+    graph = defaultdict(list)
+    for u, v, time in edges:
+        graph[u].append((v, time))
+        graph[v].append((u, time))
+    
+    # 2. BFS: (current_city, accumulated_time)
+    queue = deque([(origin, 0)])
+    visited = {origin}
+    reachable_cities = []
+    
+    while queue:
+        current_city, current_total_time = queue.popleft()
+        
+        for neighbor, travel_time in graph[current_city]:
+            # Stopover penalty: +1 hour if we didn't start at the origin
+            penalty = 1 if current_city != origin else 0
+            new_total_time = current_total_time + travel_time + penalty
+            
+            # Check if within budget and not already visited
+            if new_total_time <= k and neighbor not in visited:
+                visited.add(neighbor)
+                reachable_cities.append(neighbor)
+                queue.append((neighbor, new_total_time))
+                
+    return len(reachable_cities), reachable_cities
+
+
+# --- Test Cases ---
+edges = [
+    ("Boston", "New York", 4), 
+    ("New York", "Philadelphia", 2), 
+    ("Boston", "Newport", 1.5), 
+    ("Washington, D.C.", "Harper's Ferry", 1), 
+    ("Boston", "Portland", 2.5), 
+    ("Philadelphia", "Washington, D.C.", 2.5)
+]
+
+# Test 1: k=5
+count1, list1 = vacation_destinations(edges, "New York", 5)
+print(f"k=5: {count1} ({list1})") # Expected: 2 (Boston, Philadelphia)
+
+# Test 2: k=7
+count2, list2 = vacation_destinations(edges, "New York", 7)
+print(f"k=7: {count2} ({list2})") # Expected: 4 (+ Washington, D.C., Newport)
+
+# Test 3: k=8.5 
+count3, list3 = vacation_destinations(edges, "New York", 8)
+print(f"k=8.5: {count3} ({list3})")

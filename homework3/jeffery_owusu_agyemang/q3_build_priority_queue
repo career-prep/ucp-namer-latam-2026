@@ -1,0 +1,78 @@
+class PriorityQueue:
+    def __init__(self):
+        self.heap = []
+
+    def _bubble_up(self, index):
+        parent = (index - 1) // 2
+        if index > 0 and self.heap[index][0] > self.heap[parent][0]:
+            self.heap[index], self.heap[parent] = self.heap[parent], self.heap[index]
+            self._bubble_up(parent)
+
+    def _bubble_down(self, index):
+        largest = index
+        left = 2 * index + 1
+        right = 2 * index + 2
+        n = len(self.heap)
+
+        # Check if left child exists and is larger than current largest
+        if left < n and self.heap[left][0] > self.heap[largest][0]:
+            largest = left
+        
+        # Check if right child exists and is larger than current largest
+        if right < n and self.heap[right][0] > self.heap[largest][0]:
+            largest = right
+
+        if largest != index:
+            self.heap[index], self.heap[largest] = self.heap[largest], self.heap[index]
+            self._bubble_down(largest)
+
+    def top(self):
+        """Returns the highest priority element without removing it."""
+        if not self.heap:
+            return None
+        return self.heap[0][1]
+
+    def insert(self, x, weight):
+        """Adds string x with integer priority weight."""
+        self.heap.append([weight, x])
+        self._bubble_up(len(self.heap) - 1)
+
+    def remove(self):
+        """Removes the highest priority element."""
+        if not self.heap:
+            return
+        
+        # Move the last element to the root
+        last_element = self.heap.pop()
+        if self.heap:
+            self.heap[0] = last_element
+            self._bubble_down(0)
+
+
+
+
+# --- Test Cases ---
+def run_tests():
+    pq = PriorityQueue()
+    
+    # Test 1: Basic Insertion and Top
+    pq.insert("Clean Room", 10)
+    pq.insert("Fix Server", 100)
+    pq.insert("Cook Dinner", 50)
+    print(f"Test 1 - Expected 'Fix Server': {pq.top()}")
+    
+    # Test 2: Removal logic
+    pq.remove()
+    print(f"Test 2 - Expected 'Cook Dinner' after removal: {pq.top()}")
+    
+    # Test 3: Late high-priority insertion
+    pq.insert("Fire Alarm", 500)
+    print(f"Test 3 - Expected 'Fire Alarm': {pq.top()}")
+    
+    # Test 4: Empty Queue
+    pq.remove() # Removes Fire Alarm
+    pq.remove() # Removes Cook Dinner
+    pq.remove() # Removes Clean Room
+    print(f"Test 4 - Expected None for empty PQ: {pq.top()}")
+
+run_tests()

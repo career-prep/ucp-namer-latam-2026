@@ -1,0 +1,46 @@
+# Time taken: 19 minutes
+# Time complexity:
+# Space complexity:
+
+
+from collections import deque
+
+def first_k_binary(k):
+    if k <= 0:
+        return []
+    
+    result = ["0"]
+    if k == 1:
+        return result
+        
+    # Queue will help us generate numbers in level-order (BFS style)
+    queue = deque(["1"])
+    
+    while len(result) < k:
+        current = queue.popleft()
+        result.append(current)
+        
+        # We need to check the length again because we might only 
+        # need one more number after appending 'current'
+        if len(result) < k:
+            queue.append(current + "0")
+        if len(result) < k:
+            queue.append(current + "1")
+            
+    return result
+
+
+
+
+# --- Test Cases ---
+def run_tests():
+    print(f"k=5:  {first_k_binary(5)}")  
+    # Expected: ["0", "1", "10", "11", "100"]
+    
+    print(f"k=10: {first_k_binary(10)}") 
+    # Expected: ["0", "1", "10", "11", "100", "101", "110", "111", "1000", "1001"]
+    
+    print(f"k=1:  {first_k_binary(1)}")  
+    # Expected: ["0"]
+
+run_tests()

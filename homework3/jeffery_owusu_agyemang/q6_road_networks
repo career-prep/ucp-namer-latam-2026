@@ -1,0 +1,44 @@
+# Time taken: 17 minutes
+# Time complexity: O(V + E)
+# Space complexity: O(V + E)
+# Algorithm: Breadth-First Search (BFS)
+
+
+
+from collections import deque, defaultdict
+
+def count_road_networks(towns, roads):
+    graph = defaultdict(list)
+    for u, v in roads:
+        graph[u].append(v)
+        graph[v].append(u)
+        
+    visited = set()
+    num_networks = 0
+    
+    for town in towns:
+        # ONLY start a network count if the town has at least one road
+        if town not in visited and town in graph:
+            num_networks += 1
+            queue = deque([town])
+            visited.add(town)
+            while queue:
+                current = queue.popleft()
+                for neighbor in graph[current]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append(neighbor)
+                        
+    return num_networks
+
+
+
+# --- Test Cases ---
+towns1 = ["Skagway", "Juneau", "Gustavus", "Homer", "Port Alsworth", "Glacier Bay", "Fairbanks", "McCarthy", "Copper Center", "Healy", "Anchorage"]
+roads1 = [("Anchorage", "Homer"), ("Glacier Bay", "Gustavus"), ("Copper Center", "McCarthy"), ("Anchorage", "Copper Center"), ("Copper Center", "Fairbanks"), ("Healy", "Fairbanks"), ("Healy", "Anchorage")]
+
+towns2 = ["Kona", "Hilo", "Volcano", "Lahaina", "Hana", "Haiku", "Kahului", "Princeville", "Lihue", "Waimea"]
+roads2 = [("Kona", "Volcano"), ("Volcano", "Hilo"), ("Lahaina", "Hana"), ("Kahului", "Haiku"), ("Hana", "Haiku"), ("Kahului", "Lahaina"), ("Princeville", "Lihue"), ("Lihue", "Waimea")]
+
+print(count_road_networks(towns1, roads1)) # Output: 2 
+print(count_road_networks(towns2, roads2)) # Output: 3

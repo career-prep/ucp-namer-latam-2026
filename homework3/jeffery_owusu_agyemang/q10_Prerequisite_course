@@ -1,0 +1,38 @@
+# Time taken: 30 minutes
+# Time complexity: O(n)
+# Space complexity: O(n)
+
+
+from collections import deque, defaultdict
+
+def find_course_order(courses, prereq_map):
+    # 1. Setup adjacency list and in-degree count
+    adj = defaultdict(list)
+    in_degree = {course: 0 for course in courses}
+    
+    for course, prereqs in prereq_map.items():
+        for p in prereqs:
+            adj[p].append(course)
+            in_degree[course] += 1
+            
+    # 2. Queue all nodes with 0 in-degree
+    queue = deque([c for c in courses if in_degree[c] == 0])
+    result = []
+    while queue:
+        current = queue.popleft()
+        result.append(current)
+        for neighbor in adj[current]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+                
+    return result if len(result) == len(courses) else []
+# --- Test Cases ---
+courses1 = ["Intro to Programming", "Data Structures", "Advanced Algorithms", "Operating Systems", "Databases"]
+prereqs1 = { "Data Structures": ["Intro to Programming"], "Advanced Algorithms": ["Data Structures"], "Operating Systems": ["Advanced Algorithms"], "Databases": ["Advanced Algorithms"] }
+
+courses2 = ["Intro to Writing", "Contemporary Literature", "Ancient Literature", "Comparative Literature", "Plays & Screenplays"]
+prereqs2 = { "Contemporary Literature": ["Intro to Writing"], "Ancient Literature": ["Intro to Writing"], "Comparative Literature": ["Ancient Literature", "Contemporary Literature"], "Plays & Screenplays": ["Intro to Writing"] }
+
+print(f"CS Order: {find_course_order(courses1, prereqs1)}")
+print(f"Lit Order: {find_course_order(courses2, prereqs2)}")

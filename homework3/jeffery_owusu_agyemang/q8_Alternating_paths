@@ -1,0 +1,44 @@
+# Time taken: 19 minutes
+# Time complexity: O(V + E)
+# Space complexity: O(V + E)
+# Algorithm: Breadth-First Search (BFS) 
+
+
+
+from collections import deque, defaultdict
+
+def shortest_alternating_path(edges, origin, destination):
+    graph = defaultdict(list)
+    for u, v, color in edges:
+        graph[u].append((v, color))
+
+    queue = deque([(origin, 0, None)])
+    visited = set()
+    
+    while queue:
+        node, dist, last_color = queue.popleft()
+        if node == destination:
+            return dist
+        for neighbor, color in graph[node]:
+            if color != last_color:
+                if (neighbor, color) not in visited:
+                    visited.add((neighbor, color))
+                    queue.append((neighbor, dist + 1, color))
+    return -1
+
+
+
+# --- Test Cases ---
+edge_list = [
+    ('A', 'B', "blue"), ('A', 'C', "red"), ('B', 'D', "blue"), 
+    ('B', 'E', "blue"), ('C', 'B', "red"), ('D', 'C', "blue"), 
+    ('A', 'D', "red"), ('D', 'E', "red"), ('E', 'C', "red")
+]
+
+# Test 1: A to E
+print(f"Path A to E: {shortest_alternating_path(edge_list, 'A', 'E')}") 
+# Output: 4 (A -> D [red], D -> C [blue], C -> B [red], B -> E [blue])
+
+# Test 2: E to D
+print(f"Path E to D: {shortest_alternating_path(edge_list, 'E', 'D')}") 
+# Output: -1 (Requires two reds in a row: E->C->B)

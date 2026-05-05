@@ -1,0 +1,17 @@
+# Time taken: 19 minutes
+# Time complexity:
+# Space complexity:
+
+
+def reverse_words(s):
+    # .split() splits by any whitespace and removes extra spaces
+    # [::-1] creates a reversed copy of the list
+    # " ".join() merges them back into a single string
+    return " ".join(s.split()[::-1])
+
+# Test Cases
+print(reverse_words("Uber Career Prep")) #  "Prep Career Uber"
+
+print(reverse_words("Emma lives in Brooklyn, New York.")) #  "York. New Brooklyn, in lives Emma"
+ 
+print(reverse_words("my name, is James.")) # ""
