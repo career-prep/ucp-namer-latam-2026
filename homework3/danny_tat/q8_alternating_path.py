@@ -36,3 +36,5 @@ edges = [
 ]
 print(alternatingPath(edges, "A", "E"))  # 4
 print(alternatingPath(edges, "E", "D"))  # -1
+
+# Time: 23 min
