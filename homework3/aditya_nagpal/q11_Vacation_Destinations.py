@@ -1,3 +1,5 @@
+#Time taken: 35 mins
+#time complexity: O(V+E) numebr of edges and vertices visited
 """
 Given an origin city, a maximum travel time k, and pairs of destinations
  that can be reached directly from each other with corresponding travel
