@@ -1,5 +1,17 @@
 package Part2Questions;
 import java.util.*;
+/**
+ * Approach:
+ * I use a queue to generate binary numbers in order.
+ * Start with "1", then for each number, append "0" and "1"
+ * and add them back to the queue. This ensures numbers are
+ * generated level by level like BFS.
+ *
+ * DSA used: Queue 
+ *
+ * Time Complexity: O(n) → generate n binary numbers
+ * Space Complexity: O(n) → queue + result array
+ */
 public class q5_FirstKBinaryNumbers {
     
     static String[] firstKBinaryNumbers(int n){

@@ -1,5 +1,17 @@
 package Part2Questions;
 import java.util.*;
+/**
+ * Approach:
+ * I treat the grid as a graph where each cell is a node.
+ * When I find a '1', I use DFS to explore and mark all connected land cells as visited.
+ * Each time I start a new DFS, it means I found a new island.
+ *
+ * DSA used: Graph + DFS
+ *
+ * Time Complexity: O(m * n) → visit each cell once
+ * Space Complexity: O(m * n) → recursion stack in worst case
+ * time spent 20min
+ */
 public class q4_NumberOfIslands {
 
     static int numOfIslands(int[][] islandMatrix){

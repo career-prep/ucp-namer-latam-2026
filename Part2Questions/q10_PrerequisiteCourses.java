@@ -1,7 +1,19 @@
 package Part2Questions;
 
 import java.util.*;
-
+/**
+ * Approach:
+ * I treat courses as a graph and use topological sort (BFS).
+ * I track how many prerequisites each course has (inDegree).
+ * I start with courses that have 0 prerequisites, then gradually
+ * reduce dependencies of other courses as I process them.
+ * If I can process all courses, I return the order; otherwise,
+ * a cycle exists so I return an empty list.
+ *
+ * DSA used: Graph  + BFS 
+ *
+ * 
+ */
 public class q10_PrerequisiteCourses {
 
     public static List<String> prerequisiteCourses(
@@ -82,4 +94,6 @@ public class q10_PrerequisiteCourses {
 
         System.out.println(prerequisiteCourses(courses2, prereqs2)); // cycle → []
     }
+    //time taken 35min 
+    //time O(N + M) sapce O(N + M) // n is number of courses and m is number of prerequisite realtionships
 }
