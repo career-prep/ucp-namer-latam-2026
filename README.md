@@ -254,26 +254,4 @@ Implemented a double-ended queue using a doubly linked list.
 **Time Complexity:** O(M log N) — M = routes, N = cities  
 **Space Complexity:** O(N + M)
 
----
 
-# Summary Table
-
-| # | Question | Folder | Algorithm / DSA | Time Complexity | Time Spent |
-|---|---|---|---|---|---|
-| P1 Q1 | Graph – BFS, DFS, Topo Sort | `DataStructureImplementationPart1` | Adjacency Set, BFS, DFS | O(N + M) | — |
-| P1 Q2 | Min Heap | `DataStructureImplementationPart1` | Array-based Min-Heap | O(log n) insert/remove | — |
-| P1 Q3 | Max Priority Queue | `DataStructureImplementationPart1` | Array-based Max-Heap | O(log n) insert/remove | — |
-| P1 Q4 | Singly Linked List | — | Pointer manipulation | O(n) per op | — |
-| P1 Q5 | Doubly Linked List | — | Pointer manipulation | O(n) per op | — |
-| P1 Q6 | Binary Search Tree | — | BST traversal | O(h) avg, O(n) worst | — |
-| P1 Q7 | Queue | — | Linked List | O(1) per op | — |
-| P1 Q8 | Stack | — | Linked List | O(1) per op | — |
-| P1 Q9 | Deque | — | Doubly Linked List | O(1) per op | — |
-| P2 Q1 | Number of Islands | `Part2Questions` | DFS Flood-fill | O(m × n) | ~20 min |
-| P2 Q2 | First K Binary Numbers | `Part2Questions` | BFS Queue | O(n) | — |
-| P2 Q3 | Road Networks | `Part2Questions` | BFS Connected Components | O(N + M) | ~30 min |
-| P2 Q4 | Reverse Words | `Part2Questions` | Two Pointers | O(n) | ~35 min |
-| P2 Q5 | Alternating Path | `Part2Questions` | BFS State-Space | O(N + M) | — |
-| P2 Q6 | Merge K Sorted Arrays | `Part2Questions` | Min-Heap | O(n log k) | ~40 min |
-| P2 Q7 | Prerequisite Courses | `Part2Questions` | Topological Sort (Khan's) | O(N + M) | ~35 min |
-| P2 Q8 | Vacation Destination | `Part2Questions` | Dijkstra's Algorithm | O(M log N) | — |
