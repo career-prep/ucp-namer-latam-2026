@@ -19,7 +19,7 @@ ideas: use BFS
         we keep dequeue the elem and add their child to the queue in order to implement the bfs (make sure to add from left -> right since we want leftmost)
 
 """
-from collections import deque #queue lib in python
+from collections import deque #double ended queue lib in python
 
 class Node: 
     def __init__(self, data=None,left=None,right=None): 

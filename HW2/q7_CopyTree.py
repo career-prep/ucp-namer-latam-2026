@@ -26,8 +26,10 @@ class Node:
 def copy_bt(root):
     curr=root
 
+    #base case
     if curr ==None:
         return None
+    
     
     copy_node= Node(curr.data)
     copy_node.left=copy_bt(curr.left)
@@ -106,9 +108,24 @@ if __name__ == "__main__":
 
 
 
+###################################
+class Node:
+    def __init__(self,data=None,left=None,right=None):
+        self.data=data
+        self.left=left
+        self.right=right
     
 
+def copy(root):
+    curr= root
 
-        
+    #base case if tree is empty
+    if curr==None:
+        return None
+    
+    #return the head 
+    copy_node= Node(curr.val)
+    copy_node.left= copy(copy_node.left)
+    copy_node.right= copy(copy_node.right)
 
-        
+    return copy_node

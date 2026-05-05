@@ -156,15 +156,107 @@ class BST:
         return parent
 
 
-        
-
-
-
+    
 
         
 
+#####################
+    def insert_method(self, val):
+        node=Node(val)
+        if self.root==None:
+            self.root=node
+            return
+        
+        curr=self.root
+        while curr:
+            if val==curr.data:
+                return self.root
+
+            elif val<curr.data:
+                if curr.left:
+                    curr=curr.left
+                else:
+                    curr.left=node
+                    return 
+            else:
+                if curr.right:
+                    curr=curr.right
+                else:
+                    curr.right=node
+                    return 
+
+        
+        return
+
+    def insert_recursion(self, val):
+        self.root=self.helper(self.root,val)
+        return self.root
+    
+    def help(curr, val):
+        node =Node(val)
+
+        #base case
+        if curr==None:
+            return node
+        
+        #travese all the way to the last node and traceback with call stack, insert to the leaf
+        if val<curr.data:
+            curr.left= helper(curr.left, val)
+        elif val>curr.data:
+            curr.right=helper(curr.right,val)
+        
+        #recursive case return; it will be the thing returned after the recursion stopped
+        return curr
 
 
+    def delete_recursion(self, val):
+        return delete_help(self.root,val)
+    
+"""
+    def delete_help(curr, val):
+        node=Node(val)
+        #base case (the simpliest case)
+        if curr==None:
+            return None
+        
+        #there gonna be 3 case:
+        # if val < curr.data => move to the left
+        # if val > curr.data => move to the right
+        # if val == data:
+        #   + if deleted_node have 0 child, just delete and set prev ptr to None
+        #   + if deleted_node have 1 child => delete and set the prev ptr to that child
+        #   + if deleted_node have 2 child => go to right, travel all the way to the left to
+        #  get the left most on right subtree, then replace the value with the deleted node
+
+        if val< curr.data:
+            curr.left= delete_help(curr.left,val)
+        elif val> curr.data:
+            curr.right=delete_help(curr.right,val)
+        else:
+            if curr.right==None and curr.left==None:
+                return None
+            elif curr.right==None:
+                return curr.left
+            elif curr.left==None:
+                return curr.right
+            else:
+                curr_track= curr.right
+
+                while curr_track/left:
+                    curr_track=curr_track.left
+                
+                curr.data= curr_track.data
+                curr.right= delete_help(curr.right, curr.data) #reconstruct the right subtree so that it delete the left most node
+
+        return curr
+
+        
+"""
+        
+
+        
+            
+        
 
     
 

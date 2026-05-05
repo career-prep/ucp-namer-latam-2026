@@ -158,16 +158,34 @@ def reverseRecursive(head):
 
 
 
-        
+"""
+In order to reverse a linkedlist, we need to know the prev and the current node
+the recursion gonna stop when the current node reach None, then we could return the prev node (aka the last node)
+(recursion works by going from very big to small parameter)
+"""
 
-        
-        
-
-        
+def reverse_recursion(head):
+    return recurse_helper(None, head)
 
 
+def recurse_helper(prev,curr):
+    #base case
+    if curr==None:
+        return prev
+    
+    #we now swap 2 of it together
+    next_node=curr.next
+    curr.next=prev
 
-        
+    return recurse_helper(curr, next_node)
+
+
+
+
+
+
+
+
 
         
     
