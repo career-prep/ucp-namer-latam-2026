@@ -8,6 +8,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 def copyTree(root):
     if root is None:
         return None
