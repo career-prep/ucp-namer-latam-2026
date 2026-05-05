@@ -1,0 +1,25 @@
+# Time taken: 10 minutes
+# Time complexity: O(n)
+# Space complexity: O(n)
+# Algorithm: Stack
+
+def reverse_words(s):
+    words = []
+    current_word = ""
+    
+    for char in s:
+        if char != " ":
+            current_word += char
+        elif current_word:
+            words.insert(0, current_word) 
+            current_word = ""
+    if current_word:
+        words.insert(0, current_word)
+    return " ".join(words)
+
+# Test Cases
+print(reverse_words("Uber Career Prep")) #  "Prep Career Uber"
+
+print(reverse_words("Emma lives in Brooklyn, New York.")) #  "York. New Brooklyn, in lives Emma"
+ 
+print(reverse_words("my name, is James.")) # " James. is name, my"

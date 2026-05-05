@@ -1,0 +1,59 @@
+class MinHeap:
+    def __init__(self):
+        self.arr = []
+
+    def top(self):
+        """Returns the minimum element (root) without removing it."""
+        if not self.arr:
+            return None
+        return self.arr[0]
+
+    def insert(self, x):
+        """Adds an integer x to the heap."""
+        self.arr.append(x)
+        self._bubble_up(len(self.arr) - 1)
+
+    def remove(self):
+        """Removes the minimum element (root) from the heap."""
+        if not self.arr:
+            return
+        if len(self.arr) == 1:
+            self.arr.pop()
+            return
+        self.arr[0] = self.arr.pop()
+        self._bubble_down(0)
+
+    def _bubble_up(self, index):
+        parent = (index - 1) // 2
+        if index > 0 and self.arr[index] < self.arr[parent]:
+            self.arr[index], self.arr[parent] = self.arr[parent], self.arr[index]
+            self._bubble_up(parent)
+
+    def _bubble_down(self, index):
+        smallest = index
+        left = 2 * index + 1
+        right = 2 * index + 2
+        n = len(self.arr)
+
+        if left < n and self.arr[left] < self.arr[smallest]:
+            smallest = left
+        
+        if right < n and self.arr[right] < self.arr[smallest]:
+            smallest = right
+
+        if smallest != index:
+            self.arr[index], self.arr[smallest] = self.arr[smallest], self.arr[index]
+            self._bubble_down(smallest)
+
+
+
+
+
+# --- Test Cases ---
+heap = MinHeap()
+for val in [20, 15, 30, 5, 10]:
+    heap.insert(val)
+
+print(f"Top element (Expected 5): {heap.top()}") # 5
+heap.remove()
+print(f"Top after removing 5 (Expected 10): {heap.top()}") # 10
