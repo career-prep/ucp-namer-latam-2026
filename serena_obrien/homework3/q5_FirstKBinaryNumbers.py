@@ -8,12 +8,10 @@ def FirstKBinaryNumbers(k):
     if k < 1:
         return None
     
-    res = []
-    q = deque()
+    res = ["0"]
+    q = deque(["1"])
 
-    q.append("1")
-
-    while k > 0:
+    while k > 1:
         curr = q.popleft()
         res.append(curr)
 
