@@ -58,3 +58,29 @@ root.right.right.right = Node(19)
 
 print(FloorInBST(root, 13))
 print(FloorInBST(root, 15))
+
+class Node():
+    def __init__(self, data):
+        self.data = data
+        self.right = None
+        self.left = None
+def FloorInBST(root, target, prev = None):
+    if root is None:
+        return prev
+    if root.data == target:
+        return root.data
+    if root.data < target:
+        return FloorInBST(root.right, target, root.data)
+    if root.data > target:
+        return FloorInBST(root.left, target, prev)
+    
+root1 = Node(10)
+root1.right = Node(16)
+root1.left = Node(8)
+root1.left.right = Node(9)
+root1.right.left = Node(13)
+root1.right.right = Node(17)
+root1.right.right.right = Node(20)
+print(FloorInBST(root1, 13))
+print(FloorInBST(root1, 15))
+print(FloorInBST(root1, 16))

@@ -144,3 +144,48 @@ print_list(head1)
 head1 = Node(2)
 head1 = deleteFront(head1)
 print_list(head1)
+
+# ------------------------
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.head = None
+    
+    def insertAtFront(head, val):
+        newHead = Node(val)
+        newHead.next = head
+        return newHead
+    
+    def insertAtBack(head, val):
+        newNode = Node(val)
+        # Case 1: No Head
+        if head is None:
+            head = newNode
+        # Case 2: head exist
+        cur = head
+        while cur.next:
+            cur = cur.next
+        cur.next = newNode
+        return head
+    
+    def insertAfter(head, val, loc):
+        # Case 1: loc is none
+        if loc is None:
+            return head
+        # Case 2: loc exists
+        newNode = Node(val)
+        temp = loc.next
+        loc.next = newNode
+        newNode.next = temp
+        return head
+    
+    def insertBefore(head, val, loc):
+        # Case 1: head is none
+        if head is None:
+            return None
+        # Case 2: loc is none
+        if loc is None:
+            return None
+        # Case 3: loc exists
+        
