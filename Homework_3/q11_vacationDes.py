@@ -19,6 +19,7 @@
 #
 # Origin = "New York", k=8
 # Output: 6 (["Boston", "Philadelphia", "Washington D.C.", "Newport", "Harper's Ferry", "Portland"])
+
 from collections import defaultdict
 def vacation_destinations(trips, origin, k):
     graph = defaultdict(list)
@@ -57,3 +58,7 @@ print(vacation_destinations(trips2, "Los Angeles", 11))
 print(vacation_destinations(trips2, "Los Angeles", 14))
 
 
+#Time Complexity: O(V+E)
+#Space Complexity: O(V+E)
+
+#Spent 40 mins
