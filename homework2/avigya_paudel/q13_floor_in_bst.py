@@ -2,6 +2,8 @@
 # Time Complexity: O(log(N))
 # Space Complexity: O(log(N))
 
+# Time taken: 25 minutes
+
 class Node:
     def __init__(self, data):
         self.data = data

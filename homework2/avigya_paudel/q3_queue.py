@@ -43,26 +43,20 @@ class Queue:
 if __name__ == "__main__":
     q = Queue()
 
-    # isEmpty on empty queue
     print(q.isEmpty())   # True
 
-    # enqueue some values
     q.enqueue(3)
     q.enqueue(7)
     q.enqueue(12)
 
-    # peek should show front without removing it
     print(q.peek())      # 3
 
-    # dequeue should return items in FIFO order
     print(q.dequeue())   # 3
     print(q.dequeue())   # 7
     print(q.isEmpty())   # False
 
-    # dequeue last item, then check empty
     print(q.dequeue())   # 12
     print(q.isEmpty())   # True
 
-    # dequeue from empty queue
     print(q.dequeue())   # None
     print(q.peek())      # None

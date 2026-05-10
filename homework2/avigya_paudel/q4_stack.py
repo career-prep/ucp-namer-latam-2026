@@ -38,26 +38,20 @@ class Stack:
 if __name__ == "__main__":
     s = Stack()
 
-    # isEmpty on empty stack
     print(s.isEmpty())   # True
 
-    # push some values
     s.push(3)
     s.push(7)
     s.push(12)
 
-    # top should show front without removing it
     print(s.top())       # 12
 
-    # pop should return items in LIFO order
     print(s.pop())       # 12
     print(s.pop())       # 7
     print(s.isEmpty())   # False
 
-    # pop last item, then check empty
     print(s.pop())       # 3
     print(s.isEmpty())   # True
 
-    # pop from empty stack
     print(s.pop())       # None
     print(s.top())       # None
