@@ -57,7 +57,6 @@ int main() {
     h.insert(1);
     h.insert(6);
 
-    // should print in ascending order: 1 3 5 6 8
     while (!h.empty()) {
         cout << h.top() << " ";
         h.remove();

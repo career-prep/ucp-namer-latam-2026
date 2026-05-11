@@ -56,9 +56,8 @@ int main() {
     pq.insert("medium", 5);
     pq.insert("critical", 20);
 
-    // should print in descending priority: critical high medium low
     while (!pq.empty()) {
-        cout << pq.top() << endl;
+        cout << pq.top() << endl; // critical, high, medium, low
         pq.remove();
     }
 
@@ -66,9 +65,9 @@ int main() {
     pq2.insert("task A", 3);
     pq2.insert("task B", 7);
     pq2.insert("task C", 7);
-    cout << pq2.top() << endl; // task B or task C (both priority 7)
+    cout << pq2.top() << endl; // task B or task C
     pq2.remove();
-    cout << pq2.top() << endl; // the other priority-7 task
+    cout << pq2.top() << endl; // task C or task B
 
     return 0;
 }

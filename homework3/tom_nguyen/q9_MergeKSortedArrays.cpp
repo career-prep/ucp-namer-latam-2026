@@ -1,6 +1,5 @@
 //data structure: priority queue (min heap)
-//time: O(N log k) where N = total elements, k = number of arrays
-//space: O(k) for the heap + O(N) for the result
+//time: O(N log k), space: O(k + N)
 
 #include <iostream>
 #include <vector>

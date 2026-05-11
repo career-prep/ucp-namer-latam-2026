@@ -1,5 +1,5 @@
 //data structure: graph (undirected, weighted)
-//algorithm: dijkstra's with stopover penalty at intermediate cities
+//algorithm: dijkstra's
 //time: O((V+E) log V), space: O(V+E)
 
 #include <iostream>
@@ -10,7 +10,7 @@
 #include <tuple>
 using namespace std;
 
-//uses dijkstra's to count cities reachable within k hours (with +1 stopover at each intermediate city) in O((V+E) log V)
+//uses dijkstra's to find cities reachable within k hours, adding +1 stopover at intermediate cities in O((V+E) log V)
 int vacationDestinations(const string& origin, double k,
                          vector<tuple<string, string, double>>& connections) {
     map<string, vector<pair<string, double>>> graph;

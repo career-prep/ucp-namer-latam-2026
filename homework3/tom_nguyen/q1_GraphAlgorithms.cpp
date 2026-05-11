@@ -148,8 +148,8 @@ int main() {
 
     vector<pair<int,int>> dagEdges = {{0,1},{0,2},{1,3},{2,3},{3,4}};
     auto dag = adjacencySet(dagEdges);
-    cout << "Kahn's topo: "; print(topologicalSort(dag));      // [0,1,2,3,4] or valid order
-    cout << "DFS topo:    "; print(topologicalSortDfs(dag));   // [0,2,1,3,4] or valid order
+    cout << "Kahn's topo: "; print(topologicalSort(dag));    // valid topo order
+    cout << "DFS topo:    "; print(topologicalSortDfs(dag)); // valid topo order
 
     return 0;
 }
