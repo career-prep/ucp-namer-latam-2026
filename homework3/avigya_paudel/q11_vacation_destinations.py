@@ -1,4 +1,4 @@
-# Time taken:
+# Time taken: 37 minutes
 # Time complexity: O((V+E)log(V))
 # Space complexity: O(V+E), where V = number of cities, and E = number of routes
 # Algorithm: Dijkstra's Algorithm + Heap
