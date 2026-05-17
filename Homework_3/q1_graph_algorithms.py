@@ -121,12 +121,13 @@ print(dfs_sort(directed_graph))
 
 def bfs_sort(graph):
     #Finding degree of connections for each node
-    connections = {node: 0 for node in graph}
+    connections = defaultdict(int)
     for node in graph:
+        connections[node] += 0
         for nei in graph[node]:
             connections[nei]+=1
     #BFS
-    queue=deque(node for node in graph if connections[node]==0)
+    queue=deque(node for node in connections if connections[node]==0)
     result=[]
     while queue:
         node=queue.popleft()

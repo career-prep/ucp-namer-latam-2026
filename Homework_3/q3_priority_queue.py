@@ -22,6 +22,8 @@ class PriorityQueue:
         self.arr=[]
 
     def top(self):
+        if not self.arr:
+            return None
         return self.arr[0][1]
     
     def insert(self,val,priority):
@@ -29,13 +31,17 @@ class PriorityQueue:
         self.push_up(len(self.arr)-1)
 
     def remove(self):
+        if not self.arr:
+            return None
+        if len(self.arr) == 1:
+            return self.arr.pop()
         self.arr[0]=self.arr[-1]
         self.arr.pop()
         self.push_down(0)
 
     def push_up(self,i):
         parent_node=(i-1)//2
-        if i>0 and self.arr[i]<self.arr[parent_node]:
+        if i>0 and self.arr[i][0]>self.arr[parent_node][0]:
             self.arr[i],self.arr[parent_node]=self.arr[parent_node],self.arr[i]
             self.push_up(parent_node)
 
@@ -43,9 +49,9 @@ class PriorityQueue:
         node=i
         left=(2*i)+1
         right=(2*i)+2
-        if left<len(self.arr) and self.arr[left]<self.arr[node]:
+        if left<len(self.arr) and self.arr[left][0]>self.arr[node][0]:
             node=left
-        if right<len(self.arr) and self.arr[right]<self.arr[node]:
+        if right<len(self.arr) and self.arr[right][0]>self.arr[node][0]:
             node=right
         if node!= i: 
             self.arr[i],self.arr[node]=self.arr[node],self.arr[i] 

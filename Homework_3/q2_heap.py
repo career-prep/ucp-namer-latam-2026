@@ -16,6 +16,8 @@ class MinHeap:
         self.arr=[]
 
     def top(self):
+        if not self.arr:
+            return None
         return self.arr[0]
     
     def insert(self,val):
@@ -23,6 +25,10 @@ class MinHeap:
         self.push_up(len(self.arr)-1)
 
     def remove(self):
+        if not self.arr:
+            return None
+        if len(self.arr) == 1:
+            return self.arr.pop()
         self.arr[0]=self.arr[-1]
         self.arr.pop()
         self.push_down(0)

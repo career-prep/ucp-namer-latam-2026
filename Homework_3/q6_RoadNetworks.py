@@ -35,7 +35,7 @@ def network(towns,roads):
                 dfs(nei)
     networks=0
     for town in towns:
-        if town not in visited:
+        if town not in visited and len(adj[town]) > 0:
             networks+=1
             dfs(town)
     return networks

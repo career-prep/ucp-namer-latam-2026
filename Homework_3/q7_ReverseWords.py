@@ -1,16 +1,19 @@
-import heapq
-
 def reverse_words(s):
-    words=s.split()
-    min_heap=[]
-    result=[]
-    for i,word in enumerate(words):
-        heapq.heappush(min_heap,(-i,word))
-    while min_heap:
-        _, word = heapq.heappop(min_heap)
-        result.append(word)
-
-    return " ".join(result)
+    stack = []
+    temp_word = ""
+    for char in s:
+        if char == " ":
+            if temp_word:
+                stack.append(temp_word)
+                temp_word = ""
+        else:
+            temp_word += char
+    if temp_word:
+        stack.append(temp_word)
+    result = ""
+    while stack:
+        result += stack.pop() + " "
+    return result.strip()
 
 print(reverse_words("hello world"))                        
 print(reverse_words("one"))                                
