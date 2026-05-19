@@ -89,8 +89,9 @@ This ensures the heap property is maintained after every operation.
 
 ### Time & Space Complexity  
 
-- Insert: O(log n)  
-  Because in the worst case the element moves up the height of the heap  
+- Insert: O(log n) amortized
+
+The heapify up operation is O(log n) in the worst case because the inserted element may move from the bottom of the heap to the root. Python list append is amortized O(1) though a rare resize operation can take O(n) 
 
 - Delete Min: O(log n)  
   Because the root may move down the height of the heap  

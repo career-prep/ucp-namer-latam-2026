@@ -2,7 +2,7 @@
 # Algorithm: Heapify Up and Heapify Down
 # Time Complexity:
 # - peek: O(1)
-# - insert: O(log n)
+# - insert: O(log n) amortized
 # - delete_min: O(log n)
 # Space Complexity: O(n)
 
