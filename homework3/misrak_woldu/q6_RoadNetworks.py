@@ -7,7 +7,7 @@ from collections import deque
 
 
 def count_road_networks(cities: list[str], roads: list[tuple[str, str]]) -> int:
-    if not cities:
+    if not cities or not roads:
         return 0
 
     road_map = {city: [] for city in cities}
@@ -20,7 +20,7 @@ def count_road_networks(cities: list[str], roads: list[tuple[str, str]]) -> int:
     network_count = 0
 
     for city in cities:
-        if city not in visited_cities:
+        if city not in visited_cities and road_map[city]:
             network_count += 1
             explore_network(city, road_map, visited_cities)
 
@@ -45,32 +45,57 @@ def explore_network(
 
 
 def run_tests() -> None:
-    assert count_road_networks(
-        ["A", "B", "C", "D", "E"],
-        [("A", "B"), ("B", "C"), ("D", "E")]
-    ) == 2
+    towns_one = [
+        "Skagway", "Juneau", "Gustavus", "Homer", "Port Alsworth",
+        "Glacier Bay", "Fairbanks", "McCarthy", "Copper Center",
+        "Healy", "Anchorage"
+    ]
 
-    assert count_road_networks(
-        ["A", "B", "C"],
-        [("A", "B"), ("B", "C")]
-    ) == 1
+    roads_one = [
+        ("Anchorage", "Homer"),
+        ("Glacier Bay", "Gustavus"),
+        ("Copper Center", "McCarthy"),
+        ("Anchorage", "Copper Center"),
+        ("Copper Center", "Fairbanks"),
+        ("Healy", "Fairbanks"),
+        ("Healy", "Anchorage"),
+    ]
 
-    assert count_road_networks(
-        ["A", "B", "C"],
-        []
-    ) == 3
+    assert count_road_networks(towns_one, roads_one) == 2
+
+    towns_two = [
+        "Kona", "Hilo", "Volcano", "Lahaina", "Hana", "Haiku",
+        "Kahului", "Princeville", "Lihue", "Waimea"
+    ]
+
+    roads_two = [
+        ("Kona", "Volcano"),
+        ("Volcano", "Hilo"),
+        ("Lahaina", "Hana"),
+        ("Kahului", "Haiku"),
+        ("Hana", "Haiku"),
+        ("Kahului", "Lahaina"),
+        ("Princeville", "Lihue"),
+        ("Lihue", "Waimea"),
+    ]
+
+    assert count_road_networks(towns_two, roads_two) == 3
+
+    assert count_road_networks(["A", "B", "C"], []) == 0
 
     assert count_road_networks([], []) == 0
 
-    assert count_road_networks(
-        ["A"],
-        []
-    ) == 1
+    assert count_road_networks(["A"], []) == 0
 
     assert count_road_networks(
         ["A", "B", "C", "D"],
         [("A", "B")]
-    ) == 3
+    ) == 1
+
+    assert count_road_networks(
+        ["A", "B", "C", "D", "E"],
+        [("A", "B"), ("B", "C"), ("D", "E")]
+    ) == 2
 
     print("All tests passed")
 

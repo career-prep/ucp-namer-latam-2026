@@ -307,47 +307,53 @@ Updated implementation and tests to match the prompt examples. All tests passed.
 ### Question Type  
 Graph / Connected Components (BFS)
 
-
 ### Description  
-Given a list of cities and a list of roads connecting pairs of cities, determine the number of disconnected road networks.  
-Each network represents a group of cities that are directly or indirectly connected.
+Given a list of towns and a list of roads connecting pairs of towns return the number of road networks.
 
+A road network is a connected group of towns with at least one road. Isolated towns with no roads do not count as road networks.
 
 ### Time Spent  
 40 minutes
 
 ### Approach  
 
-I modeled the cities and roads as a graph using an adjacency list, where each city maps to its neighboring cities.
+I modeled the towns and roads as an undirected graph using an adjacency list.
 
-- I first build the graph by adding each road as a bidirectional connection  
-- Then I use BFS to explore each connected component  
+Each town maps to the towns directly connected to it by roads.
 
-I loop through all cities, and:
-- If a city hasn’t been visited, I start a BFS from that city  
-- The BFS explores all cities connected to it and marks them as visited  
-- After finishing BFS, I increment the network count  
+Then I used BFS to explore connected components.
 
-This way, each BFS traversal represents one connected road network.
+I loop through all towns, but I only start a BFS if:
+- the town has not been visited
+- the town has at least one road
+
+This is important because the prompt says that a state with towns but no roads has 0 road networks, so isolated towns should not count.
+
+When I find an unvisited town that has roads:
+- I increment the network count
+- I run BFS from that town
+- BFS marks all towns in that road network as visited
+
+This way each connected road network is counted exactly once.
 
 ### Edge Cases  
-- No cities ->  return 0  
-- No roads ->  each city is its own network  
-- Single city  
-- Disconnected cities  
-- Multiple separate networks  
+- No towns -> return 0  
+- No roads -> return 0  
+- Single town with no roads -> return 0  
+- Isolated towns mixed with connected towns  
+- Multiple separate road networks  
 
 ### Time & Space Complexity  
 
-- Time: O(cities + roads)  
-  Because we visit each city and each road once during graph construction and BFS  
+- Time: O(towns + roads)  
+  Because we build the graph and visit each town and road at most once during BFS
 
-- Space: O(cities + roads)  
-  Because we store the adjacency list and the visited set  
+- Space: O(towns + roads)  
+  Because we store the adjacency list, queue, and visited set
 
 
 ### Completion Status  
-Finished implementation and all tests passed.
+Updated implementation and tests to match the prompt definition. All tests passed.
 
 ## Question 7: Reverse Words
 
