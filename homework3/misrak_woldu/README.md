@@ -109,64 +109,94 @@ Finished implementation and all tests passed.
 ## Question 3: Priority Queue
 
 ### Question Type  
-Heap / Priority Queue (Min Heap implementation)
-
+Heap / Priority Queue (Max Heap implementation)
 
 ### Description  
-Implemented a Priority Queue using a Min Heap structure, supporting:
-- Enqueue (insert element)
-- Dequeue (remove element with highest priority / smallest value)
-- Peek (view highest priority element)
-- Size and is_empty checks
+Implemented a Priority Queue using a Max Heap structure where each heap element stores:
 
+```python
+(data, priority)
+````
 
-### Time Spent  
+The priority queue supports:
+
+* Enqueue (insert data with a priority)
+* Dequeue (remove and return the highest-priority data)
+* Peek (view the highest-priority data)
+* Size and is_empty checks
+
+### Time Spent
+
 35 minutes
 
-### Approach  
+### Approach
 
-I implemented a Priority Queue using a Min Heap, where the smallest element represents the highest priority.
+I implemented a Priority Queue using a Max Heap stored in a list.
+
+Each item in the heap is stored as a tuple:
+
+```python
+(data, priority)
+```
+
+For example:
+
+```python
+pq.enqueue("send email", 5)
+```
+
+stores:
+
+* `"send email"` as the data
+* `5` as the priority
+
+The heap compares elements using the priority value.
 
 For enqueue:
-- I add the new value to the end of the heap list  
-- Then I perform heapify-up to maintain the heap property  
+
+* I append the `(data, priority)` pair to the end of the heap
+* Then I perform heapify-up
+* During heapify up, I compare the priority values
+* If the child has a higher priority than the parent, I swap them
 
 For dequeue:
-- I remove the root element (smallest value)  
-- Replace it with the last element in the heap  
-- Then perform heapify-down to restore the heap structure  
+
+* I remove the root element because it has the highest priority
+* I replace it with the last element in the heap
+* Then I perform heapify down
+* During heapify-down, I compare the children’s priority values and swap with the child that has the larger priority
 
 For peek:
-- I return the root element directly since it is always the minimum  
+* I return the data stored at the root element
+* The root always contains the highest priority item
 
-This ensures that the highest priority element is always accessible in O(1) time.
+This ensures the highest priority element is always accessible efficiently.
 
+### Edge Cases
 
-### Edge Cases  
-- Empty priority queue (peek or dequeue should raise an error)  
-- Single element queue  
-- Duplicate values  
-- Enqueue into empty queue  
-- Removing the last element  
+* Empty priority queue (peek or dequeue raises an error)
+* Single element queue
+* Duplicate priorities
+* Enqueue into empty queue
+* Removing the last element
 
+### Time & Space Complexity
 
-### Time & Space Complexity  
+* Enqueue: O(log n)
+  Because the inserted item may move up the height of the heap during heapify-up
 
-- Enqueue: O(log n)  
-  Because the element may move up the height of the heap  
+* Dequeue: O(log n)
+  Because the root element may move down the height of the heap during heapify-down
 
-- Dequeue: O(log n)  
-  Because the root may move down the height of the heap  
+* Peek: O(1)
+  Because the highest priority element is always stored at the root
 
-- Peek: O(1)  
-  Because we directly access the root  
+* Space: O(n)
+  Because all `(data, priority)` pairs are stored in the heap list
 
-- Space: O(n)  
-  Because all elements are stored in the heap  
+### Completion Status
 
-
-### Completion Status  
-Finished implementation and all tests passed.
+Refactored implementation to store `(data, priority)` pairs and compare elements using priority values. All tests passed.
 
 ## Question 4: Number of Islands
 
