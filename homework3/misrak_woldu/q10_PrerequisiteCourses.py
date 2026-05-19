@@ -101,6 +101,25 @@ def run_tests() -> None:
     result4 = find_course_order(courses4, prerequisites4)
     assert set(result4) == set(courses4)
 
+        # second prompt example with multiple prerequisites
+    courses_lit = [
+        "Intro to Writing",
+        "Contemporary Literature",
+        "Ancient Literature",
+        "Comparative Literature",
+        "Plays & Screenplays",
+    ]
+
+    prereqs_lit = {
+        "Contemporary Literature": ["Intro to Writing"],
+        "Ancient Literature": ["Intro to Writing"],
+        "Comparative Literature": ["Ancient Literature", "Contemporary Literature"],
+        "Plays & Screenplays": ["Intro to Writing"],
+    }
+
+    result_lit = find_course_order(courses_lit, prereqs_lit)
+    assert is_valid_order(result_lit, prereqs_lit)
+
     # empty input
     assert find_course_order([], {}) == []
 
