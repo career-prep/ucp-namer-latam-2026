@@ -239,8 +239,8 @@ This ensures that each island is counted exactly once.
   Because each cell is visited at most once  
 
 - Space: O(rows * cols)  
-  Because of the visited set and recursion stack in the worst case  
 
+  The visited set can store up to all land cells in the grid so it can be O(rows * cols) in the worst case. The recursion stack also depends on the shape of the island. In the worst case if the grid contains one large connected island, the DFS recursion stack can grow to O(rows * cols). In smaller or more broken up islands the recursion stack may be much smaller. 
 
 ### Completion Status  
 Finished implementation and all tests passed.

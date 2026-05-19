@@ -2,6 +2,8 @@
 # Algorithm: Depth-First Search (DFS)
 # Time Complexity: O(rows * cols)
 # Space Complexity: O(rows * cols)
+# - visited set: O(rows * cols) in the worst case
+# - recursion stack: O(rows * cols) in the worst case for one large island
 
 def count_islands(grid: list[list[int]]) -> int:
     if not grid or not grid[0]:
