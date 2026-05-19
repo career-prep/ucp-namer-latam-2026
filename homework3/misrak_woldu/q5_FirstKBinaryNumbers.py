@@ -8,8 +8,11 @@ from collections import deque
 def first_k_binary_numbers(k: int) -> list[str]:
     if k <= 0:
         return []
+    
+    if k == 1:
+        return ["0"]
 
-    binary_numbers = []
+    binary_numbers = ["0"]
     number_queue = deque(["1"])
 
     while len(binary_numbers) < k:
@@ -25,12 +28,12 @@ def first_k_binary_numbers(k: int) -> list[str]:
 def run_tests() -> None:
     assert first_k_binary_numbers(0) == []
     assert first_k_binary_numbers(-3) == []
-    assert first_k_binary_numbers(1) == ["1"]
-    assert first_k_binary_numbers(2) == ["1", "10"]
-    assert first_k_binary_numbers(5) == ["1", "10", "11", "100", "101"]
+    assert first_k_binary_numbers(1) == ["0"]
+    assert first_k_binary_numbers(2) == ["0", "1"]
+    assert first_k_binary_numbers(5) == ["0", "1", "10", "11", "100"]
     assert first_k_binary_numbers(10) == [
-        "1", "10", "11", "100", "101",
-        "110", "111", "1000", "1001", "1010"
+        "0", "1", "10", "11", "100",
+        "101", "110", "111", "1000", "1001"
     ]
 
     print("All tests passed")

@@ -260,24 +260,33 @@ Given an integer k, generate the first k binary numbers in order as strings.
 
 ### Approach  
 
-I used a queue to generate binary numbers in order using a BFS-like approach.
+I used a queue to generate binary numbers in order using a BFS-style approach.
 
-- I start by putting "1" into the queue  
-- Then I repeatedly:
-  - remove the front element  
-  - add it to the result list  
-  - generate two new numbers by appending "0" and "1" to it  
-  - add those back into the queue  
+I first handle edge cases:
+- If `k <= 0`, I return an empty list
+- If `k == 1`, I return `["0"]`
 
-This works like level order traversal of a binary tree, where
-- each node generates two children (current + "0", current + "1")  
-This wll make sure the binary numbers are generated in the correct order.
+I initialize the result list with `"0"` because the prompt examples start with `"0"`.
+
+Then I 
+- Start the queue with `"1"`
+- Repeatedly remove the front element from the queue
+- Add it to the result list
+- Generate two new binary numbers by appending `"0"` and `"1"`
+- Add those new values back into the queue
+
+This works similarly to level order traversal in a binary tree  where:
+- each binary number generates two children:
+  - current + `"0"`
+  - current + `"1"`
+
+This guarantees the binary numbers are generated in the correct order
 
 
 ### Edge Cases  
 - k = 0 -> return empty list  
 - k < 0 ->  return empty list  
-- k = 1 ->  return ["1"]  
+- k = 1 ->  return ["0"]  
 - Small values of k  
 - Large values of k  
 
@@ -291,7 +300,7 @@ This wll make sure the binary numbers are generated in the correct order.
   Because the queue and result list together store up to k elements  
 
 ### Completion Status  
-Finished implementation and all tests passed.
+Updated implementation and tests to match the prompt examples. All tests passed.
 
 ## Question 6: Road Networks
 
