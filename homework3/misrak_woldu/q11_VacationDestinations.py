@@ -1,78 +1,79 @@
-from collections import deque
+from collections import defaultdict
 
 # Data Structure: Graph (Adjacency List)
-# Algorithm: BFS (Shortest Path)
+# Algorithm: DFS with Branch Pruning
 # Time Complexity: O(cities + roads)
 # Space Complexity: O(cities + roads)
 
 
-def shortest_vacation_path(
-    roads: list[tuple[str, str]],
-    start: str,
-    destination: str,
-) -> int:
-    if start == destination:
-        return 0
+def vacation_destinations(roads, origin, k):
+    # Build weighted undirected graph
+    graph = defaultdict(list)
 
-    graph = {}
+    for city1, city2, travel_time in roads:
+        graph[city1].append((city2, travel_time))
+        graph[city2].append((city1, travel_time))
 
-    for city1, city2 in roads:
-        if city1 not in graph:
-            graph[city1] = []
+    # Store reachable destinations
+    reachable = set()
 
-        if city2 not in graph:
-            graph[city2] = []
+    # DFS function
+    def dfs(current_city, total_time, visited):
+        # If total time exceeds k, stop exploring
+        if total_time > k:
+            return
 
-        graph[city1].append(city2)
-        graph[city2].append(city1)
+        # Add reachable city (but not the origin itself)
+        if current_city != origin:
+            reachable.add(current_city)
 
-    if start not in graph or destination not in graph:
-        return -1
+        # Explore neighbors
+        for neighbor, travel_time in graph[current_city]:
 
-    queue = deque([(start, 0)])
-    visited = set([start])
-
-    while queue:
-        current_city, distance = queue.popleft()
-
-        if current_city == destination:
-            return distance
-
-        for neighbor in graph[current_city]:
+            # Avoid cycles
             if neighbor not in visited:
+
+                # Add stopover penalty if leaving an intermediate city
+                stopover = 0
+                if current_city != origin:
+                    stopover = 1
+
+                new_time = total_time + travel_time + stopover
+
                 visited.add(neighbor)
-                queue.append((neighbor, distance + 1))
+                dfs(neighbor, new_time, visited)
+                visited.remove(neighbor)
 
-    return -1
+    # Start DFS
+    dfs(origin, 0, {origin})
+
+    return len(reachable)
 
 
-def run_tests() -> None:
+def run_tests():
+
     roads = [
-        ("A", "B"),
-        ("B", "C"),
-        ("C", "D"),
-        ("D", "E"),
-        ("A", "F"),
-        ("F", "E"),
+        ("Boston", "New York", 4),
+        ("New York", "Philadelphia", 2),
+        ("Boston", "Newport", 1.5),
+        ("Washington, D.C.", "Harper's Ferry", 1),
+        ("Boston", "Portland", 2.5),
+        ("Philadelphia", "Washington, D.C.", 2.5)
     ]
 
-    assert shortest_vacation_path(roads, "A", "E") == 2
-    assert shortest_vacation_path(roads, "A", "D") == 3
-    assert shortest_vacation_path(roads, "B", "F") == 2
+    # Example 1
+    assert vacation_destinations(roads, "New York", 5) == 2
 
-    # same start and destination
-    assert shortest_vacation_path(roads, "A", "A") == 0
+    # Example 2
+    assert vacation_destinations(roads, "New York", 7) == 4
 
-    # unreachable
-    roads2 = [
-        ("A", "B"),
-        ("C", "D"),
-    ]
-    assert shortest_vacation_path(roads2, "A", "D") == -1
+    # Example 3
+    assert vacation_destinations(roads, "New York", 8) == 6
 
-    # missing nodes
-    assert shortest_vacation_path(roads, "X", "E") == -1
-    assert shortest_vacation_path(roads, "A", "X") == -1
+    # Edge cases
+    assert vacation_destinations([], "Boston", 5) == 0
+    assert vacation_destinations(roads, "Chicago", 5) == 0
+    assert vacation_destinations(roads, "New York", 0) == 0
 
     print("All tests passed")
 

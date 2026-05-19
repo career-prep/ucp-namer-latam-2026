@@ -504,49 +504,55 @@ Finished implementation and all tests passed.
 
 ## Question 11: Vacation Destinations
 
+## Question 11: Vacation Destinations
+
 ### Question Type  
-Graph / BFS (Shortest Path)
+Graph / DFS with Branch Pruning
 
 ### Description  
-Given a list of roads connecting cities, find the shortest path (minimum number of roads) between a start city and a destination city.  
-Return -1 if no path exists.
+Given an origin city, a maximum travel time `k`, and a list of roads with travel times, return the number of destinations that can be reached within `k` hours from the origin.
+
+Each road has a travel time and each stopover in an intermediate city adds 1 extra hour.
 
 
 ### Time Spent  
 40 minutes
 
+
 ### Approach  
 
-I modeled the cities and roads as an undirected graph using an adjacency list.
+I modeled the cities and roads as a weighted undirected graph using an adjacency list.
 
-Since all roads have equal weight, I used BFS to find the shortest path.
+Each city maps to a list of neighboring cities with the travel time to reach them.
 
-- I first build the graph by connecting each pair of cities in both directions  
-- Then I use a queue to perform BFS starting from the start city  
-- Each entry in the queue stores the current city and the distance from the start  
+Then I used DFS to explore possible routes from the origin.
 
-While traversing:
-- I explore all neighboring cities  
-- I keep track of visited cities to avoid revisiting  
-- As soon as I reach the destination, I return the distance  
+While exploring:
+- I track the current city
+- I track the total travel time so far
+- I use a visited set to avoid cycles
+- If the total time becomes greater than `k`, I stop exploring that path
+- If a city is reachable within `k` hours and it is not the origin, I add it to the reachable set
 
-If the destination is never reached, I return -1.
+I also add a 1 hour stopover penalty when traveling out of an intermediate city. I do not add the stopover penalty when leaving the origin.
 
 ### Edge Cases  
-- Start equals destination ->  return 0  
-- No roads ->  return -1  
-- Disconnected graph  
-- Start or destination not in graph  
-- Single connection  
+- Empty road list  
+- Origin not in graph  
+- `k = 0`  
+- Cities connected through multiple stopovers  
+- Cycles in the graph  
+- Direct and indirect routes to the same destination  
+
 
 ### Time & Space Complexity  
 
-- Time: O(cities + roads)  
-  Because we visit each city and each road at most once  
+- Time: O(cities + roads) in typical traversal but DFS can explore multiple possible paths in graphs with cycles or many route combinations  
+  Branch pruning helps stop paths once total time is greater than `k`
 
 - Space: O(cities + roads)  
-  Because we store the graph and use a queue and visited set  
+  Because the graph stores all cities and roads and DFS uses a visited set and recursion stack  
 
 
 ### Completion Status  
-Finished implementation and all tests passed.
+Refactored implementation to match the original prompt. All tests passed.
