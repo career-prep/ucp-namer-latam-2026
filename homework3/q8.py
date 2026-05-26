@@ -32,13 +32,13 @@ def graph(path, scr, des):
     if scr not in dic:
         return -1
 
-    visited = set()
+    visited = set(
     search = deque([scr])
 
     while search:
         val = search.popleft()
         if val == des:
-            return
+            return len(visited)
         for each in dic[val]:
             if each not in visited:
                 visited.add(val)
@@ -48,7 +48,7 @@ def graph(path, scr, des):
         print(val)
 
 
-    return dic
+    return len(visited)
 path = [("A", "B", "blue"),
         ("A", "C", "red"),
         ("B", "D", "blue"),
