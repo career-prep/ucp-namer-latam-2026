@@ -1,6 +1,6 @@
 """
-time = n^2
-space = n
+time = O(V + E)
+space = O(V + E)
 
 40 minutes
 """
