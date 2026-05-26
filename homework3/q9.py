@@ -23,7 +23,8 @@ def sorted_k(input, n):
 
     heap = []
     for i in range(n):
-        heapq.heappush(heap, (input[i][0], i, 0))
+        if input[i]:
+            heapq.heappush(heap, (input[i][0], i, 0))
 
     res = []
     while heap:
