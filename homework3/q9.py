@@ -1,5 +1,5 @@
 """
-time = n
+time = (T log k), where T is the number of elements across all arrayss and k is the number of arrays
 space = n
 
 40 minutes
