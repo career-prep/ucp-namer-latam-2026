@@ -8,14 +8,11 @@ def reverse_words(s: str) -> str:
         return ""
     
     # split phrase into words by space delimiter and reverse
-    words = s.split(" ")
+    words = s.split()
     words.reverse()
     
     # build string
-    res = words[0]
-    for i in range(1, len(words)):
-        res += " " + words[i]
-    return res
+    return " ".join(words)
 
     
 def reverse_words_stack(s: str) -> str:
@@ -41,11 +38,8 @@ def reverse_words_stack(s: str) -> str:
     res = []
     while stack:
         res.append(stack.pop())
-        
-    res_str = res[0] # already checked for empty case
-    for i in range(1, len(res)):
-        res_str += " " + res[i]
-    return res_str
+    return " ".join(res)
+
     
     
 if __name__ == "__main__":
