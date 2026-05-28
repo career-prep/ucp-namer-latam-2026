@@ -9,9 +9,13 @@ from collections import deque
 def prerequisiteCourses(requirements: list[str], prereqs: dict[str, list[str]]) -> list[str]:
     # calculate indegree for each requirement and build reversed graph
     indegree = {course : 0 for course in requirements} # course : # of prereqs
-    graph = {course : [] for course in requirements} # prereq : courses
+    graph = {prereq : [] for prereq in requirements} # prereq : courses
     for course in prereqs:
+        if course not in indegree: # skip courses not in requirements
+            continue
         for prereq in prereqs[course]:
+            if prereq not in graph: # skip prereqs not in in requirements
+                continue
             graph[prereq].append(course)
             indegree[course] += 1
             
@@ -42,11 +46,12 @@ def prerequisiteCourses(requirements: list[str], prereqs: dict[str, list[str]]) 
 
 if __name__ == "__main__":
     # test 1
+    print("Test 1")
     req1 = ["Intro to Writing", "Contemporary Literature", "Ancient Literature", "Comparative Literature", "Plays & Screenplays"]
     prereq1 = { "Contemporary Literature": ["Intro to Writing"], "Ancient Literature": ["Intro to Writing"], "Comparative Literature": ["Ancient Literature", "Contemporary Literature"], "Plays & Screenplays": ["Intro to Writing"] }
     valid_outputs1 = [
         ["Intro to Writing", "Plays & Screenplays", "Contemporary Literature", "Ancient Literature", "Comparative Literature"],
-        ["Intro to Writing", "Contemporary Literature", "Plays & Screenplays", "Ancient Literature", "Comparative Literature"] or
+        ["Intro to Writing", "Contemporary Literature", "Plays & Screenplays", "Ancient Literature", "Comparative Literature"],
         ["Intro to Writing", "Contemporary Literature", "Ancient Literature", "Plays & Screenplays", "Comparative Literature"], 
         ["Intro to Writing", "Ancient Literature", "Contemporary Literature",  "Plays & Screenplays", "Comparative Literature"], 
         ["Intro to Writing", "Ancient Literature",  "Plays & Screenplays",  "Contemporary Literature", "Comparative Literature"],
@@ -69,8 +74,10 @@ if __name__ == "__main__":
                     break
             valid1 = True
         print("Test 1: Success") if valid1 else print("Test 1: Fail")
+    print() 
     
     # test 2
+    print("Test 2")
     req2 =  ["Intro to Programming", "Data Structures", "Advanced Algorithms", "Operating Systems", "Databases"]
     prereq2 =  { "Data Structures": ["Intro to Programming"], "Advanced Algorithms": ["Data Structures"], "Operating Systems": ["Advanced Algorithms"], "Databases": ["Advanced Algorithms"] }
     valid_outputs2 = [
@@ -92,3 +99,12 @@ if __name__ == "__main__":
                     break
             valid2 = True
         print("Test 2: Success") if valid2 else print("Test 2: Fail")
+    print() 
+    
+    # test 3 
+    print("Test 3")
+    req3 = ["A", "B", "C"]
+    prereq3 = {"A": ["C"], "B": ["A"], "C": ["B"]}
+    output3 = prerequisiteCourses(req3, prereq3)
+    print("Output:", output3)
+    print("Test 3: Success") if output3 == [] else print("Test 3: Fail")
