@@ -15,7 +15,7 @@ def road_networks(towns: list[str], roads: list[tuple[str, str]]) -> int:
         if town2 in graph:
             graph[town2].append(town1)
         else:
-            graph[town2] = []
+            graph[town2] = [town1]
         
     visited = set() # track which towns have been visited
     count = 0
