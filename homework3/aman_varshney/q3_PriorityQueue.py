@@ -69,19 +69,20 @@ if __name__ == '__main__':
     
     # empty
     print("Empty case test")
-    print("Expected: None")
-    print("Actual", pq.top())
+    assert pq.top() is None, "Fail"
+    print()
     
     # insert nums
     nums = [ ("a",5), ("b",3), ("c",8), ("d",1), ("e",2), ("f",7) ]
     print("Inserting", nums)
     for s, w in nums:
         pq.insert(s, w)
+    print()
         
     # top 
     print("Checking minimum")
-    print("Expected: d")
-    print("Actual:", pq.top())
+    assert 'd' == pq.top(), "Fail"
+    print()
     
      # remove elements
     print("Removing one by one")
