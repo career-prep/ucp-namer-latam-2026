@@ -5,7 +5,7 @@ class Heap:
         self.size = 0 
         
         
-    def top(self) -> int:
+    def top(self) -> int | None:
         """Returns min in heap (first element); or None if empty"""
         return self.arr[0] if (self.size != 0) else None
     
@@ -27,7 +27,7 @@ class Heap:
             i = parent
             
         
-    def remove(self) -> int: 
+    def remove(self) -> int | None: 
         """Pops minimum (top) element from heap. O(logn)"""
         if self.size == 0: # empty case
             return None
