@@ -29,7 +29,7 @@ def alternatingPaths(source: str, destination: str, graph: list[tuple[str, str, 
         if node == destination: # found
             return dist
         
-        for nei, color in adj[node]: # check adjacency list
+        for nei, color in adj.get(node, []): # check adjacency list
             if color != last_color: # enqueue only if alternating path
                 state = (nei, color) 
                 if state not in visited: # enqueue only if new path
