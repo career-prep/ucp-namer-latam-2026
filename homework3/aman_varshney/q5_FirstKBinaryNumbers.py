@@ -16,9 +16,10 @@ def firstKBinary(k: int) -> list[str]:
     for i in range(1, k): # iterate through range
         curr = queue.popleft()
         binary_num_list.append(curr) 
-        # add next binary strings
-        queue.append(curr + "0")
-        queue.append(curr + "1")
+        # add next binary strings (unless enough known elements in queue to fill `k`)
+        if len(queue)+i < k:
+            queue.append(curr + "0")
+            queue.append(curr + "1")
         
     return binary_num_list
         
@@ -39,8 +40,8 @@ def expand_list(l):
 if __name__ == "__main__":
     input1 = 5
     print("Expected: [0, 1, 10, 11, 100]")
-    print("Actual :", expand_list(firstKBinary(input1)))
+    print("Actual  :", expand_list(firstKBinary(input1)))
     
     input2 = 10
     print("Expected: [0, 1, 10, 11, 100, 101, 110, 111, 1000, 1001]")
-    print("Actual: ", expand_list(firstKBinary(input2)))
+    print("Actual  :", expand_list(firstKBinary(input2)))
