@@ -1,7 +1,7 @@
 # dfs 
 # spent 10-15 minutes
 # TC - O(R*C)
-# SC - O(1) 
+# SC - O(R*C) 
 
 
 def numberOfIslands(matrix: list[list[int]]) -> int:
