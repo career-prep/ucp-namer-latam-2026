@@ -1,6 +1,6 @@
 # spent 60 minutes
-# dfs
-# TC - O(V*E)
+# dijkstra
+# TC - O((V+E)*logV)
 # SC - O(V+E)
 
 import heapq
@@ -16,30 +16,34 @@ def vacationDestinations(directed_graph: list[tuple[str, str, int]], origin: str
     for city1, city2, dist in directed_graph: # add as undirected edges
         graph[city1].append( (city2, dist) )
         graph[city2].append( (city1, dist) )
-    
+        
+    heap = [(0, origin)] # [(time, city)]
+    best_time = {origin : 0} # graph of shortest times from origin to key  # {destination city : shortest time}
 
-    reachable = set() # will store all reachable cities in specified time
-    best_time = {origin : 0} # graph of best times for origin -> key # {destination city : best time}
-    
-    # helper
-    def dfs(city, time_elapsed):
-        for neighbor, dist in graph[city]: # iterate through neighbors
+    while heap: 
+        time_elapsed, city = heapq.heappop(heap)
+        
+        if time_elapsed > best_time.get(city, float('inf')): # shorter path exists -> skip
+            continue
+        
+        for neighbor, dist in graph.get(city, []): # iterate through neighbors 
             # calculate time (+1 for stopover)
-            new_time_elapsed = time_elapsed + dist + 1 
+            new_time_elapsed = time_elapsed + dist + 1
             if new_time_elapsed-1 > k: # not enough time -> skip
                 continue
             
-            # only continue if this path is quicker
+            # only continue if this path is quicker 
             if neighbor not in best_time or new_time_elapsed < best_time[neighbor]:
                 best_time[neighbor] = new_time_elapsed
-                reachable.add(neighbor)
-                dfs(neighbor, new_time_elapsed)
-            
-    
-    dfs(origin, 0) # start with origin
-    return len(reachable)
-
-
+                heapq.heappush(heap, (new_time_elapsed, neighbor))
+                
+    # count cities reachable within `k` excluding origin
+    count = 0
+    for city, time_elapsed in best_time.items():
+        if city != origin and time_elapsed-1 <= k:
+            count += 1
+    return count
+        
 
 
 if __name__ == "__main__":
