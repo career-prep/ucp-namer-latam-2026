@@ -1,6 +1,6 @@
 from collections import deque
 
-def adjacencySet(edges):
+def adjacencyList(edges):
     graph = dict()
 
     for a, b in edges:

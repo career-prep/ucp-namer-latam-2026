@@ -1,4 +1,4 @@
-#time complexity: O(n)
+#time complexity: O(nlogk)
 #algorithm/DS = min heap
 
 import heapq
@@ -10,7 +10,8 @@ def MergeKSortedArrays(k, arrs):
         return arrs
 
     for i in range(k):
-        heapq.heappush(nums, (arrs[i][0], i, 0))
+        if arrs[i]:
+            heapq.heappush(nums, (arrs[i][0], i, 0))
 
     result = [] 
     while nums:

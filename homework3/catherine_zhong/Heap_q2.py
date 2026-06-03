@@ -1,7 +1,7 @@
 
 class Heap:
-    def __init__(self, arr= []):
-        self.arr = arr
+    def __init__(self, arr= None):
+        self.arr = arr if ar is not None else []
 
     #move element up tree to correct position
     #time complexity: O(logn)
