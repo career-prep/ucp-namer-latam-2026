@@ -85,40 +85,38 @@ def boggle(dictionary, board):
     
     return ans 
 
+dictionary = [
+    "Ace", "Ape", "Cape", "Clap", "Clay",
+    "Gape", "Grape", "Lace", "Lap", "Lay",
+    "Mace", "Map", "May", "Pace", "Pay",
+    "Race", "Rap", "Ray", "Tap", "Tape",
+    "Trace", "Trap", "Tray", "Yap",
+]
 
-if __name__ == "__main__":
-    dictionary = [
-        "Ace", "Ape", "Cape", "Clap", "Clay",
-        "Gape", "Grape", "Lace", "Lap", "Lay",
-        "Mace", "Map", "May", "Pace", "Pay",
-        "Race", "Rap", "Ray", "Tap", "Tape",
-        "Trace", "Trap", "Tray", "Yap",
-    ]
+board = [
+    ["A", "D", "E"],
+    ["R", "C", "P"],
+    ["L", "A", "Y"],
+]
 
-    board = [
-        ["A", "D", "E"],
-        ["R", "C", "P"],
-        ["L", "A", "Y"],
-    ]
+expected = [
+    "Ace", "Race", "Pace", "Lace", "Pay",
+    "Lay", "Clay", "Ray", "Lap", "Rap",
+    "Clap", "Ape", "Cape", "Yap",
+]
 
-    expected = [
-        "Ace", "Race", "Pace", "Lace", "Pay",
-        "Lay", "Clay", "Ray", "Lap", "Rap",
-        "Clap", "Ape", "Cape", "Yap",
-    ]
+print("Dictionary:")
+print(dictionary)
+print()
 
-    print("Dictionary:")
-    print(dictionary)
-    print()
+print("Board:")
+for row in board:
+    print(row)
+print()
 
-    print("Board:")
-    for row in board:
-        print(row)
-    print()
+print("Expected Output:")
+print(expected)
+print()
 
-    print("Expected Output:")
-    print(expected)
-    print()
-
-    print("Your Output:")
-    print(boggle(dictionary, board))
+print("Your Output:")
+print(boggle(dictionary, board))

@@ -1,72 +1,48 @@
 def breakWord(word, dictionary):
     """
-    idea: 
-    - create an empty trie
-    - walk through each word in dictionary 
-        - record it into trie, if reaching the end of word -> add it as KEY
-    - backtrack function
-        - unlocal i 
-        - base case: if i >= len(word) -> return
-        - if word[i] not in current node 
-        -> if key != None -> add it into ans list
-        -> return 
-        - if "KEY" in node -> key = new key 
-        - backtrack(i + 1, cur[i], key)
- 
-    - while loop (i < len(word)) (i starts from 0)
-        - if word[i] not in trie -> return False 
-        - backtrack(i, trie, key)
+    idea:
+    - lowercase word and put all lowercase versions of all words in dictionary to a set 
+    - create an dp list with len(word) + 1 in length and all values = False
+    - set first value in dp = True (assume we have empty string)
+    - create a parent list with len(word) in length and all values = -1 
+    - outer loop walk through each character in word (i)
+        - inner loop walk through from 0 to outer index (i + 1)
+            - if dp[j] true and lowercase_word[j:i] in word set -> dp[i+1] = True, parent[j] = i break 
     
+    - if not dp[n] -> return False, []
+    - walk through each element in parent list 
+        - if parent at that position != -1 -> add s[i:parent[i]] to ans list 
     - return True, ans list
+
+    time: O(n^2)
+    space: O(n)
     """
-    trie = {}
     s = word.lower()
-    ans = []
-    for w in dictionary:
-        cur = trie
-        lower_word = w.lower()
-        for ch in lower_word:
-            if ch not in cur:
-                cur[ch] = {}
-            cur = cur[ch]
-        cur["KEY"] = lower_word
+    n = len(s)
+    word_set = {word.lower() for word in dictionary}
+    dp = [False]*(n + 1)
+    dp[0] = True
+    parent = [-1]*(n + 1)
+
+    for i in range(n):
+        for j in range(i + 1):
+            if dp[j] and s[j:i + 1] in word_set:
+                dp[i + 1] = True
+                parent[i + 1] = j
+                break 
     
-    def backtrack(i, node, first_key, first_key_end):
-        # first_key tracks the first complete word we've seen
-        # first_key_end is the index where that word ended
+    if not dp[n]:
+        return False, []
 
-        if i >= len(s):
-            if first_key is not None:
-                ans.append(first_key)
-                return first_key_end
-            return -1
-
-        if s[i] not in node:
-            if first_key is not None:
-                ans.append(first_key)
-                return first_key_end
-            return -1
-
-        next_node = node[s[i]]
-
-        # If this node marks the end of a word and we haven't found one yet, use it
-        if "KEY" in next_node and first_key is None:
-            first_key = next_node["KEY"]
-            first_key_end = i
-
-        return backtrack(i + 1, next_node, first_key, first_key_end)
-
-    i = 0
-    while i < len(s):
-        if s[i] not in trie:
-            return False, []
-        endIdx = backtrack(i, trie, None, -1)
-        if endIdx == -1:
-            return False, []
-        i = endIdx + 1
+    ans = []
+    end = n
+    while end > 0:
+        start = parent[end]
+        ans.append(s[start:end])
+        end = start 
         
+    ans.reverse()
     return True, ans
-
 
 dictionary = [
     "Elf",
