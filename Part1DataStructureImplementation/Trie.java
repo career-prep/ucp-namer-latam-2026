@@ -7,7 +7,7 @@ public class Trie {
     public Trie(){
         root = new TrieNode();
     }
-    private void insert(String word){
+    public void insert(String word){
         TrieNode curr = root;
         for(char c: word.toCharArray()){
             int index = c- 'a';
@@ -18,7 +18,20 @@ public class Trie {
         }
         curr.validWord = true;
     }
-    private boolean isValidWord(String word){
+    public boolean startsWith(String word) {
+        TrieNode curr = root;
+       
+        for(char c : word.toCharArray()){
+            int idx = c - 'a';
+            if(curr.children[idx] ==null){
+                return false;
+            }else{
+                curr = curr.children[idx];
+            }
+        }
+        return true;
+    }
+    public boolean isValidWord(String word){
         TrieNode curr = root;
         for(char c : word.toCharArray()){
             int index = c- 'a';
@@ -29,7 +42,7 @@ public class Trie {
         }
         return curr.validWord;
     }
-    private void remove(String word){
+    public void remove(String word){
         if(!isValidWord(word)){
     return;
 }
