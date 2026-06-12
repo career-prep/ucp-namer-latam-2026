@@ -1,5 +1,6 @@
 package Part2Problems;
 import java.util.*;
+//dsa used heaps!
 //one thing i found out was:
 //// PriorityQueue is minHeap by default.
 // Collections.reverseOrder() makes it behave like a maxHeap.
