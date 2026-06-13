@@ -1,9 +1,11 @@
 package Part2Problems;
 
-//Given a list of coin denomintions and a target um k , return the number of possible wys to make
-//chnge for tht sum.
+//time complxity = o(n*m) for both coins nd lopping thoruhg target;
+//space complxity is = o(n) due to dp array
+
+
 public class CoinChange {
-    public int coinChange(int[] coins , int target){
+    public static int coinChange(int[] coins , int target){
         int[] dp = new int[target+1];
         //[2,5,10]
         //[20]
@@ -16,9 +18,11 @@ public class CoinChange {
         return dp[target]; 
 
     }
-    public void main(String[] args){
+    public static void main(String[] args){
         int[] test1 = {2,5,10};
         int target = 20;
+        int tar2 = 15;
         System.out.println(coinChange(test1, target));
+        System.out.println(coinChange(test1, tar2));
     }
 }
