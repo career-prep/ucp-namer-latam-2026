@@ -6,6 +6,7 @@ class TrieNode:
     def __init__(self):
         self.children = {}
         self.valid_word = False
+
 class Trie:
     def __init__(self):
         self.root = TrieNode()
@@ -16,6 +17,7 @@ class Trie:
                 node.children[char] = TrieNode()
             node = node.children[char]
         node.valid_word = True
+
     def is_valid_word(self, word):
         node = self.root
         for char in word.lower():
@@ -23,6 +25,7 @@ class Trie:
                 return False
             node = node.children[char]
         return node.valid_word
+    
     def remove(self, word):
         word = word.lower()
         def delete(node, index):
