@@ -8,7 +8,23 @@
 
 
 def minCostStairClimbing(costs):
-    pass
+    n = len(costs)
+    if n == 0:
+        return 0
+    elif n == 1:
+        return costs[0]
+
+    # Create a table to store the minimum cost to reach each step
+    dp = [0] * n
+    dp[0] = costs[0]
+    dp[1] = costs[1]
+
+    # Fill the table using the recurrence relation
+    for i in range(2, n):
+        dp[i] = costs[i] + min(dp[i - 1], dp[i - 2])
+
+    # The minimum cost to reach the top of the stairs is the minimum of the last two entries
+    return min(dp[-1], dp[-2])
 
 #Test Cases
 # assert minCostStairClimbing([4, 1, 6, 3, 5, 8]) == 9

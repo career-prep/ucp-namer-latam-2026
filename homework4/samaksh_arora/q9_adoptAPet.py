@@ -9,13 +9,37 @@
 
 class AnimalShelter:
     def __init__(self):
-        pass
+        from collections import deque
+        self.species_queues = {}  # {species: queue of animals}
+        self.overall_queue = deque()  # track global entry order
 
     def enqueueAnimal(self, name, species, days_in_shelter):
-        pass
+        from collections import deque
+        animal = (name, species, days_in_shelter)
 
-    def adoptAnimal(self, person_name, preferred_species):
-        pass
+        if species not in self.species_queues:
+            self.species_queues[species] = deque()
+
+        self.species_queues[species].append(animal)
+        self.overall_queue.append(animal)
+
+    def adoptAnimal(self, preferred_species):
+        # If preferred species exists, adopt the oldest of that species
+        if preferred_species in self.species_queues and len(self.species_queues[preferred_species]) > 0:
+            animal = self.species_queues[preferred_species].popleft()
+            self.overall_queue.remove(animal)
+            return (animal[0], animal[1])
+
+        # Otherwise, find the oldest animal overall
+        while len(self.overall_queue) > 0:
+            animal = self.overall_queue.popleft()
+            species = animal[1]
+            # Check if this animal is still available (not already adopted)
+            if animal in self.species_queues[species]:
+                self.species_queues[species].remove(animal)
+                return (animal[0], animal[1])
+
+        return None    
 
 #Test Cases
 # shelter = AnimalShelter()
