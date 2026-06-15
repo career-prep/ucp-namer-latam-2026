@@ -6,7 +6,7 @@
 #Time Spent:
 
 
-from homework4.samaksh_arora.q1_buildTrie import Trie
+from q1_buildTrie import Trie
 
 
 def findWordsOnBoggle(board, dictionary):
