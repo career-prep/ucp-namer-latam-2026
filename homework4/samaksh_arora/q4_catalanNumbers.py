@@ -1,9 +1,9 @@
 #Samaksh Arora
 #Question 4 - Catalan Numbers
 #Dynamic programming (Tabulation)
-#Time Complexity:
-#Space Complexity:
-#Time Spent:
+#Time Complexity: O(n)
+#Space Complexity: O(n)
+#Time Spent: >40 minutes
 
 
 def getCatalanNumbers(n):
@@ -13,8 +13,6 @@ def getCatalanNumbers(n):
     # Base case
     table[0] = 1
 
-    # Fill the table using the mathematical formula: C(i) = C(i-1) * 2(2i-1) / (i+1)
-    # This is O(n) instead of O(n^2)
     for i in range(1, n + 1):
         table[i] = table[i - 1] * 2 * (2 * i - 1) // (i + 1)
 

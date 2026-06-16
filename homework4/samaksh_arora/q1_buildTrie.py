@@ -1,37 +1,44 @@
 #Samaksh Arora
 #Question 1 - Build a Trie
 #Data Structure Implementation
-#Time Complexity:
-#Space Complexity:
-#Time Spent:
+#Time Complexity: O(M) for insert, isValidWord, and remove where M is the length of the word
+#Space Complexity: O(1) for operations; O(ALPHABET_SIZE * N * M) for total trie storage where N is number of words
+#Time Spent: >40 minutes
 
 
 class TrieNode:
     def __init__(self):
-        self.children = {}
+        self.children = [None] * 26
         self.validWord = False
+        self.idx = -1
+        self.refs = 0
 
 class Trie:
     def __init__(self):
         self.root = TrieNode()
 
-    def insert(self, word):
+    def insert(self, word, idx=-1):
         currentNode = self.root
+        currentNode.refs += 1
         for char in word:
-            if char not in currentNode.children:
-                currentNode.children[char] = TrieNode()
+            index = ord(char) - ord('a')
+            if currentNode.children[index] is None:
+                currentNode.children[index] = TrieNode()
 
-            currentNode = currentNode.children[char]
+            currentNode = currentNode.children[index]
+            currentNode.refs += 1
 
         currentNode.validWord = True
+        currentNode.idx = idx
 
     def isValidWord(self, word):
         currentNode = self.root
         for char in word:
-            if char not in currentNode.children:
+            index = ord(char) - ord('a')
+            if currentNode.children[index] is None:
                 return False
 
-            currentNode = currentNode.children[char]
+            currentNode = currentNode.children[index]
 
         return currentNode.validWord
 
@@ -41,17 +48,18 @@ class Trie:
                 if not node.validWord:
                     return False
                 node.validWord = False
-                return len(node.children) == 0
+                return not any(node.children)
 
             char = word[index]
-            if char not in node.children:
+            charIndex = ord(char) - ord('a')
+            if node.children[charIndex] is None:
                 return False
 
-            shouldDeleteChild = deleteHelper(node.children[char], word, index + 1)
+            shouldDeleteChild = deleteHelper(node.children[charIndex], word, index + 1)
 
             if shouldDeleteChild:
-                del node.children[char]
-                return len(node.children) == 0 and not node.validWord
+                node.children[charIndex] = None
+                return not any(node.children) and not node.validWord
 
             return False
         deleteHelper(self.root, word, 0)

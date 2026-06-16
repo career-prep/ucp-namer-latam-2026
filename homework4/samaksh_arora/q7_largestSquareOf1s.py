@@ -1,12 +1,9 @@
 #Samaksh Arora
 #Question 7 - Largest Square of 1s
 #Dynamic programming (Tabulation)
-#Time Complexity:
-#Space Complexity:
-#Time Spent:
-
-
-
+#Time Complexity: O(m * n) where m and n are the dimensions of the matrix
+#Space Complexity: O(m * n) for the DP table
+#Time Spent: >40 minutes
 
 
 def largestSquareOf1s(matrix):
@@ -26,10 +23,11 @@ def largestSquareOf1s(matrix):
     return maxSquareSide
 
 #Test Cases
-# matrix1 = [[0,1,0,1],[0,0,1,1],[0,1,1,1],[0,0,1,1]]
-# assert largestSquareOf1s(matrix1) == 2
-# matrix2 = [[0,1,0,1,1],[0,0,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,0,0]]
-# assert largestSquareOf1s(matrix2) == 3
+matrix1 = [[0,1,0,1],[0,0,1,1],[0,1,1,1],[0,0,1,1]]
+assert largestSquareOf1s(matrix1) == 2
+matrix2 = [[0,1,0,1,1],[0,0,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,0,0]]
+assert largestSquareOf1s(matrix2) == 3
 
-# Extra: assert largestSquareOf1s([[1,1],[1,1]]) == 2
-# Extra: assert largestSquareOf1s([[0]]) == 0
+# Extra: 
+assert largestSquareOf1s([[1,1],[1,1]]) == 2
+assert largestSquareOf1s([[0]]) == 0

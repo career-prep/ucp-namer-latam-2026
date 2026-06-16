@@ -1,9 +1,9 @@
 #Samaksh Arora
 #Question 2 - Boggle
 #Trie as a parameter
-#Time Complexity:
-#Space Complexity:
-#Time Spent:
+#Time Complexity: O(N * M^8) where N is number of cells on board and M is max path length (8 directions with backtracking)
+#Space Complexity: O(D * L) for trie where D is dictionary size and L is average word length; O(M) for recursion stack 
+#Time Spent: >40 minutes
 
 
 from q1_buildTrie import Trie
@@ -13,43 +13,61 @@ def findWordsOnBoggle(board, dictionary):
 
     if not board or not board[0] or not dictionary:
         return []
-    
+
     board = [[letter.lower() for letter in row] for row in board]
 
     trie = Trie()
-    for word in dictionary:
-        trie.insert(word.lower())
+    words = [word.lower() for word in dictionary]
+    for i, word in enumerate(words):
+        trie.insert(word, i)
 
     numberOfRows, numberOfCols = len(board), len(board[0])
-    foundWords = set()
-    setOfVisitedLetters = set()
-    def dfs(currentRow, currentCol, currentNode, path):
-        if currentNode.validWord:
-            foundWords.add(path)
+    foundWords = []
 
-        # Check boundaries and visited
+    def dfs(currentRow, currentCol, currentNode):
         if currentRow < 0 or currentRow >= numberOfRows:
             return
         if currentCol < 0 or currentCol >= numberOfCols:
             return
-        if (currentRow, currentCol) in setOfVisitedLetters:
-            return  
-        currentChar = board[currentRow][currentCol]
-        if currentChar not in currentNode.children:
+        if board[currentRow][currentCol] == '*':
             return
-        setOfVisitedLetters.add((currentRow, currentCol))
-        nextNode = currentNode.children[currentChar]
-        dfs(currentRow + 1, currentCol, nextNode, path + currentChar)
-        dfs(currentRow - 1, currentCol, nextNode, path + currentChar)
-        dfs(currentRow, currentCol + 1, nextNode, path + currentChar)
-        dfs(currentRow, currentCol - 1, nextNode, path + currentChar)
-        setOfVisitedLetters.remove((currentRow, currentCol))
-        
+
+        currentChar = board[currentRow][currentCol]
+        charIndex = ord(currentChar) - ord('a')
+
+        if not currentNode.children[charIndex]:
+            return
+
+        board[currentRow][currentCol] = '*'
+        prevNode = currentNode
+        currentNode = currentNode.children[charIndex]
+
+        if currentNode.idx != -1:
+            foundWords.append(words[currentNode.idx])
+            currentNode.idx = -1
+            currentNode.refs -= 1
+            if not currentNode.refs:
+                prevNode.children[charIndex] = None
+                currentNode = None
+                board[currentRow][currentCol] = currentChar
+                return
+
+        dfs(currentRow + 1, currentCol, currentNode)
+        dfs(currentRow - 1, currentCol, currentNode)
+        dfs(currentRow, currentCol + 1, currentNode)
+        dfs(currentRow, currentCol - 1, currentNode)
+        dfs(currentRow + 1, currentCol + 1, currentNode)
+        dfs(currentRow + 1, currentCol - 1, currentNode)
+        dfs(currentRow - 1, currentCol + 1, currentNode)
+        dfs(currentRow - 1, currentCol - 1, currentNode)
+
+        board[currentRow][currentCol] = currentChar
+
     for row in range(numberOfRows):
         for col in range(numberOfCols):
-            dfs(row, col, trie.root, "")
+            dfs(row, col, trie.root)
 
-    return list(foundWords)
+    return foundWords
 
 
 #Test Cases

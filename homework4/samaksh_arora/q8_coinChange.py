@@ -1,9 +1,9 @@
 #Samaksh Arora
 #Question 8 - Coin Change
 #Dynamic programming (Tabulation)
-#Time Complexity:
-#Space Complexity:
-#Time Spent:
+#Time Complexity: O(n * m) where n is the target sum and m is the number of coins
+#Space Complexity: O(n)
+#Time Spent: >40 minutes
 
 
 

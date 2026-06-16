@@ -1,13 +1,13 @@
 #Samaksh Arora
 #Question 6 - Word Break
 #Dynamic programming (Tabulation) + Trie as a parameter
-#Time Complexity:
-#Space Complexity:
-#Time Spent:
+#Time Complexity: O(n^2 * m) where n is the length of string and m is average word length (trie lookup)
+#Space Complexity: O(n) for DP array; O(D * m) for trie where D is dictionary size
+#Time Spent: >40 minutes
 
 
 from q1_buildTrie import Trie
-def canBreakWord(string, dictionary):
+def wordBreak(string, dictionary):
     #build the trie
     trie = Trie()
     for word in dictionary:
@@ -27,10 +27,10 @@ def canBreakWord(string, dictionary):
 
 #Test Cases
 dictionary = ["Elf","Go","Golf","Man","Manatee","Not","Note","Pig","Quip","Tee","Teen"]
-assert canBreakWord("mangolf", dictionary) == True
-assert canBreakWord("manateenotelf", dictionary) == True
-assert canBreakWord("quipig", dictionary) == False
+assert wordBreak("mangolf", dictionary) == True
+assert wordBreak("manateenotelf", dictionary) == True
+assert wordBreak("quipig", dictionary) == False
 
-#Extra: 
-assert canBreakWord("golf", dictionary) == True
-assert canBreakWord("gonotpig", dictionary) == False
+#Extra:
+assert wordBreak("golf", dictionary) == True
+assert wordBreak("gonotpig", dictionary) == True
