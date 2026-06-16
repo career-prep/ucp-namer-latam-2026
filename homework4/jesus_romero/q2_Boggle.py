@@ -1,7 +1,7 @@
 from q1_Trie import Trie
 # Implementation time: 30 min
 
-def find_boggle_words(board, dictionary):
+def boggle(board, dictionary):
     #1. Declare variables
     trie = Trie()
     result = set()
@@ -68,7 +68,7 @@ def Test_Boggle():
         ["L", "A", "Y"]
     ]
 
-    words = find_boggle_words(board, dictionary)
+    words = boggle(board, dictionary)
 
     print("Words found:")
     for word in sorted(words):
