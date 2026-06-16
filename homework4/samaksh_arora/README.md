@@ -1,10 +1,5 @@
 # Homework 4 - Data Structures & Algorithms
 
-## Overview
-This homework covers various data structure implementations and algorithm optimization techniques including Tries, Dynamic Programming, Heaps, and Queues.
-
----
-
 ## Q1 - Build a Trie
 **Type:** Data Structure Implementation
 
