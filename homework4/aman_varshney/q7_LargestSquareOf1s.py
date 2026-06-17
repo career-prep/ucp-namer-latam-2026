@@ -1,7 +1,7 @@
 # spent 70 minutes
 # tabulation
-# TC - O()
-# SC - O()
+# TC - O(n^2)
+# SC - O(n)
 
 
 def largest_sq_ones(arr: list[list[int]]) -> int:
