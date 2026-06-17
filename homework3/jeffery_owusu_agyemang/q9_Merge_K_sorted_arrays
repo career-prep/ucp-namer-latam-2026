@@ -1,0 +1,29 @@
+# Time taken: 30 minutes
+# Time complexity: O(nlogk)
+# Space complexity: O(n + k)
+
+import heapq
+
+def merge_k_sorted(k, arrays):
+    min_heap = []
+    result = []
+    
+    for i in range(len(arrays)):
+        if arrays[i]:
+            heapq.heappush(min_heap, (arrays[i][0], i, 0))
+    
+    while min_heap:
+        val, arr_idx, elm_idx = heapq.heappop(min_heap)
+        result.append(val)
+        if elm_idx + 1 < len(arrays[arr_idx]):
+            next_val = arrays[arr_idx][elm_idx + 1]
+            heapq.heappush(min_heap, (next_val, arr_idx, elm_idx + 1))
+            
+    return result
+
+# Test Cases
+print(merge_k_sorted(3, [[1, 4, 5], [1, 3, 4], [2, 6]])) # [1, 1, 2, 3, 4, 4, 5, 6]
+
+print(merge_k_sorted(2, [[1, 2, 3, 4, 5], [1, 3, 5, 7, 9]])) # [1, 1, 2, 3, 3, 4, 5, 5, 7, 9]
+
+print(merge_k_sorted(3, [[1, 4, 7, 9], [2, 6, 7, 10, 11, 13, 15], [3, 8, 12, 13, 16]])) # [1, 2, 3, 4, 6, 7, 7, 8, 9, 10, 11, 12, 13, 13, 15, 16]
