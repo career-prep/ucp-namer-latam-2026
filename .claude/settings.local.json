@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python q0_SinglyLinkedList.py)",
+      "Bash(python q1_DoublyLinkedList.py)",
+      "Bash(python q2_BinarySearchTree.py)",
+      "Bash(python q3_Queue.py)",
+      "Bash(python q4_Stack.py)",
+      "Bash(python q5_Deque.py)",
+      "Bash(python q6_CopyTree.py)",
+      "Bash(python q7_IsBST.py)",
+      "Bash(python q8_DedupSortedList.py)",
+      "Bash(python q9_MoveNthLastToFront.py)"
+    ]
+  }
+}
