@@ -26,3 +26,26 @@ def isBST(root):
         return helper(node.left, low, node.data) and helper(node.right, node.data, high)
     
     return helper(root, float('-inf'), float('inf'))
+
+
+
+
+
+
+
+  #Given: a binary tree
+  # determine if it is a binary search tree
+  # BST: for a given subtree, the relationship between the
+  #      parent, left child, right child should be like
+  #     Assumption: the data stored in the tree is int
+
+
+def isBST(node, low=float('-inf'), high=float('inf')):
+    if not node:
+        return True
+    
+    if not (low <node.data< high):
+        return False
+    
+    return isBST(node.left, low, node.data) and isBST(node.right, node.data, high)
+    

@@ -11,6 +11,8 @@
 # Space Complexity: O(1)
 # → only pointers are used
 
+# time taken: 10 mins
+
 def isPalindrome(head):
     if not head or not head.next:
         return True
