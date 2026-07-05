@@ -1,0 +1,3 @@
+def reverse(input):
+    val = input.split(" ")
+    return " ".join(val[::-1])
